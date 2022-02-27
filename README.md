@@ -1,28 +1,3 @@
-# [Datta Able Django](https://appseed.us/admin-dashboards/django-datta-able)
-
-## ✨ Quick Start in `Docker`
-
-> Get the code
-
-```bash
-$ git clone https://github.com/app-generator/django-datta-able.git
-$ cd django-datta-able
-```
-
-> Start the app in Docker
-
-```bash
-$ docker-compose up --build 
-```
-
-Visit `http://localhost:85` in your browser. The app should be up & running.
-
-<br />
-
-![Datta Able Django - Open-source seed project crafted in Django.](https://user-images.githubusercontent.com/51070104/144609240-22abff13-ef19-403a-9213-eec034c0560f.gif)
-
-<br />
-
 ## ✨ How to use it
 
 ```bash
@@ -41,8 +16,9 @@ $
 $ # Install modules
 $ # SQLIte version
 $ pip3 install -r requirements.txt
-$
-$ # Create tables
+$ # inside psql client run the following command
+$  \i '{path to repo}/CivicCit/createdb.sql'
+$ # In terminal Create tables
 $ python manage.py makemigrations
 $ python manage.py migrate
 $
