@@ -73,6 +73,18 @@ DATABASES = {
     }
 }
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'civiccit',
+        'USER': 'admin',
+        'PASSWORD': 'icecream123',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
+
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
