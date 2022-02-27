@@ -62,25 +62,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db.sqlite3',
-        'USER': 'mydatabaseuser',
-        'PASSWORD': 'mypassword',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': 'db.sqlite3',
+#         'USER': 'mydatabaseuser',
+#         'PASSWORD': 'mypassword',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'civiccit',
-        'USER': 'admin',
-        'PASSWORD': 'icecream123',
-        'HOST': 'localhost',
-        'PORT': '',
+       'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'civiccit', # db name
+        'USER': 'mydatabaseuser', # db user 
+        'PASSWORD': 'mypassword', #db password
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
