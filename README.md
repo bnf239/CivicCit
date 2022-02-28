@@ -2,8 +2,8 @@
 
 ```bash
 $ # Get the code
-$ git clone https://github.com/app-generator/django-datta-able.git
-$ cd django-datta-able
+$ git clone https://github.com/bnf239/CivicCit.git
+$ cd CivicCit
 $
 $ # Virtualenv modules installation (Unix based systems)
 $ virtualenv env
