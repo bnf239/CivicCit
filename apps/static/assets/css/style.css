@@ -1,15 +1,10 @@
-
-/**  =====================
-     Google Font
-==========================  **/
+/* Fonts */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600");
 @import url("../plugins/bootstrap/css/bootstrap.min.css");
 @import url("../fonts/feather/css/feather.css");
 @import url("../plugins/jquery-scrollbar/css/jquery.scrollbar.min.css");
-@import url("../fonts/datta/datta-icon.css");
-/**  =====================
-      Custom css start
-==========================  **/
+
+
 body {
   font-family: "Open Sans", sans-serif;
   font-size: 14px;
@@ -252,14 +247,9 @@ p.text-muted {
   border-radius: 0;
 }
 
-/* ==========  scrollbar End  =========== */
 .scroll-y {
   z-index: 1027;
 }
-
-/* ==========  scrollbar End  ===========
- ==========  card css End  ===========*/
-
 
 
 
@@ -278,10 +268,6 @@ p.text-muted {
 
 
 
-/**  =====================
-      Generic-class css start
-========================== **/
-/*====== Padding , Margin css starts ======*/
 .p-0 {
   padding: 0px;
 }
@@ -634,8 +620,7 @@ p.text-muted {
   margin-right: 50px;
 }
 
-/*====== Padding , Margin css ends ======*/
-/*====== text-color, background color css starts ======*/
+
 .bg-c-blue {
   background: #04a9f5;
 }
@@ -676,8 +661,6 @@ p.text-muted {
   color: #a389d4;
 }
 
-/*====== text-color css ends ======*/
-/*====== Card top border css starts ======*/
 .card-border-c-blue {
   border-top: 4px solid #04a9f5;
 }
@@ -698,8 +681,7 @@ p.text-muted {
   border-top: 4px solid #a389d4;
 }
 
-/*====== Card top border ends ======*/
-/*====== Font-size css starts ======*/
+
 .f-10 {
   font-size: 10px;
 }
@@ -844,8 +826,6 @@ p.text-muted {
   font-size: 80px;
 }
 
-/*====== Font-size css ends ======*/
-/*====== Font-weight css starts ======*/
 .f-w-100 {
   font-weight: 100;
 }
@@ -882,8 +862,7 @@ p.text-muted {
   font-weight: 900;
 }
 
-/*====== Font-weight css ends ======*/
-/* new logo start */
+
 .b-brand {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1043,10 +1022,6 @@ p.text-muted {
 }
 
 
-
-/**  =====================
-      Authentication css start
-==========================  **/
 .auth-wrapper {
   position: relative;
   display: -webkit-box;
