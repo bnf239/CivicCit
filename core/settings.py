@@ -1,5 +1,3 @@
-# -*- encoding: utf-8 -*-
-
 import os
 from decouple import config
 from unipath import Path
