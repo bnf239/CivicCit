@@ -10,28 +10,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
  
-    <!-- fontawesome icon -->
+    
     <link rel="stylesheet" href="/static/assets/fonts/fontawesome/css/fontawesome-all.min.css">
-    <!-- animation css -->
     <link rel="stylesheet" href="/static/assets/plugins/animation/css/animate.min.css">
-    <!-- vendor css -->
     <link rel="stylesheet" href="/static/assets/css/style.css">
 
-    <!-- Specific CSS goes HERE -->
+  
     {% block stylesheets %}{% endblock stylesheets %}
 
 </head>
 
 <body>
 
-    <!-- [ Pre-loader ] start -->
-    <!-- <div class="loader-bg">
-        <div class="loader-track">
-            <div class="loader-fill"></div>
-        </div>
-    </div>     -->
     
-    <!-- Top Bar -->
+
     {% include 'includes/navigation.html' %}
 
     
@@ -42,7 +34,7 @@
 
     {% include 'includes/scripts.html' %}
 
-    <!-- Specific Page JS goes HERE  -->
+    
     {% block javascripts %}{% endblock javascripts %}
 
 </body>
