@@ -10,18 +10,12 @@ def pages(request):
     context = {}
     
     try:
-        
+
         loadTemplate = request.path.split('/')[-1]
-        context['segment'] = loadTemplate
-        print(loadTemplate)
+
         if loadTemplate == 'admin':
-            print("HELLLLLLLLLLLLO")
             return HttpResponseRedirect(reverse('admin:index'))
-        
-        elif (loadTemplate == "events.html"):
-            print("HIII")
-            htmlTemplate = loader.get_template('events/events.html')
-            return HttpResponse(htmlTemplate.render(context, request))
+        context['segment'] = loadTemplate
 
         htmlTemplate = loader.get_template('home/' + loadTemplate)
         return HttpResponse(htmlTemplate.render(context, request))
