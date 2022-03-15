@@ -7,21 +7,20 @@
 
 {% block content %}
 
-<h5>EVENTS SYSTEM PAGE</h5>
 
 
 
 <div class="container">
 
-  <h1 class='text-center'> Movies List </h1>
+  <h1 class='text-center'> Event List </h1>
 
   <div class="row">
     <div class="col-sm-8 offset-sm-2">
 
       <ul class="list-group">
-        {% for movie in movies %}
+        {% for event in events %}
         <li class="list-group-item">
-          <p>{{ movie }}</p> 
+          <p>{{ event }}</p> 
         </li>
         {% endfor %}
       </ul>
