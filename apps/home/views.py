@@ -17,11 +17,6 @@ def pages(request):
         if loadTemplate == 'admin':
             print("HELLLLLLLLLLLLO")
             return HttpResponseRedirect(reverse('admin:index'))
-        
-        elif (loadTemplate == "events.html"):
-            print("HIII")
-            htmlTemplate = loader.get_template('events/events.html')
-            return HttpResponse(htmlTemplate.render(context, request))
 
         htmlTemplate = loader.get_template('home/' + loadTemplate)
         return HttpResponse(htmlTemplate.render(context, request))
