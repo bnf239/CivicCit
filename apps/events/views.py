@@ -33,6 +33,7 @@ def events_view(request):
             pass
             #print(soup.find("div", { "class" : "max-w-narrow" }).find("div", { "class" : "max-w-narrow" }).contents[i].select())
     
-
-    return render(request, "events/events.html", {'events': events})
+    htmlTemplate = loader.get_template('home/events.html' )
+    return HttpResponse(htmlTemplate.render({'events': events}, request))
+    #return render(request, "home/events.html", {'events': events})
  
