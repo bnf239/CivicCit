@@ -12,23 +12,93 @@
 
 <div class="container">
 
-  <h1 class='text-center'> Event List </h1>
+  
 
   <div class="row">
+    
     <div class="col-sm-8 offset-sm-2">
+      <h1> </h1>
+      <h1> </h1>
+      <h1> </h1>
+      <h1> </h1>
+      <h1> </h1>
+      <h1> </h1>
+      <h1> </h1>
+      <h1> </h1>
+      <h1> </h1>
+      <h1> </h1>
+      <h1 class='text-center'> Event List </h1>
+       
+      <form role="form" method="post" action="">
+        {% csrf_token %}      
+      <div class="input-group">
+        {{ form.location }}
+        
+        <div class="input-group-append">
+                {{ form.category }}
+                
+            <button class="btn btn-success" type="submit" >Search</button>
+            
+             
+        </div>
+    </div>
+     </form>
 
-      <ul class="list-group">
-        {% for event in events %}
-        <li class="list-group-item">
-          <p>{{ event }}</p> 
-        </li>
-        {% endfor %}
-      </ul>
+    <!-- <div class="column is-one-third">
+      <form role="form" method="post" action="" >
+        
+         
+          {{ event_form.as_p }}
+          <button class="btn btn-success"
+                  type="submit">Dweet
+          </button>
+      </form>
+  </div> -->
+  <!-- <div class="card-body text-center">
+  <form role="form" method="post" action="">
+
+    {% csrf_token %}                   
+
+    <div class="input-group mb-3">
+        {{ form.username }}
+    </div>
+    
+    <div class="input-group mb-4">
+        {{ form.password }}
+    </div>
+    
+    <div class="form-group text-left">
+        <div class="checkbox checkbox-fill d-inline">
+            <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" checked="">
+           
+        </div>
+    </div>
+    <button type="submit" name="login" class="btn btn-primary shadow-2 mb-4">Login</button>
+
+</form> -->
+</div>
+<div>
+
+
+
+  
+</div>
+ 
+<div class="col-sm-8 offset-sm-2">
+
+  <ul class="list-group">
+    {% for event in events %}
+    <li class="list-group-item">
+      <p>{{ event }}</p> 
+    </li>
+    {% endfor %}
+  </ul>
+
+</div>
 
     </div>
   </div>
-</div>
-
+ 
 
 
 {% endblock content %}
