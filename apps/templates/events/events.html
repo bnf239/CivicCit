@@ -32,7 +32,8 @@
       <form role="form" method="post" action="">
         {% csrf_token %}      
       <div class="input-group">
-        {{ form.location }}
+        {{ form.city }}
+        {{ form.state }}
         
         <div class="input-group-append">
                 {{ form.category }}

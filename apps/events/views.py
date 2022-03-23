@@ -10,11 +10,11 @@ from bs4 import BeautifulSoup
 from .forms import EventForm
 import re
  
-def returnResult(request,category,location):
+def returnResult(request,category,city,state):
     print(request)
     print(category)
-    city = re.split(r', ',location.lower())[0]
-    state = re.split(r', ',location.lower())[1]
+    city =city.lower()
+    state = state.lower()
     print(city)
     print(state)
      # complete logic here
@@ -97,11 +97,12 @@ def events_view(request):
         form = EventForm(request.POST)
         if form.is_valid():
             # event = form.save(commit=False)
-            location = form['location'].value()
+            city = form['city'].value()
+            state = form['state'].value()
             category = form['category'].value()
             # print(location)
             # print(category)
-            events = returnResult(request,category, location)
+            events = returnResult(request,category, city,state)
             return render(request, "events/events.html", {"form": form, "events":events})
     form = EventForm()
 

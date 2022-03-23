@@ -3,10 +3,17 @@ from django import forms
 
 class EventForm(forms.Form):
     
-    location = forms.CharField(
+    city = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Location",
+                "placeholder": "City eg. Brooklyn",
+                "class": "form-control"
+            }
+        ))
+    state = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "State eg. NY",
                 "class": "form-control"
             }
         ))
