@@ -29,5 +29,6 @@ class EventForm(forms.Form):
     ("charity-and-causes--events", "Charity & Causes"),
     ("government--events", "Government & Politics"),
     ("science-and-tech--events", "Science & Tech"),
+    ("lectures-books", "Lectures & Books")
 ))
  

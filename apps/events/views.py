@@ -9,85 +9,116 @@ import requests
 from bs4 import BeautifulSoup
 from .forms import EventForm
 import re
- 
+import calendar
+import datetime
+from django.contrib.auth.models import User
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+def index(request):
+    user_list = User.objects.all()
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(user_list, 10)
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
+
+    return render(request, "events/events.html", {"events":events})
+
 def returnResult(request,category,city,state):
-    print(request)
-    print(category)
     city =city.lower()
     state = state.lower()
-    print(city)
-    print(state)
-     # complete logic here
-    # url = "https://www.imdb.com/chart/moviemeter/"
-    # response = requests.get(url)
-    # soup = BeautifulSoup(response.content, "html.parser")
-    # table = soup.find('table',  {'class': 'chart full-width'})
-    # rows = table.find_all('tr')
-    # movies = []
-    # for row in rows:
-    #     image = row.find('img')
-    #     if image:
-    #         movies.append(image['alt'])
-    # headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9'}
-    # url = 'https://www.meetup.com/find/events/?allMeetups=true&radius=25&userFreeform=New York, NY&mcId=c10001&mcName=New York, NY&categoryId=604'
-    # response=requests.get(url,headers=headers)
-    # soup=BeautifulSoup(response.content,'html')
-    # events = []
-    # for i in range(len(soup.find("div", { "class" : "max-w-narrow" }).find("div", { "class" : "max-w-narrow" }).contents)):
-    #     try:
-    #         print(soup.find("div", { "class" : "max-w-narrow" }).find("div", { "class" : "max-w-narrow" }).contents[i].select('p')[0].get_text())
-    #         events.append(soup.find("div", { "class" : "max-w-narrow" }).find("div", { "class" : "max-w-narrow" }).contents[i].select('p')[0].get_text())
-    #     except:
-    #         pass
-    #         #print(soup.find("div", { "class" : "max-w-narrow" }).find("div", { "class" : "max-w-narrow" }).contents[i].select())
-    
-    
     events = []
     headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9'}
     pageNum = 1
-    url = 'https://www.eventbrite.com/d/{}--{}/{}/?page={}'.format(state,city,category,pageNum)
+    date = datetime.datetime.utcnow()
+    utc_time = calendar.timegm(date.utctimetuple())
 
-    response=requests.get(url,headers=headers)
-
-    soup=BeautifulSoup(response.content,'html')
-
-    results = soup.find_all("div",{ "class" : "search-event-card-wrapper" })
-    resultNum = 1
-    while len(results)>0:
-        for i in range(len(results)):
-            resDict = {}
-            try:
-                print("Title of Event:",results[i].find('div', attrs={'class': 'eds-is-hidden-accessible'}).text)
-                resDict["title"] = results[i].find('div', attrs={'class': 'eds-is-hidden-accessible'}).text
-            except:
-                resDict["title"] = "NO DATA"
-            try:
-                print("Link of Event:",results[i].contents[0].select('a')[0]["href"])
-                resDict["link"] = results[i].contents[0].select('a')[0]["href"]
-            except:
-                resDict["link"] = "NO DATA"
-            try:
-                print("Image of Event:",results[i].contents[0].select('img')[0]["src"])
-                resDict["image"] = results[i].contents[0].select('img')[0]["src"]
-            except:
-                resDict["image"] = "NO DATA"
-            try:
-                print("Date and Time of Event:",  results[i].find("div",{ "class" : "eds-event-card-content__sub-title eds-text-color--ui-orange eds-l-pad-bot-1 eds-l-pad-top-2 eds-text-weight--heavy eds-text-bm" }).text)
-                resDict["date"] =  results[i].find("div",{ "class" : "eds-event-card-content__sub-title eds-text-color--ui-orange eds-l-pad-bot-1 eds-l-pad-top-2 eds-text-weight--heavy eds-text-bm" }).text
-            except:
-                resDict["date"] = "NO DATA"
-            events.append(resDict)
-            # print(i)
-            # print("-----------------",pageNum)
-            resultNum+=1
-        pageNum+=1
+    if (category != "lectures-books"):
         url = 'https://www.eventbrite.com/d/{}--{}/{}/?page={}'.format(state,city,category,pageNum)
-        response=requests.get(url,headers=headers)
-        soup=BeautifulSoup(response.content,'html')
-        results = soup.find_all("div",{ "class" : "search-event-card-wrapper" })
 
+        response=requests.get(url,headers=headers)
+
+        soup=BeautifulSoup(response.content,'html')
+
+        results = soup.find_all("div",{ "class" : "search-event-card-wrapper" })
+        resultNum = 1
+        while len(results)>0:
+            for i in range(len(results)):
+                resDict = {}
+                try:
+                    print("Title of Event:",results[i].find('div', attrs={'class': 'eds-is-hidden-accessible'}).text)
+                    resDict["title"] = results[i].find('div', attrs={'class': 'eds-is-hidden-accessible'}).text
+                except:
+                    resDict["title"] = "NO DATA"
+                try:
+                    print("Link of Event:",results[i].contents[0].select('a')[0]["href"])
+                    resDict["link"] = results[i].contents[0].select('a')[0]["href"]
+                except:
+                    resDict["link"] = "NO DATA"
+                try:
+                    print("Image of Event:",results[i].contents[0].select('img')[0]["src"])
+                    resDict["image"] = results[i].contents[0].select('img')[0]["src"]
+                except:
+                    resDict["image"] = "NO DATA"
+                try:
+                    print("Date and Time of Event:",  results[i].find("div",{ "class" : "eds-event-card-content__sub-title eds-text-color--ui-orange eds-l-pad-bot-1 eds-l-pad-top-2 eds-text-weight--heavy eds-text-bm" }).text)
+                    resDict["date"] =  results[i].find("div",{ "class" : "eds-event-card-content__sub-title eds-text-color--ui-orange eds-l-pad-bot-1 eds-l-pad-top-2 eds-text-weight--heavy eds-text-bm" }).text
+                except:
+                    resDict["date"] = "NO DATA"
+                try:
+                    resDict["location"] = results[i].find("div",{ "data-subcontent-key" : "location" }).text
+                except:
+                    resDict["location"] = "NO DATA"
+                events.append(resDict)
+                # print(i)
+                # print("-----------------",pageNum)
+                resultNum+=1
+            pageNum+=1
+            url = 'https://www.eventbrite.com/d/{}--{}/{}/?page={}'.format(state,city,category,pageNum)
+            response=requests.get(url,headers=headers)
+            soup=BeautifulSoup(response.content,'html')
+            results = soup.find_all("div",{ "class" : "search-event-card-wrapper" })
+    API_KEY = '1Ms7iC-K52YCHkR70xuI_sXsZvQlHqhS3ze5DpUc_gnMm-D96G7O_GHKmu_COxuBckjlZCo7bAHkxSR1sDPMQ3lxH41VICcGlsUJPRUc1kmUrMJmROeSR4WgIQ04YnYx'
+    ENDPOINT = 'https://api.yelp.com/v3/events'
+    HEADERS = {'Authorization':'bearer %s' % API_KEY}
+    if (category =="charity-and-causes--events"):
+        for i in range(0,100,20):
+            PARAMETERS = {'limit':20, 'categories':['charities'],'locale':'en_US','location':city,'offset':i,'start_date':utc_time}
+            response = requests.get(url=ENDPOINT,params=PARAMETERS,headers=HEADERS)
+            business_data = response.json()
+            print(business_data)
+            for j in range(len(business_data["events"])):
+                resDict = {}
+                resDict["title"] = business_data["events"][j]["name"]
+                resDict["link"] = business_data["events"][j]["tickets_url"]
+                resDict["image"] = business_data["events"][j]["image_url"]
+                resDict["date"] =  business_data["events"][j]["time_start"]
+                resDict["location"] =business_data["events"][j]["location"]
+                events.append(resDict)
+
+    if(category=="lectures-books"):
     
-    return events
+        
+        for i in range(0,100,20):
+            PARAMETERS = {'limit':20, 'categories':['lectures-books'],'locale':'en_US','location':city,'offset':i,'start_date':utc_time}
+            response = requests.get(url=ENDPOINT,params=PARAMETERS,headers=HEADERS)
+            business_data = response.json()
+            print(business_data)
+            for j in range(len(business_data["events"])):
+                resDict = {}
+                resDict["title"] = business_data["events"][j]["name"]
+                resDict["link"] = business_data["events"][j]["tickets_url"]
+                resDict["image"] = business_data["events"][j]["image_url"]
+                resDict["date"] =  business_data["events"][j]["time_start"]
+                resDict["location"] =business_data["events"][j]["location"]
+                events.append(resDict)
+    paginator = Paginator(events, 10)
+    newevents = paginator.page(1)
+    return newevents
     
  
 def events_view(request):

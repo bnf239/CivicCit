@@ -84,18 +84,53 @@
 
   
 </div>
+<h1> </h1>
+<h1> </h1>
+<h1> </h1>
+<h1> </h1>
+<h1> </h1>
+<h1> </h1>
  
 <div class="col-sm-8 offset-sm-2">
 
   <ul class="list-group">
     {% for event in events %}
     <li class="list-group-item">
-      <p>{{ event }}</p> 
+      <div class="row">
+      <div class="col" style="height: 150px; width: 150px;"><img style='height: 100%; width: 100%; object-fit: contain' src={{event.image}} alt=""></div>
+      <div class="col-9"><h2>{{ event.title }}</h2>
+        <h5> Location: {{ event.location }} </h5>
+        <h5> Time: {{ event.date }} </h5>
+      <h5> Link to Register For Tickets: {{ event.link }} </h5>
+      </div>
     </li>
     {% endfor %}
   </ul>
 
 </div>
+
+  
+  {% if events.has_other_pages %}
+    <ul class="pagination">
+      {% if events.has_previous %}
+        <li><a href="?page={{ events.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+      {% for i in events.paginator.page_range %}
+        {% if events.number == i %}
+          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+          <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if events.has_next %}
+        <li><a href="?page={{ events.next_page_number }}">&raquo;</a></li>
+      {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+  {% endif %}
 
     </div>
   </div>
