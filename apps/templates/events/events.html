@@ -45,38 +45,6 @@
     </div>
      </form>
 
-    <!-- <div class="column is-one-third">
-      <form role="form" method="post" action="" >
-        
-         
-          {{ event_form.as_p }}
-          <button class="btn btn-success"
-                  type="submit">Dweet
-          </button>
-      </form>
-  </div> -->
-  <!-- <div class="card-body text-center">
-  <form role="form" method="post" action="">
-
-    {% csrf_token %}                   
-
-    <div class="input-group mb-3">
-        {{ form.username }}
-    </div>
-    
-    <div class="input-group mb-4">
-        {{ form.password }}
-    </div>
-    
-    <div class="form-group text-left">
-        <div class="checkbox checkbox-fill d-inline">
-            <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" checked="">
-           
-        </div>
-    </div>
-    <button type="submit" name="login" class="btn btn-primary shadow-2 mb-4">Login</button>
-
-</form> -->
 </div>
 <div>
 
@@ -93,23 +61,31 @@
  
 <div class="col-sm-8 offset-sm-2">
 
-  <ul class="list-group">
+  <ul id = "events" class="list-group">
     {% for event in events %}
+    
     <li class="list-group-item">
       <div class="row">
       <div class="col" style="height: 150px; width: 150px;"><img style='height: 100%; width: 100%; object-fit: contain' src={{event.image}} alt=""></div>
-      <div class="col-9"><h2>{{ event.title }}</h2>
+      <div class="col-8"><h2 id="title">{{ event.title }}</h2>
         <h5> Location: {{ event.location }} </h5>
         <h5> Time: {{ event.date }} </h5>
+        <input type="text" required="" name="username" maxlength="150" id="id_username" autofocus="">
       <h5> Link to Register For Tickets: {{ event.link }} </h5>
-      </div>
+      <a class="likebutton btn btn-primary btn-lg" id="like" href="#" data-catid="{{ event.title }}">Like</a>
+      <a href="#" class="catgend"  data-event="{{event}}" >Add to Schedule</a>
+    </div>
+     
+    
+    
+    
     </li>
     {% endfor %}
   </ul>
 
 </div>
 
-  
+<!--   
   {% if events.has_other_pages %}
     <ul class="pagination">
       {% if events.has_previous %}
@@ -130,14 +106,65 @@
         <li class="disabled"><span>&raquo;</span></li>
       {% endif %}
     </ul>
-  {% endif %}
+  {% endif %} -->
 
     </div>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script> 
+  
+$(document).ready(function(e) {   
+  $('.catgend').on('click', function (e) {
+    console.log("INSIDE CAT GEND");
+    var data = $(this).data();
+    console.log(data);
+    $.ajax({              
+     
+        url: "{% url 'schedule_events' %}",                    
+        data: {
+            'event': data.event,   
+        },
+        success: function (data) {   
+          alert("Event Successfully Added to Your Schedule");
+        }
+    });
+    
+});
+ }); 
+  
+ 
+  
+ 
+
+  
+  // $(document).ready(function(){
+  
+  // $(".btn").click(function(){
+  //     console.log("inside here")
+  //     $.ajax({
+  //         url:'',
+  //         type:'GET',
+  //         data:{
+  
+  //             button_text: $(this).text();
+  //         },
+  //         success: function(response){
+  //             $(".btn").text(response.seconds);
+  
+  //         }
+  //     });
+  // });
+  
+  // });
+  </script>
  
 
 
 {% endblock content %}
+{% block javascript %} 
+{% endblock %}
 
 
-{% block javascripts %}{% endblock javascripts %}
+ 
