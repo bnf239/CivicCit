@@ -13,6 +13,22 @@ import calendar
 import datetime
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from datetime import datetime
+from django.views.generic import View
+
+
+
+def validate(dateString):
+    if(len(dateString)==0):
+        return "NO DATA"
+    else:
+        dateString = dateString.split(',')
+        date = dateString[1].strip()+' 2022'
+        time = (re.findall(r".*(?:PM|AM)", dateString[2].strip()))[0]
+        newDate = date + '  ' + time
+        dtobject = datetime.strptime(newDate, '%b %d %Y %I:%M %p')
+        return str(dtobject)
+
 
 def index(request):
     user_list = User.objects.all()
@@ -25,7 +41,7 @@ def index(request):
         users = paginator.page(1)
     except EmptyPage:
         users = paginator.page(paginator.num_pages)
-
+    print("INSIDE INDEXXXX")
     return render(request, "events/events.html", {"events":events})
 
 def returnResult(request,category,city,state):
@@ -34,7 +50,7 @@ def returnResult(request,category,city,state):
     events = []
     headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9'}
     pageNum = 1
-    date = datetime.datetime.utcnow()
+    date = datetime.utcnow()
     utc_time = calendar.timegm(date.utctimetuple())
 
     if (category != "lectures-books"):
@@ -50,23 +66,25 @@ def returnResult(request,category,city,state):
             for i in range(len(results)):
                 resDict = {}
                 try:
-                    print("Title of Event:",results[i].find('div', attrs={'class': 'eds-is-hidden-accessible'}).text)
+                    # print("Title of Event:",results[i].find('div', attrs={'class': 'eds-is-hidden-accessible'}).text)
                     resDict["title"] = results[i].find('div', attrs={'class': 'eds-is-hidden-accessible'}).text
                 except:
                     resDict["title"] = "NO DATA"
                 try:
-                    print("Link of Event:",results[i].contents[0].select('a')[0]["href"])
+                    # print("Link of Event:",results[i].contents[0].select('a')[0]["href"])
                     resDict["link"] = results[i].contents[0].select('a')[0]["href"]
                 except:
                     resDict["link"] = "NO DATA"
                 try:
-                    print("Image of Event:",results[i].contents[0].select('img')[0]["src"])
+                    # print("Image of Event:",results[i].contents[0].select('img')[0]["src"])
                     resDict["image"] = results[i].contents[0].select('img')[0]["src"]
                 except:
                     resDict["image"] = "NO DATA"
                 try:
-                    print("Date and Time of Event:",  results[i].find("div",{ "class" : "eds-event-card-content__sub-title eds-text-color--ui-orange eds-l-pad-bot-1 eds-l-pad-top-2 eds-text-weight--heavy eds-text-bm" }).text)
-                    resDict["date"] =  results[i].find("div",{ "class" : "eds-event-card-content__sub-title eds-text-color--ui-orange eds-l-pad-bot-1 eds-l-pad-top-2 eds-text-weight--heavy eds-text-bm" }).text
+                    dateString = results[i].find("div",{ "class" : "eds-event-card-content__sub-title eds-text-color--ui-orange eds-l-pad-bot-1 eds-l-pad-top-2 eds-text-weight--heavy eds-text-bm" }).text
+                    newDate =  validate(dateString)
+                    print("Date and Time of Event:",  newDate )
+                    resDict["date"] =  newDate
                 except:
                     resDict["date"] = "NO DATA"
                 try:
@@ -90,7 +108,7 @@ def returnResult(request,category,city,state):
             PARAMETERS = {'limit':20, 'categories':['charities'],'locale':'en_US','location':city,'offset':i,'start_date':utc_time}
             response = requests.get(url=ENDPOINT,params=PARAMETERS,headers=HEADERS)
             business_data = response.json()
-            print(business_data)
+            # print(business_data)
             for j in range(len(business_data["events"])):
                 resDict = {}
                 resDict["title"] = business_data["events"][j]["name"]
@@ -98,6 +116,8 @@ def returnResult(request,category,city,state):
                 resDict["image"] = business_data["events"][j]["image_url"]
                 resDict["date"] =  business_data["events"][j]["time_start"]
                 resDict["location"] =business_data["events"][j]["location"]
+                print("Date and Time of Event: yelp", business_data["events"][j]["time_start"])
+                
                 events.append(resDict)
 
     if(category=="lectures-books"):
@@ -107,13 +127,14 @@ def returnResult(request,category,city,state):
             PARAMETERS = {'limit':20, 'categories':['lectures-books'],'locale':'en_US','location':city,'offset':i,'start_date':utc_time}
             response = requests.get(url=ENDPOINT,params=PARAMETERS,headers=HEADERS)
             business_data = response.json()
-            print(business_data)
+            # print(business_data)
             for j in range(len(business_data["events"])):
                 resDict = {}
                 resDict["title"] = business_data["events"][j]["name"]
                 resDict["link"] = business_data["events"][j]["tickets_url"]
                 resDict["image"] = business_data["events"][j]["image_url"]
                 resDict["date"] =  business_data["events"][j]["time_start"]
+                print("Date and Time of Event: yelp", business_data["events"][j]["time_start"])
                 resDict["location"] =business_data["events"][j]["location"]
                 events.append(resDict)
     paginator = Paginator(events, 10)
