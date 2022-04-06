@@ -55,7 +55,8 @@
         <h4>{{e.event_location}}</h4>
         <h4>{{e.event_date}}</h4>
         <h4>{{e.event_link}}</h4>
-       
+      
+        <a href="{% url 'delete_event' e.id %}" class="btn btn-outline-danger btn-sm" >Remove Event</a>
       </div>
     </div>
     {% endfor %}
@@ -64,6 +65,30 @@
  
   
  </div>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script> 
+ 
+$(document).ready(function(e) {   
+ $('.deleteEvent').on('click', function (e) {
+   console.log("INSIDE CAT GEND");
+   var data = $(this).data();
+   console.log(data);
+   $.ajax({              
+    
+       url: "{% url 'delete_event' %}",
+       type:'POST',                    
+       data: {
+           'event': data.event,   
+       },
+       success: function (data) {   
+         alert("Event Successfully Removed From Your Schedule");
+       }
+   });
+   
+});
+}); 
+</script>
    
  
 

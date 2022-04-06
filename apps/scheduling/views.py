@@ -23,7 +23,17 @@ def scheduleEvent(request):
     # event_date =  models.DateTimeField()
     # event_link =  models.CharField(max_length=500)
     return render(request, "events/events.html")
-    
+def deleteEvent(request, event_id):
+    #delete event
+    print("inside delete_events")
+    print(event_id)
+    event= Event.objects.get(pk=event_id)
+    event.delete()
+
+    events = Event.objects.all().values() 
+     
+    return render(request, "scheduling/scheduling.html",context={'events':events})
+
 def startup(request):
     events = Event.objects.all().values() 
      
