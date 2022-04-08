@@ -25,8 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.home',
     'apps.events',
-    'apps.scheduling'
-
+    'apps.scheduling',
+    'apps.infohub'
 ]
 
 MIDDLEWARE = [

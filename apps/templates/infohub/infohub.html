@@ -13,6 +13,24 @@
 
 <h1> Information Hub </h1>
 
+<!-- Political Involvement -->
+<form method="POST", action="/infohubtest/">
+    {% csrf_token %}
+    <button type="submit">Political Involvement</button>
+</form>
+
+<!-- social responsibility -->
+<form method="POST", action="/infohubtest2/">
+    {% csrf_token %}
+    <button type="submit">Social Responsibility</button>
+</form>
+
+<!--  advocacy & education -->
+<!-- <form method="POST", action="/infohubtest3/">
+    {% csrf_token %}
+    <button type="submit">Advocacy and Education</button>
+</form> -->
+
 </center>
 
 {% endblock content %}
