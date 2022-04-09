@@ -75,3 +75,16 @@ def infohubtest2_view(request):
     link = soup.find("results")
 
     return render(request, "infohub/infohubtest2.html", {"articles": articles})
+
+def infohubtest3_view(request):
+
+    url = 'https://newsdata.io/api/1/news?apikey=pub_627591a3bd0b220ed162b624916c154861ad&q=advocacy%20AND%20education'
+
+    r = requests.get(url)
+    articles = r.json()["results"]
+
+    soup = BeautifulSoup(r.content, features="lxml")
+
+    link = soup.find("results")
+
+    return render(request, "infohub/infohubtest3.html", {"articles": articles})    
