@@ -45,25 +45,24 @@
             <h5 class="card-title" style = "font-size:15px; text-align: left;"> Author: {{ article.creator.0 }}</h5>
             {% endif %}
             <!-- <p class="card-text">{{ card.description }}</p> -->
-            <form method = POST action="{{article.ink}}">
-                {% csrf_token %}
-                <a href="{{ article.link }}" class="btn btn-primary" name="urlLink">Link</a>
-                <input type="hidden" class = "form-control" id="urlLink" value="{{article.link}}" name="urlLink">
-                <input type="hidden" class = "form-control" id="user" value="{{user.username}}" name="user">
-                <a href="#" id="button" class="button">View </a>
+            <!-- <form method = POST action="{{article.ink}}"> -->
+                <!-- {% csrf_token %} -->
+            <a href="{{ article.link }}" class="appendlink" id = "linkbutton" data-article="{{article}}">Link</a>
+            <!-- <input type="hidden" class = "form-control" id="urlLink" value="{{article.link}}" name="urlLink"> -->
+            <!-- <input type="hidden" class = "form-control" id="user" value="{{user.username}}" name="user"> -->
+            <!-- <a href="#" id="button" class="button">View </a> -->
             </form>
-            <div class="bg-modal">
-                <div class="modal-contents">
-                    <div class="close">+</div>
+            <!-- <div class="bg-modal"> -->
+                <!-- <div class="modal-contents"> -->
+                    <!-- <div class="close">+</div> -->
                     <!-- {% if article.image_url == None %}
                     <img src="https://erc.europa.eu/sites/default/files/styles/stories_detail_page/public/stories/images/hands-elections_0.jpg?itok=TefUi_oy">
                     {% else %}
                     <img src="{{ article.image_url }}">
                     {% endif %} -->
                     <!-- yo {{ article.title }} -->
-                    yo
-                </div>
-            </div>
+                <!-- </div> -->
+            <!-- </div> -->
             <!-- <a href="/command/{{ card.id }}/delete" class="btn btn-primary">Delete</a> -->
             </div>
         </div>
@@ -80,8 +79,27 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script> 
 
-    const cbox = document.querySelectorAll('.button');
-    const dbox = document.querySelectorAll('.close');
+    $(document).ready(function(e) {   
+    $('.appendlink').on('click', function (e) {
+        console.log("INSIDE APPEND LINK");
+        var data = $(this).data();
+        console.log(data);
+        $.ajax({              
+        
+            url: "{% url 'add_user' %}",                    
+            data: {
+                'article': data.article,   
+            },
+            // success: function (data) {   
+            // alert("Event Successfully Added to Your Schedule");
+            // }
+            });
+        
+        });
+    }); 
+
+    // const cbox = document.querySelectorAll('.button');
+    // const dbox = document.querySelectorAll('.close');
 
     // for(i=0; i > cbox.length; i++){
     //     cbox[i].addEventListener('click', function(){
@@ -100,13 +118,13 @@
 
 
 
-    document.getElementById('button').addEventListener("click", function() {
-        document.querySelector('.bg-modal').style.display = "flex";
-    });
+    // document.getElementById('button').addEventListener("click", function() {
+    //     document.querySelector('.bg-modal').style.display = "flex";
+    // });
 
-    document.querySelector('.close').addEventListener("click", function() {
-        document.querySelector('.bg-modal').style.display = "none";
-    });
+    // document.querySelector('.close').addEventListener("click", function() {
+    //     document.querySelector('.bg-modal').style.display = "none";
+    // });
 
 </script>
 

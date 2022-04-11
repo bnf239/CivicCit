@@ -9,13 +9,30 @@ import requests
 from bs4 import BeautifulSoup
 # from .forms import EventForm
 import re
+import ast
 import calendar
 import datetime
 from django.contrib.auth.models import User
+from apps.infohub.models import InfoHubUserInformation
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # from requests_html import HTMLSession
-from .models import InfoHubUserInformation
+import json
+# from .models import InfoHubUserInformation
 
+def addUser(request):
+    data = dict(request.GET)
+    # print(data)
+    # print("---------------------")
+    # print("title", ast.literal_eval((data["event"][0]))["title"])
+    # print("location",ast.literal_eval((data["event"][0]))["location"])
+    # print("date",ast.literal_eval((data["event"][0]))["date"] )
+    # print("link",ast.literal_eval((data["event"][0]))["link"] )
+    # print("------------------------------")
+    # new_entry = Event(event_name=ast.literal_eval((data["event"][0]))["title"], event_location=ast.literal_eval((data["event"][0]))["location"], event_date=ast.literal_eval((data["event"][0]))["date"], event_link=ast.literal_eval((data["event"][0]))["link"])
+    new_entry = InfoHubUserInformation(article_title=ast.literal_eval((data["article"][0]))["title"], url_links = ast.literal_eval((data["article"][0]))["link"])
+    new_entry.save()
+    
+    return render(request, "infohub/infohub.html")
 
 def infohub_view(request):
     return render(request, "infohub/infohub.html", {})
@@ -50,7 +67,7 @@ def infohubtest_view(request):
     r = requests.get(url)
 
     articles = r.json()["results"]
-    print(articles)
+    # print(articles)
     # for i in data["results"]:
     #     print(i["title"])
 
