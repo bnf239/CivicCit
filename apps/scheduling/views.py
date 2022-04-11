@@ -2,7 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from apps.scheduling.models import Event
 import ast
-
+from django.views.generic import ListView
+import datetime
+from datetime import datetime
+from .utils import Calendar
+import json 
 def scheduleEvent(request):
     # add event to db
     # save event as a model
@@ -30,11 +34,20 @@ def deleteEvent(request, event_id):
     event= Event.objects.get(pk=event_id)
     event.delete()
 
-    events = Event.objects.all().values() 
+    events = list(Event.objects.all().values() )
      
     return render(request, "scheduling/scheduling.html",context={'events':events})
 
+
+
 def startup(request):
-    events = Event.objects.all().values() 
+    events = list(Event.objects.all().values())
+    for i in events:
+        i['title']= i["event_name"]
+        i['url']= i['event_link']
+        i['start']= i["event_date"].isoformat()
+        i['event_date'] = i['event_date'].strftime('%b %d %Y %I:%M %p')
+    print(events)
+
      
     return render(request, "scheduling/scheduling.html",context={'events':events})

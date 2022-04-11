@@ -16,6 +16,7 @@ urlpatterns = [
     path('scheduling/', startup, name="scheduling"),
     path('scheduling/delete_event/(?P<event_id>\d+)',deleteEvent,name="delete_event"),
      path('scheduling/delete_event/',deleteEvent,name="delete_event"),
+    # path(r'^calendar/$', CalendarView.as_view(), name='calendar'),
 
     # matching the html file
     re_path(r'^.*\.*', views.pages, name='pages'),

@@ -1,9 +1,13 @@
+ 
 {% extends "layouts/base.html" %}
-
+{% load static %}
 {% block title %} Dashboard {% endblock %} 
 
 
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<link href="{% static 'calender/main.css' %}" rel="stylesheet" />
+
+{% endblock stylesheets %}
 
 {% block content %}
 
@@ -46,56 +50,143 @@
 <h1> </h1>
   
 </div>
-<div class="container p-4">
+
   <div class="row">
-    {% for e in events %}
-    <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
-      <div class="card h-100 p-4">
-        <h4>{{e.event_name}}</h4>
-        <h4>{{e.event_location}}</h4>
-        <h4>{{e.event_date}}</h4>
-        <h4>{{e.event_link}}</h4>
-      
-        <a href="{% url 'delete_event' e.id %}" class="btn btn-outline-danger btn-sm" >Remove Event</a>
-      </div>
-    </div>
-    {% endfor %}
+
+    <div class="col-md-12">
+      <div class="tile row">
+          <div class="col-md-3">
+              <div id="external-events">
+                  <h4 class="mb-4">Events</h4>
+                  {% for event in events %}
+                    <div class="fc-event">
+                        <h3>{{ event.event_name }}</h3>
+                        <p style="color:blue;" > {{ event.event_location }}</p>
+                        <p style="color:blue;" >{{ event.event_date }}</p>
+                        <p style="color:blue;" >{{ event.event_link }}</p>
+                        <a href="{% url 'delete_event' event.id %}" class="btn btn-outline-danger btn-sm" >Remove Event</a>
+                    </div>
+                  {% empty %}
+                    <p>No Events Found</p>
+                  {% endfor %}
+              </div>
+          </div>
+          <div class="col-md-9">
+              <div id="calendar"></div>
+          </div>
+          </div>
+    
   </div>
 </div>
+
  
   
  </div>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
- <script> 
+  
  
-$(document).ready(function(e) {   
- $('.deleteEvent').on('click', function (e) {
-   console.log("INSIDE CAT GEND");
-   var data = $(this).data();
-   console.log(data);
-   $.ajax({              
-    
-       url: "{% url 'delete_event' %}",
-       type:'POST',                    
-       data: {
-           'event': data.event,   
-       },
-       success: function (data) {   
-         alert("Event Successfully Removed From Your Schedule");
-       }
-   });
    
+      {% endblock content %}
+      {% block javascripts %}
+      
+<script src="{% static 'calender/main.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var today = new Date();
+      // var finInst = jQuery.parseJSON( "{{ events|safe }}" );
+      // console.log(finInst);
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,timeGridDay,list'
+        },
+        initialDate: today,
+        navLinks: true, // can click day/week names to navigate views
+        selectable: true,
+        selectMirror: true,
+        select: function(arg) {
+          console.log('clicked')
+          var modal = document.getElementById('eventModal')
+          modal.style.display = 'block'
+          calendar.unselect()
+        },
+        // THIS KEY WON'T WORK IN PRODUCTION!!!
+        // To make your own Google API key, follow the directions here:
+        // http://fullcalendar.io/docs/google_calendar/
+        // googleCalendarApiKey: 'AIzaSyCqCxjjLtjbtkX37aOtWB8OfwBLy_6QuYk',
+
+        // bangladesh Holidays
+        // events: 'bn.bd#holiday@group.v.calendar.google.com',
+       
+        editable: true,
+        dayMaxEvents: true, // allow "more" link when too many events
+        events: {{ events|safe }},
+        // events: [
+        //   {
+        //     'title': 'All Day Event',
+        //     'start': '2022-04-11'
+        //   },
+        //   {
+        //     groupId: 999,
+        //     title: 'Repeating Event',
+        //     start: '2020-09-16T16:00:00'
+        //   },
+        //   {
+        //     title: 'Conference',
+        //     start: '2020-09-11',
+        //     end: '2020-09-13'
+        //   },
+        //   {
+        //     title: 'Click for Google',
+        //     url: 'http://google.com/',
+        //     start: '2020-09-28'
+        //   }
+        // ]
+      });
+
+      calendar.render();
+       
+    });
+
+     
+     
+
+</script>
+    <script> 
+
+$(document).ready(function(e) {   
+$('.deleteEvent').on('click', function (e) {
+  console.log("INSIDE CAT GEND");
+  var data = $(this).data();
+  console.log(data);
+  $.ajax({              
+   
+      url: "{% url 'delete_event' %}",
+      type:'POST',                    
+      data: {
+          'event': data.event,   
+      },
+      success: function (data) {   
+        alert("Event Successfully Removed From Your Schedule");
+      }
+  });
+  
 });
 }); 
 </script>
-   
+
+      
+      
+      
+      {% endblock javascripts %}
+
  
+  
+  
 
-
-{% endblock content %}
-{% block javascript %} 
-{% endblock %}
 
 
  

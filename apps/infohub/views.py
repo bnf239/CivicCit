@@ -13,7 +13,7 @@ import calendar
 import datetime
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from requests_html import HTMLSession
+# from requests_html import HTMLSession
 
 
 def infohub_view(request):
