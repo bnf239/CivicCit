@@ -7,6 +7,7 @@
 
 {% block content %}
 
+
 <!-- Political Involvement -->
 
 
@@ -44,17 +45,72 @@
             <h5 class="card-title" style = "font-size:15px; text-align: left;"> Author: {{ article.creator.0 }}</h5>
             {% endif %}
             <!-- <p class="card-text">{{ card.description }}</p> -->
-            <a href="{{ article.link }}" class="btn btn-primary">Link</a>
+            <form method = POST action="{{article.ink}}">
+                {% csrf_token %}
+                <a href="{{ article.link }}" class="btn btn-primary" name="urlLink">Link</a>
+                <input type="hidden" class = "form-control" id="urlLink" value="{{article.link}}" name="urlLink">
+                <input type="hidden" class = "form-control" id="user" value="{{user.username}}" name="user">
+                <a href="#" id="button" class="button">View </a>
+            </form>
+            <div class="bg-modal">
+                <div class="modal-contents">
+                    <div class="close">+</div>
+                    <!-- {% if article.image_url == None %}
+                    <img src="https://erc.europa.eu/sites/default/files/styles/stories_detail_page/public/stories/images/hands-elections_0.jpg?itok=TefUi_oy">
+                    {% else %}
+                    <img src="{{ article.image_url }}">
+                    {% endif %} -->
+                    <!-- yo {{ article.title }} -->
+                    yo
+                </div>
+            </div>
             <!-- <a href="/command/{{ card.id }}/delete" class="btn btn-primary">Delete</a> -->
             </div>
         </div>
         <!-- <h5> {{article.title}} </h5> -->
 
     {% endfor %}
-</div>>
+</div>
 
-{% endblock content %}
+
+
 
 </center>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script> 
 
-{% block javascripts %}{% endblock javascripts %}
+    const cbox = document.querySelectorAll('.button');
+    const dbox = document.querySelectorAll('.close');
+
+    // for(i=0; i > cbox.length; i++){
+    //     cbox[i].addEventListener('click', function(){
+    //     document.querySelector('.bg-modal').style.display = "flex";
+    //     });
+    // }
+
+    // $('bg-modal').css('display', 'block');
+
+    // for(i=0; i > cbox.length; i++){
+    //     dbox[i].addEventListener('click', function(){
+    //     document.querySelector('.bg-modal').style.display = "none";
+    //     });
+    // }
+    // console.log(cbox[0])
+
+
+
+    document.getElementById('button').addEventListener("click", function() {
+        document.querySelector('.bg-modal').style.display = "flex";
+    });
+
+    document.querySelector('.close').addEventListener("click", function() {
+        document.querySelector('.bg-modal').style.display = "none";
+    });
+
+</script>
+
+{% endblock content %}
+{% block javascript %} 
+{% endblock %}
+

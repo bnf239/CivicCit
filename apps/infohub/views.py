@@ -14,6 +14,7 @@ import datetime
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # from requests_html import HTMLSession
+from .models import InfoHubUserInformation
 
 
 def infohub_view(request):
@@ -49,6 +50,7 @@ def infohubtest_view(request):
     r = requests.get(url)
 
     articles = r.json()["results"]
+    print(articles)
     # for i in data["results"]:
     #     print(i["title"])
 
@@ -58,8 +60,28 @@ def infohubtest_view(request):
 
     link = soup.find("results")
 
+    # requestLink = request.POST['urlLink']
     # print("testing link:", link)
     # print(soup.get_text())
+
+    # data = dict(request.GET)
+    # print(data)
+
+    # print(yo)
+
+    # if request.method == 'POST':
+        # print('yo')
+        # userMain=request.POST.get('user', False)
+        # requestLink = request.POST.get('urlLink',False)
+
+
+        # new_user = InfoHubUserInformation(
+        #     username = userMain,
+        #     url_links = requestLink,
+        # )
+        # new_user.username = new_user
+        # new_user.save()
+        # return redirect('/')
 
     return render(request, "infohub/infohubtest.html", {"articles": articles})
 
@@ -87,4 +109,4 @@ def infohubtest3_view(request):
 
     link = soup.find("results")
 
-    return render(request, "infohub/infohubtest3.html", {"articles": articles})    
+    return render(request, "infohub/infohubtest3.html", {"articles": articles})
