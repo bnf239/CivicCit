@@ -35,6 +35,12 @@ def deleteEvent(request, event_id):
     event.delete()
 
     events = list(Event.objects.all().values() )
+    for i in events:
+        i['title']= i["event_name"]
+        i['url']= i['event_link']
+        i['start']= i["event_date"].isoformat()
+        i['event_date'] = i['event_date'].strftime('%b %d %Y %I:%M %p')
+    print(events)
      
     return render(request, "scheduling/scheduling.html",context={'events':events})
 
