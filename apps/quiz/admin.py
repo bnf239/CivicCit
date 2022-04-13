@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import QuizInformation
+from .models import QuesModel
 # Register models
-admin.site.register(QuizInformation)
+admin.site.register(QuesModel)

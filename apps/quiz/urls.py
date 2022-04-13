@@ -10,6 +10,7 @@ urlpatterns = [
     path('quiz1/', quiz1_view, name='quiz1'),
     path('quiz2/', quiz2_view, name='quiz2'),
     path('quiz3/', quiz3_view, name='quiz3'),
+    path('addQuestion/', addQuestion,name='addQuestion')
 
 
 ]

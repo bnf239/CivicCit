@@ -45,3 +45,7 @@ def quiz2_view(request):
 def quiz3_view(request):
 
     return render(request, "quiz/quiz3.html", {})
+
+def submit(request):
+
+    return render(request, "quiz/quiz.html", {})
