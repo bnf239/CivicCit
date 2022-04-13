@@ -47,7 +47,7 @@
             <!-- <p class="card-text">{{ card.description }}</p> -->
             <!-- <form method = POST action="{{article.ink}}"> -->
                 <!-- {% csrf_token %} -->
-            <a href="{{ article.link }}" class="appendlink" id = "linkbutton" data-article="{{article}}">Link</a>
+                <a href="{{article.link}}" class="appendlink" id = "linkbutton" data-articlelink="{{article.link}}" data-article="{{article.title}}">Link</a>
             <!-- <input type="hidden" class = "form-control" id="urlLink" value="{{article.link}}" name="urlLink"> -->
             <!-- <input type="hidden" class = "form-control" id="user" value="{{user.username}}" name="user"> -->
             <!-- <a href="#" id="button" class="button">View </a> -->
@@ -79,25 +79,28 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script> 
 
-    $(document).ready(function(e) {   
+$(document).ready(function(e) {   
     $('.appendlink').on('click', function (e) {
         console.log("INSIDE APPEND LINK");
+        var dict = {};
+         
         var data = $(this).data();
+        
         console.log(data);
+     
         $.ajax({              
         
             url: "{% url 'add_user' %}",                    
             data: {
-                'article': data.article,   
+                'article': data
             },
-            // success: function (data) {   
-            // alert("Event Successfully Added to Your Schedule");
-            // }
+            success: function (data) {   
+            
+            }
             });
         
         });
-    }); 
-
+    });
     // const cbox = document.querySelectorAll('.button');
     // const dbox = document.querySelectorAll('.close');
 

@@ -43,7 +43,7 @@
                 <h5 class="card-title" style = "font-size:15px; text-align: left;"> Author: {{ article.creator.0 }}</h5>
                 {% endif %}
                 <!-- <p class="card-text">{{ card.description }}</p> -->
-                <a href="{{ article.link }}" class="appendlink" id = "linkbutton" data-article="{{article}}">Link</a>
+                <a href="{{article.link}}" class="appendlink" id = "linkbutton" data-articlelink="{{article.link}}" data-article="{{article.title}}">Link</a>
                 <!-- <a href="/command/{{ card.id }}/delete" class="btn btn-primary">Delete</a> -->
                 </div>
             </div>
@@ -60,25 +60,28 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script> 
 
-    $(document).ready(function(e) {   
+$(document).ready(function(e) {   
     $('.appendlink').on('click', function (e) {
         console.log("INSIDE APPEND LINK");
+        var dict = {};
+         
         var data = $(this).data();
+        
         console.log(data);
+     
         $.ajax({              
         
             url: "{% url 'add_user' %}",                    
             data: {
-                'article': data.article,   
+                'article': data
             },
-            // success: function (data) {   
-            // alert("Event Successfully Added to Your Schedule");
-            // }
+            success: function (data) {   
+            
+            }
             });
         
         });
-    }); 
-
+    });
 </script>
 
 {% endblock content %}

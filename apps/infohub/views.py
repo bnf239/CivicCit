@@ -22,6 +22,10 @@ import json
 def addUser(request):
     data = dict(request.GET)
     # print(data)
+    # print("inside add users")
+    # print(data["article[link]"][0])
+    # print(data["article[title]"][0])
+    # print(data)
     # print("---------------------")
     # print("title", ast.literal_eval((data["event"][0]))["title"])
     # print("location",ast.literal_eval((data["event"][0]))["location"])
@@ -29,7 +33,7 @@ def addUser(request):
     # print("link",ast.literal_eval((data["event"][0]))["link"] )
     # print("------------------------------")
     # new_entry = Event(event_name=ast.literal_eval((data["event"][0]))["title"], event_location=ast.literal_eval((data["event"][0]))["location"], event_date=ast.literal_eval((data["event"][0]))["date"], event_link=ast.literal_eval((data["event"][0]))["link"])
-    new_entry = InfoHubUserInformation(article_title=ast.literal_eval((data["article"][0]))["title"], url_links = ast.literal_eval((data["article"][0]))["link"])
+    new_entry = InfoHubUserInformation(article_title=data["article[article]"][0], url_links = data["article[articlelink]"][0])
     new_entry.save()
     
     return render(request, "infohub/infohub.html")
