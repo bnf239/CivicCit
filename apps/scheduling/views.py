@@ -47,7 +47,7 @@ def deleteEvent(request, event_id):
 
 
 def startup(request):
-    events = list(Event.objects.all().values())
+    events = list(Event.objects.all().values().order_by('event_date'))
     for i in events:
         i['title']= i["event_name"]
         i['url']= i['event_link']
