@@ -16,6 +16,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # from requests_html import HTMLSession
 import json
+# from .models import InfoHubUserInformation
 
 def addUser(request):
     data = dict(request.GET)
@@ -35,12 +36,12 @@ def quiz_view(request):
 
 def quiz1_view(request):
 
-    return render(request, "quiz/politics.html", {})
+    return render(request, "quiz/quiz1.html", {})
 
 def quiz2_view(request):
 
-    return render(request, "quiz/social_resp.html", {})
+    return render(request, "quiz/quiz2.html", {})
 
 def quiz3_view(request):
 
-    return render(request, "quiz/service.html", {})
+    return render(request, "quiz/quiz3.html", {})

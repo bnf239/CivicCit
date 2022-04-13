@@ -1,4 +1,4 @@
 from django.contrib import admin
-from .models import InfoHubUserInformation
+from .models import QuizInformation
 # Register models
-admin.site.register(InfoHubUserInformation)
+admin.site.register(QuizInformation)

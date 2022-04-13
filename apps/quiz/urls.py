@@ -7,9 +7,9 @@ app_name = "quiz"
 urlpatterns = [
 
     path('quiz/', quiz_view, name="quiz"),
-    path('politics/', quiz1_view, name='politics'),
-    path('social_resp/', quiz2_view, name='social_resp'),
-    path('service/', quiz3_view, name='service'),
+    path('quiz1/', quiz1_view, name='quiz1'),
+    path('quiz2/', quiz2_view, name='quiz2'),
+    path('quiz3/', quiz3_view, name='quiz3'),
 
 
 ]
