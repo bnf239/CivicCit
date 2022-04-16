@@ -3,6 +3,7 @@ from apps.home import views
 from apps.events.views import events_view 
 from apps.infohub.views import infohub_view, infohubtest_view, infohubtest2_view, infohubtest3_view, addUser
 from apps.scheduling.views import scheduleEvent, startup, deleteEvent
+from apps.quiz.views import quiz_view, quiz1_view, quiz2_view, quiz3_view
 from apps.progress_report.views import progress_report_view
 urlpatterns = [
 
@@ -17,6 +18,11 @@ urlpatterns = [
     path('scheduling', scheduleEvent, name="schedule_events"),
     path('scheduling/', startup, name="scheduling"),
     path('scheduling/delete_event/(?P<event_id>\d+)',deleteEvent,name="delete_event"),
+    path('scheduling/delete_event/',deleteEvent,name="delete_event"),
+    path('quiz', quiz_view, name="quiz"),
+    path('quiz1/', quiz1_view, name='quiz1'),
+    path('quiz2/', quiz2_view, name='quiz2'),
+    path('quiz3/', quiz3_view, name='quiz3'),
     path('scheduling/delete_event/',deleteEvent,name="delete_event"),
     # path(r'^calendar/$', CalendarView.as_view(), name='calendar'),
     path('progress_report', progress_report_view, name = 'progress_report'),

@@ -1,0 +1,27 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<center>
+
+    <br>
+
+<h1>Community Service Quiz</h1>
+
+<form method="POST", action="/submit/">
+    {% csrf_token %}
+    <button type="submit">Submit Quiz</button>
+</form>
+
+
+</center>
+
+{% endblock content %}
+
+
+{% block javascripts %}{% endblock javascripts %}

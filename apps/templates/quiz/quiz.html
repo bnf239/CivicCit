@@ -1,0 +1,75 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<center>
+
+    <br>
+
+<h1>Quiz Category</h1>
+
+<!-- Political Involvement -->
+<form method="POST", action="/quiz1/">
+    {% csrf_token %}
+    <button type="submit">Political Involvement</button>
+</form>
+
+<!-- social responsibility -->
+<form method="POST", action="/quiz2/">
+    {% csrf_token %}
+    <button type="submit">Social Responsibility</button>
+</form>
+
+<!--  advocacy & education -->
+<form method="POST", action="/quiz3/">
+    {% csrf_token %}
+    <button type="submit">Community Service</button>
+</form>
+
+<br>
+<br>
+
+<form method="POST", action="/submit/">
+    {% csrf_token %}
+    <h1>Results</h1>
+
+    <table style=" border: 1px solid;">
+        <tr style=" border: 1px solid;padding: 20px;">
+          <th style=" border: 1px solid;padding: 10px;">Category</th>
+          <th style=" border: 1px solid;padding: 10px;">Number of Questions Right</th>
+          <th style=" border: 1px solid;padding: 10px;">Total Number of Questions</th>
+          <th style=" border: 1px solid;padding: 10px;">Percentage</th>
+        </tr>
+        <tr style=" border: 1px solid;padding: 20px;">
+            <th style=" border: 1px solid;padding: 10px;">Political Involvement</th>
+            <th style=" border: 1px solid;padding: 10px;"></th>
+            <th style=" border: 1px solid;padding: 10px;"></th>
+            <th style=" border: 1px solid;padding: 10px;"></th>
+        </tr>
+        <tr style=" border: 1px solid;padding: 20px;">
+            <th style=" border: 1px solid;padding: 10px;">Social Responsibility</th>
+            <th style=" border: 1px solid;padding: 10px;"></th>
+            <th style=" border: 1px solid;padding: 10px;"></th>
+            <th style=" border: 1px solid;padding: 10px;"></th>
+        </tr>
+        <tr style=" border: 1px solid;padding: 20px;">
+            <th style=" border: 1px solid;padding: 10px;">Community Service</th>
+            <th style=" border: 1px solid;padding: 10px;"></th>
+            <th style=" border: 1px solid;padding: 10px;"></th>
+            <th style=" border: 1px solid;padding: 10px;"></th>
+        </tr>
+      </table>
+
+</form>
+
+</center>
+
+{% endblock content %}
+
+
+{% block javascripts %}{% endblock javascripts %}
