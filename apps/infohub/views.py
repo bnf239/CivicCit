@@ -62,7 +62,12 @@ def infohubtest_view(request):
     # api_key = 'pub_627591a3bd0b220ed162b624916c154861ad'
 
 
-    url = 'https://newsdata.io/api/1/news?apikey=pub_627591a3bd0b220ed162b624916c154861ad&q=political%20AND%20involvement' 
+    # url = 'https://newsdata.io/api/1/news?apikey=pub_627591a3bd0b220ed162b624916c154861ad&q=political%20AND%20involvement' 
+    API_key = 'ae08340bce8f4000996fc988450a02b3'
+    # url = 'https://newsapi.org/v2/everything?q=(political%20AND%20involvement)&domains=nytimes.com,theguardian.com,bbc.co.uk&apiKey=ae08340bce8f4000996fc988450a02b3'
+    # url = 'https://newsapi.org/v2/everything?q=(political%20AND%20involvement)&domains=nytimes.com,theguardian.com&sortBy=relevancy&apiKey=ae08340bce8f4000996fc988450a02b3'
+
+    url = 'https://newsapi.org/v2/everything?q=(political%20AND%20involvement)&domains=nytimes.com,theguardian.com&sortBy=relevancy&apiKey=' + API_key
 
     # HEADERS = {'Authorization':'bearer %s' % api_key}
 
@@ -70,7 +75,7 @@ def infohubtest_view(request):
 
     r = requests.get(url)
 
-    articles = r.json()["results"]
+    articles = r.json()["articles"]
     # print(articles)
     # for i in data["results"]:
     #     print(i["title"])
@@ -108,10 +113,13 @@ def infohubtest_view(request):
 
 def infohubtest2_view(request):
 
-    url = 'https://newsdata.io/api/1/news?apikey=pub_627591a3bd0b220ed162b624916c154861ad&q=social%20responsibility'
+    # url = 'https://newsdata.io/api/1/news?apikey=pub_627591a3bd0b220ed162b624916c154861ad&q=social%20responsibility'
+    API_key = 'ae08340bce8f4000996fc988450a02b3'
+
+    url = 'https://newsapi.org/v2/everything?q=(social%20responsibility)&domains=nytimes.com,theguardian.com&sortBy=relevancy&apiKey=' + API_key
 
     r = requests.get(url)
-    articles = r.json()["results"]
+    articles = r.json()["articles"]
 
     soup = BeautifulSoup(r.content, features="lxml")
 
@@ -121,10 +129,13 @@ def infohubtest2_view(request):
 
 def infohubtest3_view(request):
 
-    url = 'https://newsdata.io/api/1/news?apikey=pub_627591a3bd0b220ed162b624916c154861ad&q=advocacy%20AND%20education'
+    # url = 'https://newsdata.io/api/1/news?apikey=pub_627591a3bd0b220ed162b624916c154861ad&q=advocacy%20AND%20education'
+    API_key = 'ae08340bce8f4000996fc988450a02b3'
+
+    url = 'https://newsapi.org/v2/everything?q=(advocacy%20AND%20education)&domains=nytimes.com,theguardian.com&sortBy=relevancy&apiKey=' + API_key
 
     r = requests.get(url)
-    articles = r.json()["results"]
+    articles = r.json()["articles"]
 
     soup = BeautifulSoup(r.content, features="lxml")
 
