@@ -28,6 +28,7 @@
       <h1> </h1>
       <h1> </h1>
       <h1 class='text-center'> Event List </h1>
+      
        
       <form role="form" method="post" action="">
         {% csrf_token %}      
@@ -38,12 +39,39 @@
         <div class="input-group-append">
                 {{ form.category }}
                 
-            <button class="btn btn-success" type="submit" >Search</button>
+            <button id="search" class="btn btn-success" type="submit" >Search</button>
             
              
         </div>
     </div>
+     
+    {% if nextButton and previousButton %} 
+    {% csrf_token %}
+   
+      <button id="prev" type="submit">Previous</button>
+      <input type="hidden" name="num" value="{{num}}">
+      <button id="next" type="submit">Next</button>
+    
+    <!-- <input type="hidden" name="num" value="{{num}}">
+    <button id="next" type="submit">Next</button> -->
+
+    {% elif nextButton %}
+   
+    <input type="hidden" name="num" value="{{num}}">
+    <button id="next" type="submit">Next</button>
+  
+    {% elif previousButton %}
+    <input type="hidden" name="num" value="{{num}}">
+    <button id="prev" type="submit">Previous</button>
+  
+
+    
+ 
+    {% endif %}
+    <input id="type" type="hidden" name="type" value="">
+    <input type="hidden" name="num" value="{{num}}">
      </form>
+    
 
 </div>
 <div>
@@ -59,7 +87,8 @@
 <h1> </h1>
 <h1> </h1>
  
-<div style="overflow-y: scroll;height: 920px" class="col-sm-8 offset-sm-2">
+<div id="output" class="col-sm-8 offset-sm-2">
+  
 
   <ul id = "events" class="list-group">
     {% for event in events %}
@@ -85,28 +114,7 @@
 
 </div>
 
-<!--   
-  {% if events.has_other_pages %}
-    <ul class="pagination">
-      {% if events.has_previous %}
-        <li><a href="?page={{ events.previous_page_number }}">&laquo;</a></li>
-      {% else %}
-        <li class="disabled"><span>&laquo;</span></li>
-      {% endif %}
-      {% for i in events.paginator.page_range %}
-        {% if events.number == i %}
-          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-        {% else %}
-          <li><a href="?page={{ i }}">{{ i }}</a></li>
-        {% endif %}
-      {% endfor %}
-      {% if events.has_next %}
-        <li><a href="?page={{ events.next_page_number }}">&raquo;</a></li>
-      {% else %}
-        <li class="disabled"><span>&raquo;</span></li>
-      {% endif %}
-    </ul>
-  {% endif %} -->
+ 
 
     </div>
   </div>
@@ -133,6 +141,22 @@ $(document).ready(function(e) {
     
 });
  }); 
+ 
+ $('#prev').click(function(){
+    $('#type').val('prev');
+    
+});
+
+$('#next').click(function(){
+    $('#type').val('next');
+});
+
+$('#search').click(function(){
+    $('#type').val('search');
+   // $("#output").css({'overflow-y': 'scroll', 'height': '920px',});
+    // console.log("In search")
+});
+
   
  
   

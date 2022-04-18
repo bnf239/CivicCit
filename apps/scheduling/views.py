@@ -7,6 +7,7 @@ import datetime
 from datetime import datetime
 from .utils import Calendar
 import json 
+from datetime import date
 def scheduleEvent(request):
     # add event to db
     # save event as a model
@@ -49,11 +50,19 @@ def deleteEvent(request, event_id):
 def startup(request):
     events = list(Event.objects.all().values().order_by('event_date'))
     for i in events:
+        # print("BEFORE")
+        # print(i["event_date"])
+
         i['title']= i["event_name"]
         i['url']= i['event_link']
         i['start']= i["event_date"].isoformat()
+        # print("AFTER")
+        # print(i["start"])
         i['event_date'] = i['event_date'].strftime('%b %d %Y %I:%M %p')
-    print(events)
+        print(i['start'])
+   # print(events)
+    dateTime = str(date.today())
+    # print(dateTime)
 
      
-    return render(request, "scheduling/scheduling.html",context={'events':events})
+    return render(request, "scheduling/scheduling.html",context={'events':events,'dateTime':dateTime})

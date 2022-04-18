@@ -50,15 +50,31 @@
 <h1> </h1>
   
 </div>
-
-  <div class="row">
-
-    <div class="col-md-12">
-      <div class="tile row">
-          <div class="col-md-3">
-              <div style="overflow-y: scroll;height: 920px" id="external-events">
-                  <h4 class="mb-4">Events</h4>
+<div class="row">  
+  <div class="col-md-12">
+    <div class="tile row">
+      <div class="col-md-3">
+      
+      <ul  class="nav nav-tabs">
+   
+        <li class="active nav-item">
+          <a  href="#1a" class="nav-link active" data-toggle="tab">Upcoming</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#2a" data-toggle="tab">Past</a>
+        </li>
+         
+      </ul>
+      
+  
+        <div class="tab-content clearfix">
+          <div class="tab-pane active" id="1a">
+            
+              <div style="overflow-y: scroll;height: 600px" id="external-events">
+                  <h4 class="mb-4">Upcoming Events</h4>
+                  
                   {% for event in events %}
+                  
+                    {% if event.start > dateTime %}
                     <div class="fc-event">
                         <h3>{{ event.event_name }}</h3>
                         <p style="color:blue;" > {{ event.event_location }}</p>
@@ -66,11 +82,40 @@
                         <p style="color:blue;" >{{ event.event_link }}</p>
                         <a href="{% url 'delete_event' event.id %}" class="btn btn-outline-danger btn-sm" >Remove Event</a>
                     </div>
+                  
+                    {% endif %}
                   {% empty %}
                     <p>No Events Found</p>
                   {% endfor %}
               </div>
           </div>
+          
+          <div class="tab-pane" id="2a">
+           
+              <div style="overflow-y: scroll;height: 500px" id="external-events">
+                  <h4 class="mb-4">Past Events</h4>
+                  {% for event in events %}
+                    {% if event.start < dateTime %}
+                      <div class="fc-event">
+                          <h3>{{ event.event_name }}</h3>
+                          <p style="color:blue;" > {{ event.event_location }}</p>
+                          <p style="color:blue;" >{{ event.event_date }}</p>
+                          <p style="color:blue;" >{{ event.event_link }}</p>
+                          <a href="{% url 'delete_event' event.id %}" class="btn btn-outline-danger btn-sm" >Remove Event</a>
+                      </div>
+                    {% endif %}
+                  {% empty %}
+                    <p>No Events Found</p>
+                  {% endfor %}
+              </div>
+          </div>
+          </div>
+     
+
+  
+</div>
+   
+          
           <div class="col-md-9">
               <div id="calendar"></div>
           </div>
@@ -84,6 +129,7 @@
  </div>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   
  
    
@@ -95,8 +141,6 @@
     document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
       var today = new Date();
-      // var finInst = jQuery.parseJSON( "{{ events|safe }}" );
-      // console.log(finInst);
       var calendar = new FullCalendar.Calendar(calendarEl, {
         headerToolbar: {
           left: 'prev,next today',
@@ -113,38 +157,12 @@
           modal.style.display = 'block'
           calendar.unselect()
         },
-        // THIS KEY WON'T WORK IN PRODUCTION!!!
-        // To make your own Google API key, follow the directions here:
-        // http://fullcalendar.io/docs/google_calendar/
-        // googleCalendarApiKey: 'AIzaSyCqCxjjLtjbtkX37aOtWB8OfwBLy_6QuYk',
-
-        // bangladesh Holidays
-        // events: 'bn.bd#holiday@group.v.calendar.google.com',
-       
+         
+        timeZone: 'UTC',
         editable: true,
         dayMaxEvents: true, // allow "more" link when too many events
         events: {{ events|safe }},
-        // events: [
-        //   {
-        //     'title': 'All Day Event',
-        //     'start': '2022-04-11'
-        //   },
-        //   {
-        //     groupId: 999,
-        //     title: 'Repeating Event',
-        //     start: '2020-09-16T16:00:00'
-        //   },
-        //   {
-        //     title: 'Conference',
-        //     start: '2020-09-11',
-        //     end: '2020-09-13'
-        //   },
-        //   {
-        //     title: 'Click for Google',
-        //     url: 'http://google.com/',
-        //     start: '2020-09-28'
-        //   }
-        // ]
+         
       });
 
       calendar.render();
@@ -175,7 +193,19 @@ $('.deleteEvent').on('click', function (e) {
   });
   
 });
+
+
 }); 
+
+function selectTab(tabIndex) {
+  //Hide All Tabs
+  document.getElementById('tab1Content').style.display="none";
+  document.getElementById('tab2Content').style.display="none";
+  document.getElementById('tab3Content').style.display="none";
+  
+  //Show the Selected Tab
+  document.getElementById('tab' + tabIndex + 'Content').style.display=null;  
+}
 </script>
 
       
