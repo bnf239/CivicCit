@@ -102,7 +102,7 @@ def getResults(category, city,state,pageNum):
             resDict["image"] = business_data["events"][j]["image_url"]
             resDict["date"] =  str((datetime.fromisoformat(business_data["events"][j]["time_start"])).strftime('%b %d %Y %I:%M %p'))
             print("Date and Time of Event: yelp", business_data["events"][j]["time_start"])
-            resDict["location"] =business_data["events"][j]["location"]
+            resDict["location"] = ' '.join(business_data["events"][j]["location"]['display_address'])
             events.append(resDict)
         
 
