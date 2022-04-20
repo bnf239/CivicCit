@@ -60,7 +60,7 @@ def getResults(category, city,state,pageNum):
                 except:
                     resDict["image"] = "NO DATA"
                 try:
-                    dateString = results[i].find("div",{ "class" : "eds-event-card-content__sub-title eds-text-color--ui-orange eds-l-pad-bot-1 eds-l-pad-top-2 eds-text-weight--heavy eds-text-bm" }).text
+                    dateString = results[i].find("div",{ "class" : "eds-event-card-content__sub-title" }).text
                     newDate =  validate(dateString)
                     print("Date and Time of Event:",  newDate )
                     resDict["date"] =  newDate
