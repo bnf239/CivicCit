@@ -98,10 +98,10 @@
       <div class="col" style="height: 150px; width: 150px;"><img style='height: 100%; width: 100%; object-fit: contain' src={{event.image}} alt=""></div>
       <div class="col-8"><h2 id="title">{{ event.title }}</h2>
         <h5> Location: {{ event.location }} </h5>
-        <h5> Time: {{ event.date }} </h5>
-        <input type="text" required="" name="username" maxlength="150" id="id_username" autofocus="">
+        <h5> Date & Time: {{ event.date }} </h5>
+        
       <h5> Link to Register For Tickets: {{ event.link }} </h5>
-      <a class="likebutton btn btn-primary btn-lg" id="like" href="#" data-catid="{{ event.title }}">Like</a>
+      
       <a href="#" class="catgend"  data-event="{{event}}" >Add to Schedule</a>
     </div>
      

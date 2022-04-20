@@ -9,6 +9,18 @@ from datetime import datetime
 from .utils import Calendar
 import json 
 from datetime import date
+
+def validate(dateString):
+    if(len(dateString)==0):
+        return "NO DATA"
+    else:
+        dateString = dateString.split(',')
+        date = dateString[1].strip()+' 2022'
+        time = (re.findall(r".*(?:PM|AM)", dateString[2].strip()))[0]
+        newDate = date + '  ' + time
+        dtobject = datetime.strptime(newDate, '%b %d %Y %I:%M %p')
+        return str(dtobject)
+
 def scheduleEvent(request):
     # add event to db
     # save event as a model
@@ -18,8 +30,9 @@ def scheduleEvent(request):
     
     title = ast.literal_eval((data["event"][0]))["title"]
     location= ast.literal_eval((data["event"][0]))["location"]
-    date = ast.literal_eval((data["event"][0]))["date"]
+    date =  datetime.strptime(ast.literal_eval((data["event"][0]))["date"], '%b %d %Y %I:%M %p')
     link = ast.literal_eval((data["event"][0]))["link"] 
+    print(date)
     if (title == "NO DATA"):
         title = None
     if (location == "NO DATA"):
@@ -28,10 +41,10 @@ def scheduleEvent(request):
         date = None
     if ( link == "NO DATA"):
         link = None
-    print(title)
-    print(location)
-    print(date)
-    print(link)
+    # print(title)
+    # print(location)
+    # print(date)
+    # print(link)
 
     print("------------------------------")
     new_entry = Event(event_name=title, event_location=location, event_date=date, event_link=link)

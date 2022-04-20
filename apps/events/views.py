@@ -24,7 +24,7 @@ def validate(dateString):
         time = (re.findall(r".*(?:PM|AM)", dateString[2].strip()))[0]
         newDate = date + '  ' + time
         dtobject = datetime.strptime(newDate, '%b %d %Y %I:%M %p')
-        return str(dtobject)
+        return str(dtobject.strftime('%b %d %Y %I:%M %p'))
 
 def getResults(category, city,state,pageNum):
     city =city.lower()
@@ -78,8 +78,8 @@ def getResults(category, city,state,pageNum):
                 print(resDict["title"])
                 print("IMAGE")
                 print(resDict["image"])
-                
-                events.append(resDict)
+                if (resDict["title"]!= "NO DATA" and resDict["link"] != "NO DATA" and  resDict["location"] != "NO DATA" and resDict["date"] != "NO DATA"):
+                    events.append(resDict)
         else:
             #no more results
             pass
@@ -100,7 +100,7 @@ def getResults(category, city,state,pageNum):
             resDict["title"] = business_data["events"][j]["name"]
             resDict["link"] = business_data["events"][j]["tickets_url"]
             resDict["image"] = business_data["events"][j]["image_url"]
-            resDict["date"] =  business_data["events"][j]["time_start"]
+            resDict["date"] =  str((datetime.fromisoformat(business_data["events"][j]["time_start"])).strftime('%b %d %Y %I:%M %p'))
             print("Date and Time of Event: yelp", business_data["events"][j]["time_start"])
             resDict["location"] =business_data["events"][j]["location"]
             events.append(resDict)
