@@ -56,13 +56,17 @@ def getResults(category, city,state,pageNum):
                 except:
                     resDict["link"] = "NO DATA"
                 try:
-                    resDict["image"] = results[i].contents[0].select('img')[0]["src"]
+                    resDict["image"] = results[i].contents[0].select('img')[0]["data-src"]
                 except:
-                    resDict["image"] = "NO DATA"
+                    try:
+                        resDict["image"] = results[i].contents[0].select('img')[0]["src"]
+                    except:
+                        resDict["image"] = "NO DATA"
+
                 try:
                     dateString = results[i].find("div",{ "class" : "eds-event-card-content__sub-title" }).text
                     newDate =  validate(dateString)
-                    print("Date and Time of Event:",  newDate )
+                    # print("Date and Time of Event:",  newDate )
                     resDict["date"] =  newDate
                 except:
                     resDict["date"] = "NO DATA"
@@ -70,6 +74,11 @@ def getResults(category, city,state,pageNum):
                     resDict["location"] = results[i].find("div",{ "data-subcontent-key" : "location" }).text
                 except:
                     resDict["location"] = "NO DATA"
+                print("TITLE")
+                print(resDict["title"])
+                print("IMAGE")
+                print(resDict["image"])
+                
                 events.append(resDict)
         else:
             #no more results
@@ -173,8 +182,8 @@ def events_view(request):
             events = getResults(category, city,state,pageNum)
             nextButton = checkNextResult(category, city,state,pageNum+1)
             previousButton= checkNextResult(category, city,state,pageNum-1)
-            print(nextButton)
-            print(previousButton)
+            # print(nextButton)
+            # print(previousButton)
             num = pageNum
             return render(request, "events/events.html", {"form": form, "events":events,"num":num,"nextButton":nextButton,"previousButton":previousButton})
     form = EventForm()
