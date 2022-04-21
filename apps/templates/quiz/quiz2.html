@@ -10,15 +10,16 @@
 <center>
 
     <br>
+    <br>
 
 <h1>Social Responsibility Quiz</h1>
 
-<form method="POST", action="/submit/">
+    <br>
+
+<form method="POST", action="/quiz/">
     {% csrf_token %}
     <button type="submit">Submit Quiz</button>
 </form>
-
-
 </center>
 
 {% endblock content %}
