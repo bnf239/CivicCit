@@ -21,10 +21,10 @@
     {% for article in articles %}
         <div class="card" style="width: 18rem; margin-left: auto; margin-right: auto">
             <!-- {{article.image_url}} -->
-            {% if article.image_url == None %}
+            {% if article.urlToImage == None %}
             <img src="https://erc.europa.eu/sites/default/files/styles/stories_detail_page/public/stories/images/hands-elections_0.jpg?itok=TefUi_oy" class="card-img-top" >
             {% else %}
-            <img src="{{ article.image_url }}" class="card-img-top" >
+            <img src="{{ article.urlToImage }}" class="card-img-top" >
             {% endif %}
 
             <div class="card-body">
@@ -39,15 +39,15 @@
                 border-radius: 50%;
                 "></div> -->
             </div>
-            {% if article.creator.0 == None %}
-            <h5 class="card-title" style = "font-size:15px; text-align: left;"> Author: N/A</h5>
+            {% if article.author == None %}
+            <h5 class="card-title" style = "font-size:15px; text-align: left;"> Source: N/A</h5>
             {% else %}
-            <h5 class="card-title" style = "font-size:15px; text-align: left;"> Author: {{ article.creator.0 }}</h5>
+            <h5 class="card-title" style = "font-size:15px; text-align: left;"> Source: {{ article.source.name }}</h5>
             {% endif %}
             <!-- <p class="card-text">{{ card.description }}</p> -->
             <!-- <form method = POST action="{{article.ink}}"> -->
                 <!-- {% csrf_token %} -->
-                <a href="{{article.link}}" class="appendlink" id = "linkbutton" data-articlelink="{{article.link}}" data-article="{{article.title}}">Link</a>
+                <a href="{{article.url}}" class="appendlink" id = "linkbutton" data-articlelink="{{article.url}}" data-article="{{article.title}}">Link</a>
             <!-- <input type="hidden" class = "form-control" id="urlLink" value="{{article.link}}" name="urlLink"> -->
             <!-- <input type="hidden" class = "form-control" id="user" value="{{user.username}}" name="user"> -->
             <!-- <a href="#" id="button" class="button">View </a> -->

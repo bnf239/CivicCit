@@ -24,6 +24,7 @@ urlpatterns = [
     path('political_involvement/', quiz1_view, name='political_involvement'),
     path('social_responsibility/', quiz2_view, name='social_responsibility'),
     path('community_service/', quiz3_view, name='community_service'),
+    path('scheduling/register_event/',registerEvent,name="register_event"),
     path('scheduling/delete_event/',deleteEvent,name="delete_event"),
     # path(r'^calendar/$', CalendarView.as_view(), name='calendar'),
     path('progress_report', progress_report_view, name = 'progress_report'),

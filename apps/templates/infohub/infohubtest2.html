@@ -19,10 +19,10 @@
         {% for article in articles %}
             <div class="card" style="width: 18rem; margin-left: auto; margin-right: auto">
                 <!-- {{article.image_url}} -->
-                {% if article.image_url == None %}
+                {% if article.urlToImage == None %}
                 <img src="https://blueandgreentomorrow.com/wp-content/uploads/2019/02/Social-Responsible-business-1000x600.jpg" class="card-img-top" >
                 {% else %}
-                <img src="{{ article.image_url }}" class="card-img-top" >
+                <img src="{{ article.urlToImage }}" class="card-img-top" >
                 {% endif %}
     
                 <div class="card-body">
@@ -37,20 +37,20 @@
                     border-radius: 50%;
                     "></div> -->
                 </div>
-                {% if article.creator.0 == None %}
-                <h5 class="card-title" style = "font-size:15px; text-align: left;"> Author: N/A</h5>
+                {% if article.source.name == None %}
+                <h5 class="card-title" style = "font-size:15px; text-align: left;"> Source: N/A</h5>
                 {% else %}
-                <h5 class="card-title" style = "font-size:15px; text-align: left;"> Author: {{ article.creator.0 }}</h5>
+                <h5 class="card-title" style = "font-size:15px; text-align: left;"> Source: {{ article.source.name }}</h5>
                 {% endif %}
                 <!-- <p class="card-text">{{ card.description }}</p> -->
-                <a href="{{article.link}}" class="appendlink" id = "linkbutton" data-articlelink="{{article.link}}" data-article="{{article.title}}">Link</a>
+                <a href="{{article.url}}" class="appendlink" id = "linkbutton" data-articlelink="{{article.url}}" data-article="{{article.title}}">Link</a>
                 <!-- <a href="/command/{{ card.id }}/delete" class="btn btn-primary">Delete</a> -->
                 </div>
             </div>
             <!-- <h5> {{article.title}} </h5> -->
     
         {% endfor %}
-    </div>>
+    </div>
     
 
 
