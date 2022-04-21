@@ -109,8 +109,12 @@
     
     
     </li>
+    
     {% endfor %}
   </ul>
+  {% if emptyList %}
+            <p>No Events Found</p>
+    {% endif %}
 
 </div>
 

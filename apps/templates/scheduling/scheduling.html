@@ -163,13 +163,13 @@
                         <p style="color:blue;" > {{ event.event_location }}</p>
                         <p style="color:blue;" >{{ event.event_date }}</p>
                         <p style="color:blue;" >{{ event.event_link }}</p>
-                        <a href="#" class="appendlink" id = "linkbutton" data-eventid="{{event.id}}" data-url="{{event.event_link}}">Register Event</a>
+                        <a href="{{ event.event_link }}" class="appendlink" id = "linkbutton" data-eventid="{{event.id}}" data-url="{{event.event_link}}">Register Event</a>
                         <a href="{% url 'delete_event' event.id %}" class="deleteEvent btn btn-outline-danger btn-sm "  data-url="{{event.event_link}}" >Remove Event</a>
                     </div>
                   
                     {% endif %}
                   {% empty %}
-                    <p>No Events Found</p>
+                    <h1>No Events Found</h1>
                   {% endfor %}
               </div>
           </div>
@@ -192,7 +192,7 @@
                         <p style="color:blue;" > {{ event.event_location }}</p>
                         <p style="color:blue;" >{{ event.event_date }}</p>
                         <p style="color:blue;" >{{ event.event_link }}</p>
-                        <a href="{{event.event_link}}" class="appendlink" id = "linkbutton" data-eventid="{{event.id}}">Register Event</a>
+                        <a href="{{ event.event_link }}" class="appendlink" id = "linkbutton" data-eventid="{{event.id}}">Register Event</a>
                         <a href="{% url 'delete_event' event.id %}" class="btn btn-outline-danger btn-sm" >Remove Event</a>
                     </div>
                     {% endif %}

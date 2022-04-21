@@ -172,6 +172,8 @@ def events_view(request):
         form = EventForm(request.POST)
         
         if form.is_valid():
+            emptyList = False
+
             print("form is valid")
             # event = form.save(commit=False)
             city = form['city'].value()
@@ -185,9 +187,13 @@ def events_view(request):
             # print(nextButton)
             # print(previousButton)
             num = pageNum
-            return render(request, "events/events.html", {"form": form, "events":events,"num":num,"nextButton":nextButton,"previousButton":previousButton})
+            if (len(events)==0):
+                emptyList = True
+            print(len(events))
+            print(emptyList)
+            return render(request, "events/events.html", {"form": form, "events":events,"num":num,"nextButton":nextButton,"previousButton":previousButton,"emptyList":emptyList})
     form = EventForm()
 
-    return render(request, "events/events.html", {"form": form})
+    return render(request, "events/events.html", {"form": form,})
 
 
