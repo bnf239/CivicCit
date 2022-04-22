@@ -21,8 +21,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='QuesModel',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('question', models.CharField(max_length=200,null=True)),
+                ('question', models.CharField(max_length=200,null=False,primary_key=True)),
                 ('category', models.CharField(max_length=1,choices=CATEGORY_CHOICES,null=True)),
                 ('op1', models.CharField(max_length=200,null=True)),
                 ('op2', models.CharField(max_length=200,null=True)),
@@ -34,8 +33,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='QuizCategoryModel',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('category', models.CharField(max_length=1,choices=CATEGORY_CHOICES,null=True)),
+                ('category', models.CharField(max_length=1,choices=CATEGORY_CHOICES,null=False,primary_key=True)),
                 ('numRight', models.IntegerField(null=True)),
                 ('totalQuestions', models.IntegerField(default=10)),
                 ('percent',  models.FloatField(null=True)),

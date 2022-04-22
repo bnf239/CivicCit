@@ -6,7 +6,7 @@ app_name = "quiz"
 
 urlpatterns = [
 
-    path('quiz', start, name="quizhome"),
+    path('quizhome', start, name="quizhome"),
     path('quiz/', quiz_view, name="quiz"),
     path('political_involvement/', quiz1_view, name='political_involvement'),
     path('social_responsibility/', quiz2_view, name='social_responsibility'),

@@ -14,13 +14,13 @@ class QuesModel(models.Model):
         (COMMUNITY, 'Commmunity Service'),
     )
 
-    question = models.CharField(max_length=200,null=True)
+    question = models.CharField(primary_key=True,max_length=200,null=False,unique=True)
     category = models.CharField(max_length=1,choices=CATEGORY_CHOICES,null=True)
     op1 = models.CharField(max_length=200,null=True)
     op2 = models.CharField(max_length=200,null=True)
     op3 = models.CharField(max_length=200,null=True)
     op4 = models.CharField(max_length=200,null=True)
-    answer = models.CharField(max_length=200,null=True)
+    ans = models.CharField(max_length=200,null=True)
 
     def is_political(self):
         return self.category in (self.POLITICAL)
@@ -43,7 +43,7 @@ class QuizCategoryModel(models.Model):
         ('C', 'Commmunity Service'),
     )
 
-    category = models.CharField(max_length=1,choices=CATEGORY_CHOICES,null=True)
+    category = models.CharField(primary_key=True,max_length=1,choices=CATEGORY_CHOICES,null=False,unique=True)
     numRight = models.IntegerField(null=True)
     totalQuestions = models.IntegerField(default=10)
     percent = models.FloatField(null=True)

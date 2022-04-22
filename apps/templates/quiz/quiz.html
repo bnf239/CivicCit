@@ -53,9 +53,18 @@
           <th style=" border: 1px solid;padding: 10px;">Total Number of Questions</th>
           <th style=" border: 1px solid;padding: 10px;">Percentage</th>
         </tr>
-        {% for data in categories %}
+        {% for data in results %}
         <tr style=" border: 1px solid;padding: 20px;">
-            <th style=" border: 1px solid;padding: 10px;">{{data.category}}</th>
+
+            {% if data.category == 'P' %}
+            <th style=" border: 1px solid;padding: 10px;">Political Involvement</th>
+            {% endif %}
+            {% if data.category == 'S' %}
+            <th style=" border: 1px solid;padding: 10px;">Social Responsibility</th>
+            {% endif %}
+            {% if data.category == 'C' %}
+            <th style=" border: 1px solid;padding: 10px;">Community Service</th>
+            {% endif %}
             {% if data.completed == False %}
             <th style=" border: 1px solid;padding: 10px;">Not Attempted</th>
             {% else %}
