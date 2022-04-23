@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'apps.home',
     'apps.events',
     'apps.scheduling',
-    'apps.infohub'
+    'apps.infohub',
+    'apps.quiz'
 ]
 
 MIDDLEWARE = [

@@ -10,14 +10,25 @@
 <center>
 
     <br>
+    <br>
 
 <h1>Social Responsibility Quiz</h1>
 
-<form method="POST", action="/submit/">
-    {% csrf_token %}
-    <button type="submit">Submit Quiz</button>
-</form>
+    <br>
 
+<form method="POST", action="/quiz/">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" name = "political_submit">Submit Quiz</button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</form>
 
 </center>
 
