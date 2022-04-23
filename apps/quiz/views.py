@@ -27,19 +27,82 @@ def start(request):
     return render(request, "quiz/quiz.html")
 
 def quiz_view(request):
-    #get category from button pressed
-    #post questions in multiple choice form
-    #when submit button is pressed, check if the answer pressed is equal to the answer
-    #if it is, then increase the number right counter
-    #at the end, calculate the percentage and update the category, numRight, totalQuestions, and percentage into database
-    #display category results into html table
-    results = createCategoryTable()
-    context = {"results" : results}
-  #  if request.POST['submit'] == "political_submit":
-  #      p = QuizCategoryModel.objects.get(category='P')
-  #      p.completed = True
-  #       p.numRight = 0
-  #     p.percent = (p.numRight * p.totalQuestions) / 100
+    a1 = ''
+    a2 = ''
+    a3 = ''
+    a4 = ''
+    a5 = ''
+    a6 = ''
+    a7 = ''
+    a8 = ''
+    a9 = ''
+    a10 = ''
+    results = QuizCategoryModel.objects.all()
+    if not results.exists():
+        results = createCategoryTable()
+        
+    context = {'results' : results}
+
+    numCorrect = 0
+    psubmit = request.POST.get('political_submit')
+    ssubmit = request.POST.get('social_submit')
+    csubmit = request.POST.get('community_submit')
+    if psubmit:
+        form = PQuizForm(request.POST)
+        if form.is_valid():
+            a1 = form['answers1'].value()
+            a2 = form['answers2'].value()
+            a3 = form['answers3'].value()
+            a4 = form['answers4'].value()
+            a5 = form['answers5'].value()
+            a6 = form['answers6'].value()
+            a7 = form['answers7'].value()
+            a8 = form['answers8'].value()
+            a9 = form['answers9'].value()
+            a10 = form['answers10'].value()
+            form.save()
+        
+        questions = list(QuesModel.objects.filter(category='P'))
+        if a1 == questions[0].ans:
+            numCorrect = numCorrect + 1
+        if a2 == questions[1].ans:
+            numCorrect = numCorrect + 1
+        if a3 == questions[2].ans:
+            numCorrect = numCorrect + 1
+        if a4 == questions[3].ans:
+            numCorrect = numCorrect + 1
+        if a5 == questions[4].ans:
+            numCorrect = numCorrect + 1
+        if a6 == questions[5].ans:
+            numCorrect = numCorrect + 1
+        if a7 == questions[6].ans:
+            numCorrect = numCorrect + 1
+        if a8 == questions[7].ans:
+            numCorrect = numCorrect + 1
+        if a9 == questions[8].ans:
+            numCorrect = numCorrect + 1
+        if a10 == questions[9].ans:
+            numCorrect = numCorrect + 1
+
+        p = QuizCategoryModel.objects.get(category='P')
+        p.completed = True
+        p.numRight = numCorrect
+        p.percent = (numCorrect * p.totalQuestions) / 100
+        p.save()
+        results = list(QuizCategoryModel.objects.all())
+        context = {"results" : results}
+    if ssubmit:
+        s = QuizCategoryModel.objects.get(category='S')
+        s.completed = True
+        s.save()
+        results = list(QuizCategoryModel.objects.all())
+        context = {"results" : results}
+    if csubmit:
+        c = QuizCategoryModel.objects.get(category='C')
+        c.completed = True
+        c.save()
+        results = list(QuizCategoryModel.objects.all())
+        context = {"results" : results}
 
     return render(request, "quiz/quiz.html", context)
 
