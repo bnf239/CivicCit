@@ -42,7 +42,7 @@ def quiz_view(request):
         results = createCategoryTable()
 
     numCorrect = 0
-    psubmit = request.POST.get('political_submit')
+    psubmit = request.POST.get('Submit Poltical Involvement Quiz')
     ssubmit = request.POST.get('social_submit')
     csubmit = request.POST.get('community_submit')
     if psubmit:
@@ -85,6 +85,7 @@ def quiz_view(request):
         p.completed = True
         p.save()
         p.numRight = 10
+        numCorrect = p.numRight
         p.save()
         p.percent = (numCorrect * p.totalQuestions) / 100
         p.save()
