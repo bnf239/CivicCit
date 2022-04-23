@@ -88,6 +88,10 @@ class PQuizForm(forms.Form):
         (listQuestions[9].op4,listQuestions[9].op4),
     )
     answers10 = forms.CharField(label=listQuestions[9].question, widget=forms.Select(choices = CHOICES_10), required=True)
+    
+    class Meta:
+        model = QuesModel
+        fields = "__all__"
 
 class SQuizForm(forms.Form):
     listQuestions = list(QuesModel.objects.filter(category='S'))  
@@ -177,6 +181,10 @@ class SQuizForm(forms.Form):
    )
     answers10 = forms.CharField(label=listQuestions[9].question, widget=forms.Select(choices = CHOICES_10), required=True)
 
+    class Meta:
+        model = QuesModel
+        fields = "__all__"
+
 class CQuizForm(forms.Form):
     listQuestions = list(QuesModel.objects.filter(category='C'))  
     CHOICES_1 = (
@@ -262,3 +270,7 @@ class CQuizForm(forms.Form):
         (listQuestions[9].op4,listQuestions[9].op4),
     )
     answers10 = forms.CharField(label=listQuestions[9].question, widget=forms.Select(choices = CHOICES_10), required=True)
+
+    class Meta:
+        model = QuesModel
+        fields = "__all__"
