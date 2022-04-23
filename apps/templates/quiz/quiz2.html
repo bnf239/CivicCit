@@ -18,18 +18,7 @@
 
 <form method="POST", action="/quiz/">
     {% csrf_token %}
-
-    {% for q in questions %}
-    {% if q.category == 'S' %}
-    <h5>{{q.question}}</h5>
-    <p>{{q.op1}}</p>
-    <p>{{q.op2}}</p>
-    <p>{{q.op3}}</p>
-    <p>{{q.op4}}</p>
-    <br>
-    <br>
-    {% endif %}
-    {% endfor %}
+    {{ form.as_p }}
     <button type="submit" name = "political_submit">Submit Quiz</button>
     <br>
     <br>

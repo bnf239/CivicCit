@@ -12,6 +12,7 @@ import re
 import ast
 import calendar
 import datetime
+from .forms import PQuizForm, SQuizForm, CQuizForm
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import QuesModel, QuizCategoryModel
@@ -45,19 +46,22 @@ def quiz_view(request):
 def quiz1_view(request):
 
     questions = politicalquiz()
-    context = {"questions" : questions}
+    context = {}
+    context['form'] = PQuizForm()
     return render(request, "quiz/quiz1.html", context)
 
 def quiz2_view(request):
 
     questions = socialquiz()
-    context = {"questions" : questions}
+    context = {}
+    context['form'] = SQuizForm()
     return render(request, "quiz/quiz2.html", context)
 
 def quiz3_view(request):
 
     questions = communityquiz()
-    context = {"questions" : questions}
+    context = {}
+    context['form'] = CQuizForm()
     return render(request, "quiz/quiz3.html", context)
 
 
@@ -96,9 +100,9 @@ def socialquiz():
     q3.save()
     q4 = QuesModel(question="Which is an example of a required civic responsibility?", category='S', op1="serving in the military", op2="communicating with government officials", op3="going to college", op4="attending school until your state’s compulsory attendance age is reached", ans="attending school until your state\'s compulsory attendance age is reached")
     q4.save()
-    q5 = QuesModel(question="Which of the following is the best example of civic responsibility?", category='S', op1="registering to vote", op2="going to work", op3="paying taxes", op4="attending school", ans="registering to vote")
+    q5 = QuesModel(question="Which of the following is an example of civic responsibility", category='S', op1="registering to vote", op2="going to work", op3="paying taxes", op4="attending school", ans="registering to vote")
     q5.save()
-    q6 = QuesModel(question="Schools teach civic responsibility to students with the goal to:", category='S', op1="produce responsible citizens and active participants in community and government", op2="ensure everyone will run for an elected office", op3="ensure everyone pays their taxes on time", op4="produce citizens who will serve in the military", ans="produce responsible citizens and active participants in community and government")
+    q6 = QuesModel(question="What is a civic duty that children perform every day?", category='S', op1="listen to and obey their parents", op2="go to school", op3="sit on juries", op4="volunteer in their community", ans="go to school")
     q6.save()
     q7 = QuesModel(question="What is one example of personal responsibility?", category='S', op1="exercising and eating healthy", op2="voting", op3="running for political office", op4="obeying laws", ans="exercising and eating healthy")
     q7.save()
