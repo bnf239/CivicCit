@@ -1,7 +1,6 @@
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
-from quiz import models
 
 
 class Migration(migrations.Migration):
