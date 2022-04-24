@@ -37,8 +37,75 @@
 
 
     <div class="auth-wrapper">
-        <div class="auth-content">
-            <div class="card">
+        <!-- <div class="auth-content"> -->
+            <div class="container" style="width:800px;">
+                <div class="row"   >
+                    <div class="col-12 mt-3">
+                        
+            <div class="card ">
+                <div class="card-horizontal" style="
+                    display: flex;
+                    flex: 1 1 auto;
+                ">
+                     
+                        <div class="col-6" style="height:500px; width:300px; position: relative; 
+                        top: 100px; padding:30px; ">
+                        
+                        <h1 class="display-4 font"> Welcome to CivicCit</h1>
+                        <p class="lead my-3">CivicCit is a digital platform encouraging and empowering youth to be civically active. </p>
+                        </div>
+                     
+                    <div class="card-body text-center col-6" style="padding:70px">
+                    
+                        <h3 class="mb-4">Sign Up Below</h3>
+
+                    <span class="mb-0 text-muted">
+                        {% if msg %}
+                            {{ msg | safe }}
+                        {% else %}
+                            Enter username and password
+                        {% endif %} 
+                    </span>
+
+                    <br />
+                    <br />
+
+                    <form role="form" method="post" action="">
+
+                        {% csrf_token %}                    
+
+                        <div class="input-group mb-3">
+                            {{ form.username }}
+                        </div>
+                        <span class="text-error">{{ form.username.errors }}</span>
+
+                        <div class="input-group mb-3">
+                            {{ form.email }}
+                        </div>
+                        <span class="text-error">{{ form.email.errors }}</span>
+
+                        <div class="input-group mb-4">
+                            {{ form.password1 }}
+                        </div>
+                        <span class="text-error">{{ form.password1.errors }}</span>
+
+                        <div class="input-group mb-4">
+                            {{ form.password2 }}
+                        </div>
+                        <span class="text-error">{{ form.password2.errors }}</span>
+                        
+                       
+                        <button type="submit" name="register" class="btn btn-primary shadow-2 mb-4">Register</button>
+
+                    </form>
+
+                    <p class="mb-0 text-muted"><a href="{% url 'login' %}" >Login</a></p>
+                    <br />
+                            
+                        
+                    </div>
+                </div>
+            <!-- <div class="card">
                 <div class="card-body text-center">
                     <h3 class="mb-4">Sign Up Below</h3>
 
@@ -86,8 +153,8 @@
                     <br />
                   
                 </div>
-            </div>
-        </div>
+            </div> -->
+        <!-- </div> -->
     </div>
 
 {% endblock content %}

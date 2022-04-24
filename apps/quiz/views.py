@@ -27,6 +27,10 @@ def start(request):
     return render(request, "quiz/quiz.html")
 
 def quiz_view(request):
+    politicalquiz()
+    socialquiz()
+    communityquiz()
+
     a1 = ''
     a2 = ''
     a3 = ''
@@ -37,9 +41,9 @@ def quiz_view(request):
     a8 = ''
     a9 = ''
     a10 = ''
-    results = QuizCategoryModel.objects.all()
+    results = QuizCategoryModel.objects.all().filter(user_id=request.user.id)
     if not results.exists():
-        results = createCategoryTable()
+        results = createCategoryTable(request)
     if "Submit Political" in request.POST:
         numCorrect = 0
         form = PQuizForm(request.POST)
@@ -78,14 +82,14 @@ def quiz_view(request):
             if a10 == questions[i].ans:
                 numCorrect = numCorrect + 1
 
-        p = QuizCategoryModel.objects.get(category='P')
+        p = QuizCategoryModel.objects.filter(user_id=request.user.id).get(category='P')
         p.completed = True
         p.save()
         p.numRight = numCorrect
         p.save()
         p.percent = (numCorrect / p.totalQuestions) * 100
         p.save()
-        results = list(QuizCategoryModel.objects.all())
+        results = list(QuizCategoryModel.objects.all().filter(user_id=request.user.id))
     if "Submit Social" in request.POST:
         numCorrect = 0
         form = SQuizForm(request.POST)
@@ -124,14 +128,14 @@ def quiz_view(request):
             if a10 == questions[i].ans:
                 numCorrect = numCorrect + 1
 
-        s = QuizCategoryModel.objects.get(category='S')
+        s = QuizCategoryModel.objects.filter(user_id=request.user.id).get(category='S')
         s.completed = True
         s.save()
         s.numRight = numCorrect
         s.save()
         s.percent = (numCorrect / s.totalQuestions) * 100
         s.save()
-        results = list(QuizCategoryModel.objects.all())
+        results = list(QuizCategoryModel.objects.all().filter(user_id=request.user.id))
     if "Submit Community" in request.POST: 
         numCorrect = 0
         form = CQuizForm(request.POST)
@@ -170,14 +174,14 @@ def quiz_view(request):
             if a10 == questions[i].ans:
                 numCorrect = numCorrect + 1
 
-        c = QuizCategoryModel.objects.get(category='C')
+        c = QuizCategoryModel.objects.filter(user_id=request.user.id).get(category='C')
         c.completed = True
         c.save()
         c.numRight = numCorrect
         c.save()
         c.percent = (numCorrect / c.totalQuestions) * 100
         c.save()
-        results = list(QuizCategoryModel.objects.all())
+        results = list(QuizCategoryModel.objects.all().filter(user_id=request.user.id))
 
     context = {"results" : results}
     return render(request, "quiz/quiz.html", context)
@@ -259,33 +263,34 @@ def communityquiz():
     
 def quiz1_view(request):
 
-    questions = politicalquiz()
+    
     context = {}
     context['form'] = PQuizForm()
     return render(request, "quiz/quiz1.html", context)
 
 def quiz2_view(request):
 
-    questions = socialquiz()
+   
     context = {}
     context['form'] = SQuizForm()
     return render(request, "quiz/quiz2.html", context)
 
 def quiz3_view(request):
 
-    questions = communityquiz()
+   
     context = {}
     context['form'] = CQuizForm()
     return render(request, "quiz/quiz3.html", context)
 
 
 
-def createCategoryTable():
-    political = QuizCategoryModel(category='P', totalQuestions=10)
+def createCategoryTable(request):
+    print(request.user.id)
+    political = QuizCategoryModel(user_id= request.user.id,category='P', totalQuestions=10)
     political.save()
-    social = QuizCategoryModel(category='S',totalQuestions=10)
+    social = QuizCategoryModel(user_id=request.user.id, category='S',totalQuestions=10)
     social.save()
-    community = QuizCategoryModel(category='C',totalQuestions=10)
+    community = QuizCategoryModel(user_id=request.user.id, category='C',totalQuestions=10)
     community.save()
     categories = list(QuizCategoryModel.objects.all().values())
     return categories

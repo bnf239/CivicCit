@@ -33,7 +33,7 @@ def addUser(request):
     # print("link",ast.literal_eval((data["event"][0]))["link"] )
     # print("------------------------------")
     # new_entry = Event(event_name=ast.literal_eval((data["event"][0]))["title"], event_location=ast.literal_eval((data["event"][0]))["location"], event_date=ast.literal_eval((data["event"][0]))["date"], event_link=ast.literal_eval((data["event"][0]))["link"])
-    new_entry = InfoHubUserInformation(article_title=data["article[article]"][0], url_links = data["article[articlelink]"][0])
+    new_entry = InfoHubUserInformation(user_id=request.user.id,article_title=data["article[article]"][0], url_links = data["article[articlelink]"][0])
     new_entry.save()
     
     return render(request, "infohub/infohub.html")

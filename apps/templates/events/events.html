@@ -134,6 +134,20 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script> 
   
+//   $.ajax({
+//     url: url, 
+//     success: function (data) {
+//         // Handle success here
+//         $('#editor-content-container').html(data);
+//         $('#editor-container').modal('show');
+//     },
+//     cache: false
+// }).fail(function (jqXHR, textStatus, error) {
+//     // Handle error here
+//     $('#editor-content-container').html(jqXHR.responseText);
+//     $('#editor-container').modal('show');
+// });
+
 $(document).ready(function(e) {   
   $('.catgend').on('click', function (e) {
     console.log("INSIDE CAT GEND");
@@ -145,10 +159,21 @@ $(document).ready(function(e) {
         data: {
             'event': data.event,   
         },
-        success: function (data) {   
-          alert("Event Successfully Added to Your Schedule");
-        }
-    });
+        error: function(){
+              alert("Event Already Added");
+        },
+        success: function (data) {
+          if(data == "error"){
+            alert("Event Already Added");
+               }
+               else{
+                alert("Event Successfully Added to Your Schedule");
+                }
+               
+         
+        },
+         
+    })
     
 });
  }); 

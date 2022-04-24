@@ -39,7 +39,7 @@ def getResults(category, city,state,pageNum):
         headers = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9'}
         url = 'https://www.eventbrite.com/d/{}--{}/{}/?page={}'.format(state,city,category,pageNum)
         print("URL:",url)
-        response=requests.get(url,headers)
+        response=requests.get(url,headers,verify=False)
 
         soup=BeautifulSoup(response.content,'html')
 
@@ -74,10 +74,10 @@ def getResults(category, city,state,pageNum):
                     resDict["location"] = results[i].find("div",{ "data-subcontent-key" : "location" }).text
                 except:
                     resDict["location"] = "NO DATA"
-                print("TITLE")
-                print(resDict["title"])
-                print("IMAGE")
-                print(resDict["image"])
+                # print("TITLE")
+                # print(resDict["title"])
+                # print("IMAGE")
+                # print(resDict["image"])
                 if (resDict["title"]!= "NO DATA" and resDict["link"] != "NO DATA" and  resDict["location"] != "NO DATA" and resDict["date"] != "NO DATA"):
                     events.append(resDict)
         else:
@@ -191,9 +191,10 @@ def events_view(request):
                 emptyList = True
             print(len(events))
             print(emptyList)
+            
             return render(request, "events/events.html", {"form": form, "events":events,"num":num,"nextButton":nextButton,"previousButton":previousButton,"emptyList":emptyList})
     form = EventForm()
-
+    print(request.user.username)
     return render(request, "events/events.html", {"form": form,})
 
 

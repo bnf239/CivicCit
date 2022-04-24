@@ -47,10 +47,33 @@ def scheduleEvent(request):
     # print(link)
 
     print("------------------------------")
-    new_entry = Event(event_name=title, event_location=location, event_date=date, event_link=link)
-    new_entry.save()
+    try:
+        #filter the event objects by user Id
+        sessionUser = Event.objects.filter(user_id=request.user.id)
+        print(sessionUser)
+        #check if records for this user exists
+        if(len(sessionUser)==0):
+            print("INSIDE")
+            #if it doesn't insert record
+            new_entry = Event(user_id=request.user.id,event_name=title, event_location=location, event_date=date, event_link=link)
+            new_entry.save()
+        else:
+            print("HERE")
+            #if it does
+            print("asda")
+            print(len(Event.objects.filter(user_id=request.user.id,event_link=link)))
+            if (len(Event.objects.filter(user_id=request.user.id,event_link=link))==0):
+                new_entry = Event(user_id=request.user.id,event_name=title, event_location=location, event_date=date, event_link=link)
+                new_entry.save()
+            else:
+                print("IN THIS ELSE")
+                return
+                
+
+    except:
+        pass
     print("after it ")
-    print(Event.objects.all())
+    # print(Event.objects.all())
     # event_name = models.CharField(max_length=500)
     # event_location =  models.CharField(max_length=500)
     # event_date =  models.DateTimeField()
@@ -112,7 +135,7 @@ def registerEvent(request):
  
 
 def startup(request):
-    events = list(Event.objects.all().values().order_by('event_date'))
+    events = list(Event.objects.all().values().filter(user_id=request.user.id).order_by('event_date'))
     for i in events:
         # print("BEFORE")
         # print(i["event_date"])
@@ -125,7 +148,7 @@ def startup(request):
         i['event_date'] = i['event_date'].strftime('%b %d %Y %I:%M %p')
         i['event_status'] = str(i['event_status']) 
         print(i['start'])
-    print(events)
+    
     dateTime = str(date.today())
     # print(dateTime)
 
