@@ -111,7 +111,7 @@ class PQuizForm(forms.Form):
             ("C", "C"),
             ("D", "D"),
         )
-    answers6 = forms.CharField(label="test question", widget=forms.Select(choices = CHOICES_6), required=True)
+        answers6 = forms.CharField(label="test question", widget=forms.Select(choices = CHOICES_6), required=True)
 
     try:
         CHOICES_7 = (
