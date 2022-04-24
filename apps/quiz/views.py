@@ -111,28 +111,6 @@ def quiz_view(request):
     context = {"results" : results}
     return render(request, "quiz/quiz.html", context)
 
-def quiz1_view(request):
-
-    questions = politicalquiz()
-    context = {}
-    context['form'] = PQuizForm()
-    return render(request, "quiz/quiz1.html", context)
-
-def quiz2_view(request):
-
-    questions = socialquiz()
-    context = {}
-    context['form'] = SQuizForm()
-    return render(request, "quiz/quiz2.html", context)
-
-def quiz3_view(request):
-
-    questions = communityquiz()
-    context = {}
-    context['form'] = CQuizForm()
-    return render(request, "quiz/quiz3.html", context)
-
-
 def politicalquiz():
     #insert 10 questions into database
     q1 = QuesModel(question="Why is it required for all American citizens to obey the law?", category='P', op1="to ensure citizen\'s life, liberty and property are protected", op2="to ensure all Americans are treated equally", op3="to ensure an executive order is approved by Congress", op4="to ensure enough funds are collected in speeding tickets to fund the police", ans="to ensure citizen\'s life, liberty and property are protected")
@@ -207,6 +185,29 @@ def communityquiz():
     q10.save()
     questions = list(QuesModel.objects.all())
     return questions
+    
+def quiz1_view(request):
+
+    questions = politicalquiz()
+    context = {}
+    context['form'] = PQuizForm()
+    return render(request, "quiz/quiz1.html", context)
+
+def quiz2_view(request):
+
+    questions = socialquiz()
+    context = {}
+    context['form'] = SQuizForm()
+    return render(request, "quiz/quiz2.html", context)
+
+def quiz3_view(request):
+
+    questions = communityquiz()
+    context = {}
+    context['form'] = CQuizForm()
+    return render(request, "quiz/quiz3.html", context)
+
+
 
 def createCategoryTable():
     political = QuizCategoryModel(category='P', totalQuestions=10)
