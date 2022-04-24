@@ -3,14 +3,98 @@
 {% block title %} Login {% endblock %}
 
 {% block content %}   
+<nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
+    <button
+    class="navbar-toggler"
+    type="button"
+    data-mdb-toggle="collapse"
+    data-mdb-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <i class="fas fa-bars"></i>
+  </button>
+  <div class="container d-flex justify-content-center">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center mb-3">
+        <a class="navbar-brand" 
+        ><img
+          id="MDB-logo"
+          src="https://mdbcdn.b-cdn.net/wp-content/uploads/2018/06/logo-mdb-jquery-small.png"
+          alt="MDB Logo"
+          draggable="false"
+          height="30"
+      /></a>
+      </div>
+      <div class="col-12 d-flex justify-content-center">
+         
+      </div>
+    </div>
+  </div>
+  </nav>
 
-    <div class="auth-wrapper">
-        <div class="auth-content">
-           
-            <div class="card">
-                <div class="card-body text-center">
+
+    <div class="auth-wrapper"> 
+        <!-- <div class="auth-content">  -->
+            
+            <div class="container" style="width:800px;">
+                <div class="row"   >
+                    <div class="col-12 mt-3">
+                        
+            <div class="card ">
+                <div class="card-horizontal" style="
+                    display: flex;
+                    flex: 1 1 auto;
+                ">
+                     
+                        <div class="col-6" style="height:500px; width:300px; position: relative; 
+                        top: 100px; padding:30px; ">
+                        
+                        <h1 class="display-4 font"> Welcome to CivicCit</h1>
+                        <p class="lead my-3">CivicCit is a digital platform encouraging and empowering youth to be civically active. </p>
+                        </div>
+                     
+                    <div class="card-body text-center col-6" style="padding:70px">
                     
-                    <h3 class="mb-4">Login</h3>
+                        <h3 class="mb-4">Login</h3>
+    
+                        <span class="mb-0 text-muted">
+                            {% if msg %}
+                                {{ msg | safe }}
+                            {% else %}
+                                Enter username and password
+                            {% endif %} 
+                        </span>
+    
+                        <br />
+                        <br />
+    
+                        <form role="form" method="post" action="">
+    
+                            {% csrf_token %}                   
+    
+                            <div class="input-group mb-3">
+                                {{ form.username }}
+                            </div>
+                            
+                            <div class="input-group mb-4">
+                                {{ form.password }}
+                            </div>
+                            
+                            
+                            <button type="submit" name="login" class="btn btn-primary shadow-2 mb-4">Login</button>
+    
+                        </form>
+    
+                        <p class="mb-0 text-muted"> <a href="{% url 'register' %}" >Sign Up</a></p>
+                        <br />
+                        
+                    </div>
+                </div>
+                <!-- <div class="card-body text-center">
+                    
+                    <h3 class="mb-4">Loginfsdfsdfsdfsdf</h3>
 
                     <span class="mb-0 text-muted">
                         {% if msg %}
@@ -35,12 +119,7 @@
                             {{ form.password }}
                         </div>
                         
-                        <div class="form-group text-left">
-                            <div class="checkbox checkbox-fill d-inline">
-                                <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" checked="">
-                               
-                            </div>
-                        </div>
+                        
                         <button type="submit" name="login" class="btn btn-primary shadow-2 mb-4">Login</button>
 
                     </form>
@@ -48,9 +127,12 @@
                     <p class="mb-0 text-muted"> <a href="{% url 'register' %}" >Sign Up</a></p>
                     <br />
                     
-                </div>
-            </div>
+                </div> -->
+            <!-- </div> -->
         </div>
     </div>
+    </div>
+             </div>
+            </div>
 
 {% endblock content %}

@@ -186,7 +186,10 @@ class PQuizForm(forms.Form):
         fields = "__all__"
 
 class SQuizForm(forms.Form):
-    listQuestions = list(QuesModel.objects.filter(category='S'))  
+    try:
+        listQuestions = list(QuesModel.objects.filter(category='S'))  
+    except:
+        listQuestions = []  
     try:
         CHOICES_1 = (
             (listQuestions[0].op1,listQuestions[0].op1),
@@ -362,7 +365,12 @@ class SQuizForm(forms.Form):
         fields = "__all__"
 
 class CQuizForm(forms.Form):
-    listQuestions = list(QuesModel.objects.filter(category='C'))  
+    try:
+        listQuestions = list(QuesModel.objects.filter(category='C'))  
+    except:
+        listQuestions = [] 
+    
+    
     try:
         CHOICES_1 = (
             (listQuestions[0].op1,listQuestions[0].op1),
