@@ -14,7 +14,7 @@ class QuesModel(models.Model):
         (COMMUNITY, 'Commmunity Service'),
     )
 
-    question = models.CharField(primary_key=True,max_length=200,null=False,unique=True)
+    question = models.CharField(primary_key=True,max_length=200,null=False,unique=True,default='')
     category = models.CharField(max_length=1,choices=CATEGORY_CHOICES,null=True)
     op1 = models.CharField(max_length=200,null=True)
     op2 = models.CharField(max_length=200,null=True)
@@ -43,7 +43,7 @@ class QuizCategoryModel(models.Model):
         ('C', 'Commmunity Service'),
     )
 
-    category = models.CharField(primary_key=True,max_length=1,choices=CATEGORY_CHOICES,null=False,unique=True)
+    category = models.CharField(primary_key=True,max_length=1,choices=CATEGORY_CHOICES,null=False,unique=True, default='P')
     numRight = models.IntegerField(null=True)
     totalQuestions = models.IntegerField(default=10)
     percent = models.FloatField(null=True)

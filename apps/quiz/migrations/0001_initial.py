@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='QuesModel',
             fields=[
-                ('question', models.CharField(max_length=200, primary_key=True, serialize=False, unique=True)),
+                ('question', models.CharField(max_length=200, primary_key=True, serialize=False, unique=True,default='')),
                 ('category', models.CharField(choices=CATEGORY_CHOICES, max_length=1, primary_key=True, serialize=False, unique=True)),
                 ('op1', models.CharField(max_length=200,null=True)),
                 ('op2', models.CharField(max_length=200,null=True)),
@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='QuizCategoryModel',
             fields=[
-                ('category', models.CharField(max_length=1,choices=CATEGORY_CHOICES,null=False,primary_key=True)),
+                ('category', models.CharField(max_length=1,choices=CATEGORY_CHOICES,null=False,primary_key=True,default='P')),
                 ('numRight', models.IntegerField(null=True)),
                 ('totalQuestions', models.IntegerField(default=10)),
                 ('percent',  models.FloatField(null=True)),
