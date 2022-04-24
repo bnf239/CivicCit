@@ -45,15 +45,15 @@ def quiz_view(request):
         form = PQuizForm(request.POST)
         if form.is_valid():
             a1 = form.cleaned_data['answers1']
-            a2 = form['answers2'].value()
-            a3 = form['answers3'].value()
-            a4 = form['answers4'].value()
-            a5 = form['answers5'].value()
-            a6 = form['answers6'].value()
-            a7 = form['answers7'].value()
-            a8 = form['answers8'].value()
-            a9 = form['answers9'].value()
-            a10 = form['answers10'].value()
+            a2 = form.cleaned_data['answers2']
+            a3 = form.cleaned_data['answers3']
+            a4 = form.cleaned_data['answers4']
+            a5 = form.cleaned_data['answers5']
+            a6 = form.cleaned_data['answers6']
+            a7 = form.cleaned_data['answers7']
+            a8 = form.cleaned_data['answers8']
+            a9 = form.cleaned_data['answers9']
+            a10 = form.cleaned_data['answers10']
         
         questions = list(QuesModel.objects.filter(category='P'))
         if a1 == questions[0].ans:
