@@ -45,37 +45,38 @@ def quiz_view(request):
         form = PQuizForm(request.POST)
         if form.is_valid():
             a1 = form.cleaned_data['answers1']
-            a2 = form['answers2'].value()
-            a3 = form['answers3'].value()
-            a4 = form['answers4'].value()
-            a5 = form['answers5'].value()
-            a6 = form['answers6'].value()
-            a7 = form['answers7'].value()
-            a8 = form['answers8'].value()
-            a9 = form['answers9'].value()
-            a10 = form['answers10'].value()
+            a2 = form.cleaned_data['answers2']
+            a3 = form.cleaned_data['answers3']
+            a4 = form.cleaned_data['answers4']
+            a5 = form.cleaned_data['answers5']
+            a6 = form.cleaned_data['answers6']
+            a7 = form.cleaned_data['answers7']
+            a8 = form.cleaned_data['answers8']
+            a9 = form.cleaned_data['answers9']
+            a10 = form.cleaned_data['answers10']
         
         questions = list(QuesModel.objects.filter(category='P'))
-        if a1 == questions[0].ans:
-            numCorrect = numCorrect + 1
-        if a2 == questions[1].ans:
-            numCorrect = numCorrect + 1
-        if a3 == questions[2].ans:
-            numCorrect = numCorrect + 1
-        if a4 == questions[3].ans:
-            numCorrect = numCorrect + 1
-        if a5 == questions[4].ans:
-            numCorrect = numCorrect + 1
-        if a6 == questions[5].ans:
-            numCorrect = numCorrect + 1
-        if a7 == questions[6].ans:
-            numCorrect = numCorrect + 1
-        if a8 == questions[7].ans:
-            numCorrect = numCorrect + 1
-        if a9 == questions[8].ans:
-            numCorrect = numCorrect + 1
-        if a10 == questions[9].ans:
-            numCorrect = numCorrect + 1
+        for i in range(len(questions)):
+            if a1 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a2 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a3 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a4 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a5 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a6 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a7 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a8 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a9 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a10 == questions[i].ans:
+                numCorrect = numCorrect + 1
 
         p = QuizCategoryModel.objects.get(category='P')
         p.completed = True
@@ -87,10 +88,45 @@ def quiz_view(request):
         results = list(QuizCategoryModel.objects.all())
     if "Submit Social" in request.POST:
         numCorrect = 0
+        form = SQuizForm(request.POST)
+        if form.is_valid():
+            a1 = form.cleaned_data['answers1']
+            a2 = form.cleaned_data['answers2']
+            a3 = form.cleaned_data['answers3']
+            a4 = form.cleaned_data['answers4']
+            a5 = form.cleaned_data['answers5']
+            a6 = form.cleaned_data['answers6']
+            a7 = form.cleaned_data['answers7']
+            a8 = form.cleaned_data['answers8']
+            a9 = form.cleaned_data['answers9']
+            a10 = form.cleaned_data['answers10']
+        
+        questions = list(QuesModel.objects.filter(category='S'))
+        for i in range(len(questions)):
+            if a1 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a2 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a3 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a4 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a5 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a6 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a7 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a8 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a9 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a10 == questions[i].ans:
+                numCorrect = numCorrect + 1
+
         s = QuizCategoryModel.objects.get(category='S')
         s.completed = True
         s.save()
-        numCorrect = 10
         s.numRight = numCorrect
         s.save()
         s.percent = (numCorrect / s.totalQuestions) * 100
@@ -98,10 +134,45 @@ def quiz_view(request):
         results = list(QuizCategoryModel.objects.all())
     if "Submit Community" in request.POST: 
         numCorrect = 0
+        form = CQuizForm(request.POST)
+        if form.is_valid():
+            a1 = form.cleaned_data['answers1']
+            a2 = form.cleaned_data['answers2']
+            a3 = form.cleaned_data['answers3']
+            a4 = form.cleaned_data['answers4']
+            a5 = form.cleaned_data['answers5']
+            a6 = form.cleaned_data['answers6']
+            a7 = form.cleaned_data['answers7']
+            a8 = form.cleaned_data['answers8']
+            a9 = form.cleaned_data['answers9']
+            a10 = form.cleaned_data['answers10']
+        
+        questions = list(QuesModel.objects.filter(category='C'))
+        for i in range(len(questions)):
+            if a1 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a2 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a3 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a4 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a5 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a6 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a7 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a8 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a9 == questions[i].ans:
+                numCorrect = numCorrect + 1
+            if a10 == questions[i].ans:
+                numCorrect = numCorrect + 1
+
         c = QuizCategoryModel.objects.get(category='C')
         c.completed = True
         c.save()
-        numCorrect = 10
         c.numRight = numCorrect
         c.save()
         c.percent = (numCorrect / c.totalQuestions) * 100
