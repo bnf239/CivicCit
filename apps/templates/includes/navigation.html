@@ -1,58 +1,200 @@
-
-  <div class="container "style="height: 50px; align-items: center;">
-    <div class="row" style="height: 50px;">
-      <div class="col-12">
-        <nav class="navbar navbar-expand-lg  shadow  my-3 py-2 start-0 end-0 mx-4" style="  margin: 0 auto; ">
-          <div class="container-fluid" style="align-items: center;">
-            <a class="navbar-brand font-weight-bolder ms-sm-3" 
-               href="/" rel="tooltip" title="" data-placement="bottom">
-             CivicCit
-            </a>
-            <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon mt-2">
-                <span class="navbar-toggler-bar bar1"></span>
-                <span class="navbar-toggler-bar bar2"></span>
-                <span class="navbar-toggler-bar bar3"></span>
-              </span>
-            </button>
-            <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0" id="navigation">
-              <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100" style="align-items: center;">
-                <li class="nav-item my-auto ms-3 ms-lg-0">
-                  <a href="{% url 'events' %}"
-                      
-                     class="btn btn-sm  bg-gradient-primary btn-round mb-0 me-1 mt-2 mt-md-0">Events</a>
-                </li>
-                <li class="nav-item my-auto ms-3 ms-lg-0">
-                  <a href="{% url 'scheduling' %}"
-                      
-                     class="btn btn-sm  bg-gradient-primary btn-round mb-0 me-1 mt-2 mt-md-0">Schedule</a>
-                </li>
-                <li class="nav-item my-auto ms-3 ms-lg-0">
-                  <a href="{% url 'infohub' %}"
-                     
-                     class="btn btn-sm  bg-gradient-primary btn-round mb-0 me-1 mt-2 mt-md-0">Information Hub</a>
-                </li>
-                <li class="nav-item my-auto ms-3 ms-lg-0">
-                  <a href="{% url 'progress_report' %}"
-                     
-                     class="btn btn-sm  bg-gradient-primary btn-round mb-0 me-1 mt-2 mt-md-0">Progress Report</a>
-                </li>
-                <li class="nav-item my-auto ms-3 ms-lg-0">
-                  <a href="{% url 'quiz' %}"
-                     
-                     class="btn btn-sm  bg-gradient-primary btn-round mb-0 me-1 mt-2 mt-md-0">Quiz</a>
-                </li>
-                <li data-username="Disabled Menu" class="nav-item">
-                    <a href="{% url 'logout' %}" class="nav-link">
-                        <span class="pcoded-micon"><i class="feather icon-power"></i></span><span class="pcoded-mtext">Logout</span>
-                    </a>
-                </li>
-               
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <!-- End Navbar -->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
+  <button
+  class="navbar-toggler"
+  type="button"
+  data-mdb-toggle="collapse"
+  data-mdb-target="#navbarSupportedContent"
+  aria-controls="navbarSupportedContent"
+  aria-expanded="false"
+  aria-label="Toggle navigation"
+>
+  <i class="fas fa-bars"></i>
+</button>
+<div class="container d-flex justify-content-center">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center mb-3">
+      <a class="navbar-brand" href="#"
+      ><img
+        id="MDB-logo"
+        src="https://mdbcdn.b-cdn.net/wp-content/uploads/2018/06/logo-mdb-jquery-small.png"
+        alt="MDB Logo"
+        draggable="false"
+        height="30"
+    /></a>
+    </div>
+    <div class="col-12 d-flex justify-content-center">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav align-items-center mx-auto">
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="#!"><i class="fas fa-plus-circle pe-2"></i>Post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="#!"><i class="fas fa-bell pe-2"></i>Alerts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="#!"><i class="fas fa-heart pe-2"></i>Trips</a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
+</div>
+</nav>
+<!-- Navbar -->
+
+
+
+
+
+
+
+
+
+
+
+  <!--Main Navigation-->
+<header class="mb-4 fixed-top">
+  <!-- Jumbotron -->
+  <div class="p-3 text-center bg-white border-bottom">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Right elements -->
+        <div
+          class="col-md-5 d-flex justify-content-center justify-content-md-start align-items-center d-none d-lg-flex">
+       
+        </div>
+        <!-- Right elements -->
+
+        <!-- Center elements -->
+        <div class="col-md-2 d-none d-lg-block">
+          <a href="#!" class="ms-md-2">
+            <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="35" />
+          </a>
+        </div>
+        <!-- Center elements -->
+
+        <!-- Right elements -->
+        
+        <!-- Right elements -->
+      </div>
+    </div>
+  </div>
+  <!-- Jumbotron -->
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white d-none d-lg-block">
+    <!-- Container wrapper -->
+    <div class="container-fluid justify-content-center justify-content-md-between">
+      <div class="col-12 d-flex justify-content-center">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav align-items-center mx-auto">
+            <li class="nav-item">
+              <a class="nav-link mx-2" href="/" rel="tooltip" title="" data-placement="bottom"><i class="fa fa-home"></i>  Home</a>
+              
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'events' %}"
+                    
+              class="nav-link mx-2"><i class="fa fa-search"></i>  Events</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'scheduling' %}"
+                    
+              class="nav-link mx-2"><i class="fa fa-calendar"></i>  Schedule</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'infohub' %}"
+                    
+              class="nav-link mx-2"><i class="fa fa-book"></i>  InfoHub</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'progress_report' %}"
+                    
+              class="nav-link mx-2"><i class="fa fa-tasks"></i>  Progress Report</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'quiz' %}"
+                    
+              class="nav-link mx-2"><i class="fa fa-lightbulb"></i>  Quiz</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+    
+      <!-- <nav class="navbar navbar-expand-lg  shadow  my-3 py-2 start-0 end-0 mx-4" style="  margin: 0 auto; "> -->
+        <!-- <div class="container-fluid" style="align-items: center;">
+          <a class="navbar-brand font-weight-bolder ms-sm-3" 
+             href="/" rel="tooltip" title="" data-placement="bottom">
+           CivicCit
+          </a>
+          <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon mt-2">
+              <span class="navbar-toggler-bar bar1"></span>
+              <span class="navbar-toggler-bar bar2"></span>
+              <span class="navbar-toggler-bar bar3"></span>
+            </span>
+          </button>
+          <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0" id="navigation">
+            <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100" style="align-items: center;">
+              <li class="nav-item my-auto ms-3 ms-lg-0">
+                <a href="{% url 'events' %}"
+                    
+                   class="btn btn-sm  bg-gradient-primary btn-round mb-0 me-1 mt-2 mt-md-0">Events</a>
+              </li>
+              <li class="nav-item my-auto ms-3 ms-lg-0">
+                <a href="{% url 'scheduling' %}"
+                    
+                   class="btn btn-sm  bg-gradient-primary btn-round mb-0 me-1 mt-2 mt-md-0">Schedule</a>
+              </li>
+              <li class="nav-item my-auto ms-3 ms-lg-0">
+                <a href="{% url 'infohub' %}"
+                   
+                   class="btn btn-sm  bg-gradient-primary btn-round mb-0 me-1 mt-2 mt-md-0">Information Hub</a>
+              </li>
+              <li class="nav-item my-auto ms-3 ms-lg-0">
+                <a href="{% url 'progress_report' %}"
+                   
+                   class="btn btn-sm  bg-gradient-primary btn-round mb-0 me-1 mt-2 mt-md-0">Progress Report</a>
+              </li>
+              <li class="nav-item my-auto ms-3 ms-lg-0">
+                <a href="{% url 'quiz' %}"
+                   
+                   class="btn btn-sm  bg-gradient-primary btn-round mb-0 me-1 mt-2 mt-md-0">Quiz</a>
+              </li>
+              <li data-username="Disabled Menu" class="nav-item">
+                  <a href="{% url 'logout' %}" class="nav-link">
+                      <span class="pcoded-micon"><i class="feather icon-power"></i></span><span class="pcoded-mtext">Logout</span>
+                  </a>
+              </li>
+             
+            </ul>
+          </div>
+        </div> -->
+      <!-- </nav> -->
+      <!-- End Navbar -->
+   
+ 
+
+
+
+      <!-- Left elements -->
+      
+      <!-- Left elements -->
+
+      <!-- Right elements -->
+      <!-- <div>
+        <button class="btn btn-outline-primary" data-mdb-ripple-color="dark" type="button">
+          <i class="fas fa-concierge-bell me-1"></i>Tips
+        </button>
+        <button class="btn btn-outline-primary" data-mdb-ripple-color="dark" type="button">
+          <i class="fas fa-bars me-2"></i>Show menu
+        </button>
+      </div> -->
+      <!-- Right elements -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+</header>
