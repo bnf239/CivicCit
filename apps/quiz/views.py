@@ -262,22 +262,19 @@ def communityquiz():
     return questions
     
 def quiz1_view(request):
-
-    
+    politicalquiz()
     context = {}
     context['form'] = PQuizForm()
     return render(request, "quiz/quiz1.html", context)
 
 def quiz2_view(request):
-
-   
+    socialquiz()
     context = {}
     context['form'] = SQuizForm()
     return render(request, "quiz/quiz2.html", context)
 
 def quiz3_view(request):
-
-   
+    communityquiz()
     context = {}
     context['form'] = CQuizForm()
     return render(request, "quiz/quiz3.html", context)
