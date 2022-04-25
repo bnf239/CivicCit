@@ -89,7 +89,7 @@ def quiz_view(request):
         p.save()
         p.percent = (numCorrect / p.totalQuestions) * 100
         p.save()
-        results = list(QuizCategoryModel.objects.all().filter(user_id=request.user.id))
+        results = list(QuizCategoryModel.objects.all().filter(user_id=request.user.id).order_by('id'))
     if "Submit Social" in request.POST:
         numCorrect = 0
         form = SQuizForm(request.POST)
@@ -135,7 +135,7 @@ def quiz_view(request):
         s.save()
         s.percent = (numCorrect / s.totalQuestions) * 100
         s.save()
-        results = list(QuizCategoryModel.objects.all().filter(user_id=request.user.id))
+        results = list(QuizCategoryModel.objects.all().filter(user_id=request.user.id).order_by('id'))
     if "Submit Community" in request.POST: 
         numCorrect = 0
         form = CQuizForm(request.POST)
@@ -181,8 +181,7 @@ def quiz_view(request):
         c.save()
         c.percent = (numCorrect / c.totalQuestions) * 100
         c.save()
-        results = list(QuizCategoryModel.objects.all().filter(user_id=request.user.id))
-
+        results = list(QuizCategoryModel.objects.all().filter(user_id=request.user.id).order_by('id'))
     context = {"results" : results}
     return render(request, "quiz/quiz.html", context)
 

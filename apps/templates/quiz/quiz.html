@@ -13,16 +13,15 @@
 <center>
 
     <br>
-    <br>
 
-<h1>Quiz Category</h1>
+<h1>Quiz Categories:</h1>
 
     <br>
 
 <!-- Political Involvement -->
 <form method="POST", action="/political_involvement/">
     {% csrf_token %}
-    <button type="submit">Political Involvement</button>
+    <button class="btn btn-primary btn-lg">Political Involvement</button>
 </form>
 
 <br>
@@ -30,7 +29,7 @@
 <!-- social responsibility -->
 <form method="POST", action="/social_responsibility/">
     {% csrf_token %}
-    <button type="submit">Social Responsibility</button>
+    <button class="btn btn-info btn-lg">Social Responsibility</button>
 </form>
 
 <br>
@@ -38,7 +37,7 @@
 <!--  advocacy & education -->
 <form method="POST", action="/community_service/">
     {% csrf_token %}
-    <button type="submit">Community Service</button>
+    <button  class="btn btn-primary btn-lg">Community Service</button>
 </form>
 
 <br>
@@ -46,10 +45,10 @@
 
 <form method="POST", action="/quizhome/">
     {% csrf_token %}
-    <h1>Results</h1>
+    <h1>Latest Results:</h1>
     <br>
 
-    <table style=" border: 1px solid;">
+    <table style=" border: 1px solid;text-align: center;font-size: 17px">
         <tr style=" border: 1px solid;padding: 20px;">
           <th style=" border: 1px solid;padding: 10px;">Category</th>
           <th style=" border: 1px solid;padding: 10px;">Number of Questions Right</th>
@@ -59,7 +58,7 @@
         {% for data in results %}
         <tr style=" border: 1px solid;padding: 20px;">
 
-            {% if data.category == 'P' %}
+            {% if data.category == 'P'%}
             <th style=" border: 1px solid;padding: 10px;">Political Involvement</th>
             {% endif %}
             {% if data.category == 'S' %}
@@ -82,6 +81,10 @@
         </tr>
         {% endfor %}
       </table>
+
+    <br>
+    <br>
+    <br>
 
 </form>
 
