@@ -1,6 +1,7 @@
 from django.urls import path, re_path, include
 from apps.home import views
-from .views import progress_report_view
+from .views import progress_report_view, number_of_events_registered_for
+
 
 app_name = "progress_report"
 
