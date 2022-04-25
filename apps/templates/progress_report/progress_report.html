@@ -13,8 +13,13 @@
             
             <div class="main-body">
                 <div class="page-wrapper">
-                 
+                 <style>
+                     h1 {text-align: center;}
+                 </style>
                     <div><h1>Progress Report</h1></div>
+                    <form action = "/progress_report/download_file" method = "GET">
+                        <button class = "btn btn-primary btn-lg" type = "submit">Download File</button>
+                    </form>
                     <div class="row">
                         <div class = "col-6">
                             <div class="card">
@@ -58,7 +63,9 @@
                             </div>
                         </div>
                     </div>
+                    
 
+                
                     <style>
                         table{
                             border: none;
