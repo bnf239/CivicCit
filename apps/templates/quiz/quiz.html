@@ -47,48 +47,48 @@
     <h1>Latest Results:</h1>
     <br>
 
-    <table class="table table-hover" style=" border: 1px solid;text-align: center;font-size: 17px;height: 50%;width: 65%;">
-        <tr class="table-light" style=" border: 1px solid;padding: 20px;">
-          <th style=" border: 1px solid;padding: 10px;">Category</th>
-          <th style=" border: 1px solid;padding: 10px;">Number of Questions Right</th>
-          <th style=" border: 1px solid;padding: 10px;">Total Number of Questions</th>
-          <th style=" border: 1px solid;padding: 10px;">Percentage</th>
+    <table class="table" style=" border: 1px solid;text-align: center;font-size: 17px;height: 50%;width: 65%;">
+        <tr class="table-light" style=" border: 2px solid;padding: 20px;">
+          <th style="padding: 10px;">Category</th>
+          <th style="padding: 10px;">Number of Questions Right</th>
+          <th style="padding: 10px;">Total Number of Questions</th>
+          <th style="padding: 10px;">Percentage</th>
         </tr>
         {% for data in results %}
-        <tr style=" border: 1px solid;padding: 20px;">
             {% if data.category == 'P' %}
-            <tr style=" border: 1px solid;padding: 20px;background-color:#8ab9f1;">
+            <tr style="border:2px solid;padding: 20px;background-color:#8ab9f1;">
             {% endif %}
             {% if data.category == 'S' %}
-            <tr style=" border: 1px solid;padding: 20px;background-color:#88d8c0;">
+            <tr style="border:2px solid;padding: 20px;background-color:#88d8c0;">
             {% endif %}
             {% if data.category == 'C' %}
-            <tr style=" border: 1px solid;padding: 20px;background-color:#AFE1AF;">
+            <tr style="border:2px solid;padding: 20px;background-color:#AFE1AF;">
             {% endif %}
             {% if data.category == 'P'%}
-            <th scope="col" style=" border: 1px solid;padding: 10px;background-color:#8ab9f1;">Political Involvement</th>
+            <th scope="col" style="padding: 10px;background-color:#8ab9f1;">Political Involvement</th>
             {% endif %}
             {% if data.category == 'S' %}
-            <th scope="col" style=" border: 1px solid;padding: 10px;background-color:#88d8c0;">Social Responsibility</th>
+            <th scope="col" style="padding: 10px;background-color:#88d8c0;">Social Responsibility</th>
             {% endif %}
             {% if data.category == 'C' %}
-            <th scope="col" style=" border: 1px solid;padding: 10px;background-color:#AFE1AF;">Community Service</th>
+            <th scope="col" style="padding: 10px;background-color:#AFE1AF;">Community Service</th>
             {% endif %}
             {% if data.completed == False %}
-            <th scope="col" style=" border: 1px solid;padding: 10px;">Not Attempted</th>
+            <th scope="col" style="padding: 10px;">Not Attempted</th>
             {% else %}
-            <th scope="col" style=" border: 1px solid;padding: 10px;">{{data.numRight}}</th>
+            <th scope="col" style="padding: 10px;">{{data.numRight}}</th>
             {% endif %}
-            <th scope="col" style=" border: 1px solid;padding: 10px;">{{data.totalQuestions}}</th>
+            <th scope="col" style="solid;padding: 10px;">{{data.totalQuestions}}</th>
             {% if data.completed == False %}
-            <th scope="col" style=" border: 1px solid;padding: 10px;">Not Attempted</th>
+            <th scope="col" style="padding: 10px;">Not Attempted</th>
             {% else %}
-            <th scope="col" style=" border: 1px solid;padding: 10px;">{{data.percent}}%</th>
+            <th scope="col" style="padding: 10px;">{{data.percent}}%</th>
             {% endif %}
         </tr>
         {% endfor %}
       </table>
 </form>
+<br> 
 
 </center>
 
