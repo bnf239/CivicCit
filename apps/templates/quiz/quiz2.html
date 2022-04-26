@@ -6,6 +6,20 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
+
+<style> 
+    input[type=submit]{
+      background-color: #5bc0de;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      cursor: pointer;
+      border-radius: 20px;
+      font-size: 17px;
+    }
+</style>
+
 <main id="intro" style="margin-top:150px;" >
     <div class="container-fluid"  > 
 <center>
@@ -16,8 +30,38 @@
 
 <form method="POST", action="/quiz/">
     {% csrf_token %}
-    {{ form.as_p}}
+    <h4>{{form.answers1.label}}</h4>
+    <h6>{{form.answers1}}</h6>
+    <br>
+    <h4>{{form.answers2.label}}</h4>
+    <h6>{{form.answers2}}</h6>
+    <br>
+    <h4>{{form.answers3.label}}</h4>
+    <h6>{{form.answers3}}</h6>
+    <br>
+    <h4>{{form.answers4.label}}</h4>
+    <h6>{{form.answers4}}</h6>
+    <br>
+    <h4>{{form.answers5.label}}</h4>
+    <h6>{{form.answers5}}</h6>
+    <br>
+    <h4>{{form.answers6.label}}</h4>
+    <h6>{{form.answers6}}</h6>
+    <br>
+    <h4>{{form.answers7.label}}</h4>
+    <h6>{{form.answers7}}</h6>
+    <br>
+    <h4>{{form.answers8.label}}</h4>
+    <h6>{{form.answers8}}</h6>
+    <br>
+    <h4>{{form.answers9.label}}</h4>
+    <h6>{{form.answers9}}</h6>
+    <br>
+    <h4>{{form.answers10.label}}</h4>
+    <h6>{{form.answers10}}</h6>
+    <br>
     <input type="Submit" name="Submit Social" value="Submit"/>
+    <br>
     <br>
     <br>
 </form>
