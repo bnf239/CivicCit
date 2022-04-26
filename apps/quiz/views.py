@@ -27,9 +27,6 @@ def start(request):
     return render(request, "quiz/quiz.html")
 
 def quiz_view(request):
-    politicalquiz()
-    socialquiz()
-    communityquiz()
 
     a1 = ''
     a2 = ''
