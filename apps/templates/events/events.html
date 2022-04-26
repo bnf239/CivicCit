@@ -14,121 +14,77 @@
 </main> -->
 
 <main id="intro" style="margin-top:150px;" >
-  <div class="container-fluid"  >  
-
-<!-- <div class="container"> -->
-
-  
-
-  <div class="row">
-    
-    <div class="col-sm-8 offset-sm-2">
-      <h1> </h1>
-      <h1> </h1>
-      <h1> </h1>
-      <h1> </h1>
-      <h1> </h1>
-      <h1> </h1>
-      <h1> </h1>
-      <h1> </h1>
-      <h1> </h1>
-      <h1> </h1>
-      <h1 class='text-center'> Event List </h1>
-      
-       
-      <form role="form" method="post" action="">
-        {% csrf_token %}      
-      <div class="input-group">
-        {{ form.city }}
-        {{ form.state }}
-        
-        <div class="input-group-append">
-                {{ form.category }}
-                
-            <button id="search" class="btn btn-success" type="submit" >Search</button>
-            
-             
+  <div class="container-fluid "  >
+     <!-- <div class="container"> -->
+     <div class="row "  >
+        <div class="card-body text-center" >
+           <h1 class='text-center' > Event List </h1>
+          
+           <p style="margin-top: 20px;">Enter your location and select a catergory to find events near you!</p>
         </div>
-    </div>
-     
-    {% if nextButton and previousButton %} 
-    {% csrf_token %}
-   
-      <button id="prev" type="submit">Previous</button>
-      <input type="hidden" name="num" value="{{num}}">
-      <button id="next" type="submit">Next</button>
-    
-    <!-- <input type="hidden" name="num" value="{{num}}">
-    <button id="next" type="submit">Next</button> -->
-
-    {% elif nextButton %}
-   
-    <input type="hidden" name="num" value="{{num}}">
-    <button id="next" type="submit">Next</button>
-  
-    {% elif previousButton %}
-    <input type="hidden" name="num" value="{{num}}">
-    <button id="prev" type="submit">Previous</button>
-  
-
-    
+        <!-- <div class="text-center" >
+           <p>Enter your location and select a catergory to find events near you!</p>
+           </div> -->
+        <div class="col-sm-8 offset-sm-2 card-body text-center" >
+           <form role="form" method="post" action="">
+              {% csrf_token %}      
+              <div class="input-group">
+                 {{ form.city }}
+                 {{ form.state }}
+                 <div class="input-group-append">
+                    {{ form.category }}
+                    <button id="search" class="btn btn-success" type="submit" >Search</button>
+                 </div>
+              </div>
+              <div style="height:30px"></div>
+              {% if nextButton and previousButton %} 
+              {% csrf_token %}
+              <button class="btn btn-info" id="prev" type="submit">Previous</button>
+              <input type="hidden" name="num" value="{{num}}">
+              <button  class="btn btn-info" id="next" type="submit">Next</button>
+              <!-- <input type="hidden" name="num" value="{{num}}">
+                 <button id="next" type="submit">Next</button> -->
+              {% elif nextButton %}
+              <input type="hidden" name="num" value="{{num}}">
+              <button class="btn btn-info" id="next" type="submit">Next</button>
+              {% elif previousButton %}
+              <input type="hidden" name="num" value="{{num}}">
+              <button class="btn btn-info" id="prev" type="submit">Previous</button>
+              {% endif %}
+              <input id="type" type="hidden" name="type" value="">
+              <input type="hidden" name="num" value="{{num}}">
+           </form>
+        </div>
+        <div>
+        </div>
+        <div id="output" class="col-sm-8 offset-sm-2">
+           <ul id = "events" class="list-group">
+              {% for event in events %}
+              <li class="list-group-item">
+                 <div class="row">
+                    <div class="col" style="height: 150px; width: 150px;"><img style='height: 100%; width: 100%; object-fit: contain' src={{event.image}} alt=""></div>
+                    <div class="col-8">
+                       <h3 id="title"><b>{{ event.title }}</b></h3>
+                       <h5> <b>Location: </b> {{ event.location }} </h5>
+                       <h5> <b> Date & Time: </b> {{ event.date }} </h5>
+                       <a href="{{ event.link }}" >Link to Register</a>
+                      
+                       <a href="#" class="catgend btn btn-primary btn-sm"  data-event="{{event}}" style="float:right;">Add to Schedule</a>
+                    </div>
+                  </div>
+                  
+              </li>
+              {% endfor %}
+           </ul>
+           {% if emptyList %}
+           <div class="card-body text-center" >
+           <h3>No Events Found</h3>
+          </div>
+           {% endif %}
+         </div>
+        </div>
+     </div>
  
-    {% endif %}
-    <input id="type" type="hidden" name="type" value="">
-    <input type="hidden" name="num" value="{{num}}">
-     </form>
-    
-
-</div>
-<div>
-
-
-
-  
-</div>
-<h1> </h1>
-<h1> </h1>
-<h1> </h1>
-<h1> </h1>
-<h1> </h1>
-<h1> </h1>
- 
-<div id="output" class="col-sm-8 offset-sm-2">
-  
-
-  <ul id = "events" class="list-group">
-    {% for event in events %}
-    
-    <li class="list-group-item">
-      <div class="row">
-      <div class="col" style="height: 150px; width: 150px;"><img style='height: 100%; width: 100%; object-fit: contain' src={{event.image}} alt=""></div>
-      <div class="col-8"><h2 id="title">{{ event.title }}</h2>
-        <h5> Location: {{ event.location }} </h5>
-        <h5> Date & Time: {{ event.date }} </h5>
-        
-      <h5> Link to Register For Tickets: {{ event.link }} </h5>
-      
-      <a href="#" class="catgend"  data-event="{{event}}" >Add to Schedule</a>
-    </div>
-     
-    
-    
-    
-    </li>
-    
-    {% endfor %}
-  </ul>
-  {% if emptyList %}
-            <p>No Events Found</p>
-    {% endif %}
-
-</div>
-
- 
-
-    </div>
-  <!-- </div> -->
-  </div>
 </main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
