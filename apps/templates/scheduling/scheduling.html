@@ -146,30 +146,31 @@
           <div class="tab-pane active" id="1a">
             
               <div style="overflow-y: scroll;height: 600px" id="external-events">
-                  <h4 class="mb-4">Upcoming Events</h4>
+                  
                   
                   {% for event in events %}
                   
                     {% if event.start > dateTime %}
-                    <div class="fc-event">
+                    <h1>  </h1>
+                    <div class="fc-event" >
                       {% if event.event_status == "True" %}
-                         <span class="label label-default">REGISTERED</span>
+                        <span  style="margin-left: 250px" class="badge badge-success">REGISTERED</span>
+                         
                       {% else %}
-                      <span class="label label-default">NOT REGISTERED</span>
+                      <span class="badge badge-warning">NOT REGISTERED</span>
                          {% endif %}
                          
                         
-                        <h3>{{ event.event_name }}</h3>
-                        <p style="color:blue;" > {{ event.event_location }}</p>
-                        <p style="color:blue;" >{{ event.event_date }}</p>
-                        <p style="color:blue;" >{{ event.event_link }}</p>
-                        <a href="{{ event.event_link }}" class="appendlink" id = "linkbutton" data-eventid="{{event.id}}" data-url="{{event.event_link}}">Register Event</a>
+                        <h4><b>{{ event.event_name }}</b></h4>
+                        <p style="color:rgb(17, 17, 70);" > <b>Location: </b>{{ event.event_location }}</p>
+                        <p style="color:rgb(20, 20, 80);" ><b>Date: </b>{{ event.event_date }}</p>
+                        <a href="{{ event.event_link }}" class="appendlink btn btn-outline-info btn-sm" id = "linkbutton" data-eventid="{{event.id}}" data-url="{{event.event_link}}">Register Event</a>
                         <a href="{% url 'delete_event' event.id %}" class="deleteEvent btn btn-outline-danger btn-sm "  data-url="{{event.event_link}}" >Remove Event</a>
                     </div>
                   
                     {% endif %}
                   {% empty %}
-                    <h1>No Events Found</h1>
+                    <p>No Events Found</p>
                   {% endfor %}
               </div>
           </div>
@@ -177,23 +178,24 @@
           <div class="tab-pane" id="2a">
            
               <div style="overflow-y: scroll;height: 500px" id="external-events">
-                  <h4 class="mb-4">Past Events</h4>
+                 
                   {% for event in events %}
                     {% if event.start < dateTime %}
-                    <div class="fc-event">
+                    <h1>  </h1>
+                    <div class="fc-event" >
                       {% if event.event_status == "True" %}
-                         <span class="label label-default">REGISTERED</span>
+                        <span  style="margin-left: 250px" class="badge badge-success">REGISTERED</span>
+                         
                       {% else %}
-                      <span class="label label-default">NOT REGISTERED</span>
+                      <span class="badge badge-warning">NOT REGISTERED</span>
                          {% endif %}
                          
                         
-                        <h3>{{ event.event_name }}</h3>
-                        <p style="color:blue;" > {{ event.event_location }}</p>
-                        <p style="color:blue;" >{{ event.event_date }}</p>
-                        <p style="color:blue;" >{{ event.event_link }}</p>
-                        <a href="{{ event.event_link }}" class="appendlink" id = "linkbutton" data-eventid="{{event.id}}">Register Event</a>
-                        <a href="{% url 'delete_event' event.id %}" class="btn btn-outline-danger btn-sm" >Remove Event</a>
+                        <h4><b>{{ event.event_name }}</b></h4>
+                        <p style="color:rgb(17, 17, 70);" > <b>Location: </b>{{ event.event_location }}</p>
+                        <p style="color:rgb(20, 20, 80);" ><b>Date: </b>{{ event.event_date }}</p>
+                        <a href="{{ event.event_link }}" class="appendlink btn btn-outline-info btn-sm" id = "linkbutton" data-eventid="{{event.id}}" data-url="{{event.event_link}}">Register Event</a>
+                        <a href="{% url 'delete_event' event.id %}" class="deleteEvent btn btn-outline-danger btn-sm "  data-url="{{event.event_link}}" >Remove Event</a>
                     </div>
                     {% endif %}
                   {% empty %}
