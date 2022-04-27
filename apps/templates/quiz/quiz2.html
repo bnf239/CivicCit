@@ -6,19 +6,142 @@
 {% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
+
+<style> 
+    input[type=submit]{
+      background-color: #5bc0de;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      cursor: pointer;
+      border-radius: 20px;
+      font-size: 17px;
+    }
+</style>
+
 <main id="intro" style="margin-top:150px;" >
     <div class="container-fluid"  > 
 <center>
 
-    <br>
-
 <h1>Social Responsibility Quiz</h1>
 
-    <br>
+<br>
 
 <form method="POST", action="/quiz/">
     {% csrf_token %}
-    {{ form.as_p}}
+    <table style="text-align:left;height: 50%;width: 55%;">
+        <tr>
+            <th>
+            <h4>1) {{form.answers1.label}}</h4>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h6>{{form.answers1}}</h6>
+            <br>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h4>2) {{form.answers2.label}}</h4>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h6>{{form.answers2}}</h6>
+            <br>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h4>3) {{form.answers3.label}}</h4>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h6>{{form.answers3}}</h6>
+            <br>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h4>4) {{form.answers4.label}}</h4>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h6>{{form.answers4}}</h6>
+            <br>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h4>5) {{form.answers5.label}}</h4>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h6>{{form.answers5}}</h6>
+            <br>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h4>6) {{form.answers6.label}}</h4>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h6>{{form.answers6}}</h6>
+            <br>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h4>7) {{form.answers7.label}}</h4>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h6>{{form.answers7}}</h6>
+            <br>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h4>8) {{form.answers8.label}}</h4>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h6>{{form.answers8}}</h6>
+            <br>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h4>9) {{form.answers9.label}}</h4>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h6>{{form.answers9}}</h6>
+            <br>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h4>10) {{form.answers10.label}}</h4>
+            </th>
+        </tr>
+        <tr>
+            <th>
+            <h6>{{form.answers10}}</h6>
+            </th>
+        </tr>
+        </table>
+        <br>
     <input type="Submit" name="Submit Social" value="Submit"/>
     <br>
     <br>

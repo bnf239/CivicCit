@@ -33,7 +33,7 @@ import datetime
 #from django.contrib.auth.models import User
 from apps.scheduling.models import Event
 from apps.infohub.models import InfoHubUserInformation
-from apps.quiz.models import QuesModel, QuizCategoryModel
+from apps.quiz.models import QuizCategoryModel
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # from requests_html import HTMLSession
 import json
