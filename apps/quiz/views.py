@@ -201,5 +201,5 @@ def createCategoryTable(request):
     social.save()
     community = QuizCategoryModel(user_id=request.user.id, category='C',totalQuestions=10)
     community.save()
-    categories = list(QuizCategoryModel.objects.all().values())
+    categories = list(QuizCategoryModel.objects.all().filter(user_id=request.user.id).values())
     return categories

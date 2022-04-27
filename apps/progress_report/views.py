@@ -22,9 +22,9 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.lib.units import cm
 from django.contrib.auth.models import User
-
-
-
+from reportlab.platypus import Table
+from reportlab.lib import colors
+from textwrap import wrap
 
 # from .forms import EventForm
 import re
@@ -98,24 +98,6 @@ def quiz_info(request):
     quiz = list(QuizCategoryModel.objects.all().filter(user_id=request.user.id))
     return quiz
 
-# def download_file(request):
-#     print("inside download file")
-#     instance = Event.objects.all()
-    
-#     html_file = render_to_string('progress_report/progress_report.html', {'instance':instance})
-
-#     filename = f'something.pdf'
-#     canvas = Canvas("hello.pdf")
-#     canvas.drawString(72, 72, "Hello, World")
-#     canvas.save()
-
-#     content = canvas
-
-#     response = HttpResponse(content, headers={
-#     'Content-Type': 'application/pdf',
-#     'Content-Disposition': f'attachment; filename="{filename}"' })
-
-#     return response
 
 def create_pdf(request):
     buffer = BytesIO()
@@ -123,36 +105,64 @@ def create_pdf(request):
     WIDTH, HEIGHT = A4
     MARIGIN = 1.5 * cm
     canvas.translate(MARIGIN, HEIGHT-MARIGIN)
-    pdfmetrics.registerFont(TTFont('Vera', 'Vera.ttf'))
-    pdfmetrics.registerFont(TTFont('Verabd', 'Verabd.ttf'))
+    
 
     # header
-    canvas.setFont("Verabd", size=14)
+    # canvas.setFont("Verabd", size=14)
+    canvas.setFont("Helvetica", size=18)
     canvas.drawString(160, 0, "Progress Report")
-    canvas.setFont("Vera", size=10)
+    canvas.setFont("Helvetica", size=12)
     canvas.drawString(430, -0.9*cm, "Username: "+str(request.user.username))
     canvas.setStrokeGray(0)
     canvas.line(0, -1*cm, WIDTH - 2*MARIGIN, -1*cm)
 
     # footer
     canvas.line(0, -26.6*cm, WIDTH - 2*MARIGIN, -26.6*cm)
-    articles = number_of_articles_read(request)
-    events = number_of_events_registered_for(request)
-    quizzes = number_of_quizzes(request)
-
-
+    num_articles = number_of_articles_read(request)
+    num_events = number_of_events_registered_for(request)
+    num_quizzes = number_of_quizzes(request)
+    articles = InfoHubUserInformation.objects.all().filter(user_id=request.user.id)
+    events = list(Event.objects.all().filter(event_status = True, user_id=request.user.id))
+    print("article")
+    for article in articles:
+        print(article.article_title)
+        print(article.url_links)
+    print("event")
+    
     # paragraphs
     txt_obj = canvas.beginText(14, -6.5* cm)
-    txt_obj.setFont("Vera", 12)
+    # txt_obj.setFont("Vera", 12)
     txt_obj.setWordSpace(3)
-    txt_lst = ["Number of Quizzes Completed: "+ str(quizzes), 
-                "Total Events Registered For: "+ str(events),
-                "Articles Read: " + str(articles)  ,
+    txt_lst = ["Number of Quizzes Completed: "+ str(num_quizzes), 
+                "Total Events Registered For: "+ str(num_events),
+                "Articles Read: " + str(num_articles)  ,
+                " ",
+                "Events Registered For: ",
+
                 ]
+    event_count = 1
+    for event in events:
+        txt_lst.append("   {}. Event Name: ".format(str(event_count)) + str(event.event_name))
+        txt_lst.append("       Event Date: " + str(event.event_date))
+        txt_lst.append("       Event Name: " + str(event.event_location))
+        txt_lst.append(" ")
+        event_count+=1
+    # txt_lst.append(" ")
+    # txt_lst.append("Articles Read/Viewed: ")
+    # article_count = 1
+    # for article in articles:
+    #     txt_lst.append("   {}. Article Name: ".format(str(article_count)) + str(article.article_title))
+    #     txt_lst.append("    URL: " + str(article.url_links))
+    #     txt_lst.append(" ")
+    #     article_count+=1
+
+    
     for line in txt_lst:
         txt_obj.textOut(line)
         txt_obj.moveCursor(0, 16)
     canvas.drawText(txt_obj)
+
+    
 
 
     canvas.showPage()
