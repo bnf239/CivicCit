@@ -1,15 +1,23 @@
+from cgitb import text
+from turtle import down
 from unicodedata import category
 from django import template
 from django.contrib.auth.decorators import login_required
 
-from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
+from django.http import HttpResponse, HttpResponseRedirect, HttpRequest, StreamingHttpResponse
+
+from django.shortcuts import render 
+from io import BytesIO
+from django.template.loader import get_template
+from django.views import View 
+from xhtml2pdf import pisa 
 
 import mimetypes
-import os 
-
+import os
+from wsgiref.util import FileWrapper
 
 from django.template import loader
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.urls import reverse
 import requests
 from bs4 import BeautifulSoup
@@ -43,6 +51,8 @@ def addUser(request):
     # new_entry = Event(event_name=ast.literal_eval((data["event"][0]))["title"], event_location=ast.literal_eval((data["event"][0]))["location"], event_date=ast.literal_eval((data["event"][0]))["date"], event_link=ast.literal_eval((data["event"][0]))["link"])
     
     return render(request, "progress_report/progress_report.html")
+
+
 
 def progress_report_view(request):
     num_events = number_of_events_registered_for(request)
@@ -88,22 +98,43 @@ def quiz_info(request):
     return quiz
 
 def download_file(request):
- # Define Django project base directory
-    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    # Define text file name
-    filename = 'test.txt'
-    # Define the full file path
-    filepath = BASE_DIR + '/downloadapp/Files/' + filename
-    # Open the file for reading content
-    path = open(filepath, 'r')
-    # Set the mime type
-    mime_type, _ = mimetypes.guess_type(filepath)
-    # Set the return value of the HttpResponse
-    response = HttpResponse(path, content_type=mime_type)
-    # Set the HTTP header for sending to browser
-    response['Content-Disposition'] = "attachment; filename=%s" % filename
-    # Return the response value
-    return response
+    print("im here")
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    filename = "test.pdf"
+    filepath = base_dir + '/Files/' + filename
+    thefile = filepath
+    filename = os.path.basename(thefile)
+    chunk_size = 8192
+    response = StreamingHttpResponse(FileWrapper(open(thefile, 'r'), chunk_size), 
+        content_type = mimetypes.guess_type(thefile[0]))
+    response['Content-Length'] = os.path.getsize(thefile)
+    response['Content-Disposition'] = "Attachment;filename=%s" % filename
+    return render(request, "progress_report/progress_report.html", response)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+    
+  
+
+
+
+
+
 
 
 
