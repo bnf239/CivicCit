@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'apps.events',
     'apps.scheduling',
     'apps.infohub',
+    'widget_tweaks',
     'apps.quiz'
 ]
 
