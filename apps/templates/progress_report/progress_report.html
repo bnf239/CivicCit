@@ -17,11 +17,9 @@
                      h1 {text-align: center;}
                  </style>
                     <div><h1>Progress Report</h1></div>
-
-                        <a href = "/download_file"><button class = "btn btn-primary btn-lg">Download File</button></a>
-                   
-
-                    
+                    <!-- <form action = "/progress_report/download_file" method = "GET"> -->
+                        <a href="{% url 'download_file' %}" class="btn btn-primary btn-lg"  >Download File </a>
+                    <!-- </form> -->
                     <div class="row">
                         <div class = "col-6">
                             <div class="card">

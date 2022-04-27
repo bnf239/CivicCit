@@ -4,7 +4,7 @@ from apps.events.views import events_view
 from apps.infohub.views import infohub_view, infohubtest_view, infohubtest2_view, infohubtest3_view, addUser
 from apps.scheduling.views import scheduleEvent, startup, deleteEvent, registerEvent
 from apps.quiz.views import start, quiz_view, quiz1_view, quiz2_view, quiz3_view
-from apps.progress_report.views import progress_report_view
+from apps.progress_report.views import progress_report_view,download_file
 urlpatterns = [
 
     # This will be our landing/home page
@@ -28,6 +28,7 @@ urlpatterns = [
     path('scheduling/delete_event/',deleteEvent,name="delete_event"),
     # path(r'^calendar/$', CalendarView.as_view(), name='calendar'),
     path('progress_report', progress_report_view, name = 'progress_report'),
+    path('progress_report/download',download_file,name="download_file"),
 
     # matching the html file
     re_path(r'^.*\.*', views.pages, name='pages'),
