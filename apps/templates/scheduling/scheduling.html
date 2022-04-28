@@ -65,6 +65,23 @@
   .cnt223 .x:hover{
   cursor: pointer;
   }
+ 
+
+
+   
+h1{
+
+  position: relative;
+   font-family: 'Raleway', sans-serif;
+  font-weight:bold;
+
+
+  place-items: center;
+}
+
+
+
+
   </style>
 
 {% endblock stylesheets %}
@@ -107,7 +124,8 @@
       <h1> </h1>
       <h1> </h1>
       <h1> </h1>
-      <h1 class='text-center'> Schedule </h1>
+      <h1 class='text-center' > SCHEDULE </h1>
+          <hr style="width: 100%;">
 
      
 
@@ -154,7 +172,7 @@
                     <h1>  </h1>
                     <div class="fc-event" >
                       {% if event.event_status == "True" %}
-                        <span  style="margin-left: 250px" class="badge badge-success">REGISTERED</span>
+                        <span class="badge badge-success">REGISTERED</span>
                          
                       {% else %}
                       <span class="badge badge-warning">NOT REGISTERED</span>

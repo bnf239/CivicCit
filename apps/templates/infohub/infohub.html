@@ -3,10 +3,28 @@
 {% block title %} Dashboard {% endblock %} 
 
 
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<style>
+
+
+   
+    h1{
+    
+      position: relative;
+       font-family: 'Raleway', sans-serif;
+      font-weight:bold;
+    
+      display: grid;
+      place-items: center;
+    }
+    
+    
+    
+    </style>
+{% endblock stylesheets %}
 
 {% block content %}
-<main id="intro" style="margin-top:150px;" >
+<main id="intro" style="margin-top:100px;   background: #f4f7fa; >
     <div class="container"  > 
 
 
@@ -75,6 +93,8 @@
 
 <center>
     <div class="container py-5">
+        <h1 class='text-center' > INFOHUB </h1>
+          <hr style="width: 50%;">
         <div class = "py-5">
             <!-- <div class ="row"> -->
                 <a href = "/infohubtest/">

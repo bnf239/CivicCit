@@ -3,10 +3,23 @@
 {% block title %} Dashboard {% endblock %} 
 
 
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+
+<style>
+    h1{
+    
+      position: relative;
+       font-family: 'Raleway', sans-serif;
+      font-weight:bold;
+    
+    
+      place-items: center;
+    }
+    </style>
+{% endblock stylesheets %}
 
 {% block content %}
-<main id="intro" style="margin-top:150px;" >
+<main id="intro" style="margin-top:70px;" >
     <div class="container-fluid"  > 
     <div class="pcoded-content">
         <div class="pcoded-inner-content">
@@ -16,9 +29,10 @@
                  <style>
                      h1 {text-align: center;}
                  </style>
-                    <div><h1>Progress Report</h1></div>
+                   <h1 class='text-center' > PROGRESS REPORT </h1>
+                   <hr style="width: 50%;">
                     <!-- <form action = "/progress_report/download_file" method = "GET"> -->
-                        <a href="{% url 'download_file' %}" class="btn btn-primary btn-lg"  >Download File </a>
+                        <!-- <a href="{% url 'download_file' %}" class="btn btn-primary btn-lg"  >Download File </a> -->
                     <!-- </form> -->
                     <div class="row">
                         <div class = "col-6">
@@ -120,6 +134,7 @@
  
                 </div>
             </div>
+            <a href="{% url 'download_file' %}" class="btn btn-primary btn-lg"  >Download File </a>
         </div>
     </div>
 </div>
