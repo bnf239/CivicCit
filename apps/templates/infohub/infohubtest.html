@@ -3,7 +3,25 @@
 {% block title %} Dashboard {% endblock %} 
 
 
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<style>
+
+
+   
+    h1{
+    
+      position: relative;
+       font-family: 'Raleway', sans-serif;
+      font-weight:bold;
+    
+      display: grid;
+      place-items: center;
+    }
+    
+    
+    
+    </style>
+{% endblock stylesheets %}
 
 {% block content %}
 
@@ -14,8 +32,9 @@
     <main id="intro" style="margin-top:150px;" >
         <div class="container-fluid"  > 
 <center>
+    <h1 class='text-center' > POLITICAL INVOLVEMENT </h1>
+    <hr style="width: 50%;">
 
-<h1> Political Involvement </h1>
 <div class = "row">
     
     {% for article in articles %}
@@ -48,7 +67,7 @@
             <!-- <p class="card-text">{{ card.description }}</p> -->
             <!-- <form method = POST action="{{article.ink}}"> -->
                 <!-- {% csrf_token %} -->
-                <a href="{{article.url}}" class="appendlink" id = "linkbutton" data-articlelink="{{article.url}}" data-article="{{article.title}}">Link</a>
+                <a href="{{article.url}}" class="appendlink btn btn-primary" id = "linkbutton" data-articlelink="{{article.url}}" data-article="{{article.title}}">Link</a>
             <!-- <input type="hidden" class = "form-control" id="urlLink" value="{{article.link}}" name="urlLink"> -->
             <!-- <input type="hidden" class = "form-control" id="user" value="{{user.username}}" name="user"> -->
             <!-- <a href="#" id="button" class="button">View </a> -->
