@@ -60,7 +60,9 @@ def progress_report_view(request):
     num_articles_read = number_of_articles_read(request)
     num_of_quizzes = number_of_quizzes(request)
     quiz_inform = quiz_info(request)
-    print(quiz_inform)
+    events = registeredEvents(request)
+    article_list = articlesRead(request)
+
     for data in quiz_inform:
         print(data.category)
         print(data.percent)
@@ -68,10 +70,30 @@ def progress_report_view(request):
         "num_events" : num_events,
         "num_articles_read" : num_articles_read,
         "num_of_quizzes" : num_of_quizzes,
-        "quiz_info" : quiz_inform
+        "quiz_info" : quiz_inform,
+        "events":events,
+        "article_list": article_list
+
     }
     return render(request, "progress_report/progress_report.html", context)
+def registeredEvents(request):
+    return list(Event.objects.all().filter(event_status = True, user_id=request.user.id))
 
+def articlesRead(request):
+    articles = InfoHubUserInformation.objects.all().filter(user_id=request.user.id)
+    
+    article_list = []
+
+    for article in articles:
+        articleDict= {}
+        try:
+            articleDict[article.article_title]
+        except:
+            articleDict[article.article_title] = article.url_links
+        article_list.append(articleDict)
+
+
+    return article_list
 
 def number_of_events_registered_for(request):
     num_events = len(list(Event.objects.all().filter(event_status = True, user_id=request.user.id)))

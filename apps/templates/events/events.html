@@ -3,9 +3,30 @@
 {% block title %} Dashboard {% endblock %} 
 
 
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+
+<style>
+
+
+   
+h1{
+
+  position: relative;
+   font-family: 'Raleway', sans-serif;
+  font-weight:bold;
+
+  display: grid;
+  place-items: center;
+}
+
+
+
+</style>
+
+{% endblock stylesheets %}
 
 {% block content %}
+
 <!-- <main id="intro"  style="
        
       height: 150px;
@@ -18,9 +39,10 @@
      <!-- <div class="container"> -->
      <div class="row "  >
         <div class="card-body text-center" >
-           <h1 class='text-center' > Event List </h1>
+           <h1 class='text-center' > EVENTS </h1>
+          <hr style="width: 50%;">
           
-           <p style="margin-top: 20px;">Enter your location and select a catergory to find events near you!</p>
+           <h5 style="margin-top: 20px;">Enter your location and select a catergory to find events near you!</h5>
         </div>
         <!-- <div class="text-center" >
            <p>Enter your location and select a catergory to find events near you!</p>
@@ -67,7 +89,7 @@
                        <h3 id="title"><b>{{ event.title }}</b></h3>
                        <h5> <b>Location: </b> {{ event.location }} </h5>
                        <h5> <b> Date & Time: </b> {{ event.date }} </h5>
-                       <a href="{{ event.link }}" >Link to Register</a>
+                       <a href="{{ event.link }}" >More Info</a>
                       
                        <a href="#" class="catgend btn btn-primary btn-sm"  data-event="{{event}}" style="float:right;">Add to Schedule</a>
                     </div>

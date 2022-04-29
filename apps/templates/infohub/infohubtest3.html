@@ -3,7 +3,26 @@
 {% block title %} Dashboard {% endblock %} 
 
 
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<style>
+
+
+   
+    h1{
+    
+      position: relative;
+       font-family: 'Raleway', sans-serif;
+      font-weight:bold;
+    
+      display: grid;
+      place-items: center;
+    }
+    
+    
+    
+    </style>
+
+{% endblock stylesheets %}
 
 {% block content %}
 
@@ -13,8 +32,9 @@
 <!-- <br> -->
 
 <center>
-
-    <h1> Advocacy and Education </h1>
+    <h1 class='text-center' > ADVOCACY & EDUCATION </h1>
+    <hr style="width: 50%;">
+    
     <div class = "row">
         
         {% for article in articles %}
@@ -44,7 +64,7 @@
                 <h5 class="card-title" style = "font-size:15px; text-align: left;"> Source: {{ article.source.name }}</h5>
                 {% endif %}
                 <!-- <p class="card-text">{{ card.description }}</p> -->
-                <a href="{{article.url}}" class="appendlink" id = "linkbutton" data-articlelink="{{article.url}}" data-article="{{article.title}}">Link</a>
+                <a href="{{article.url}}" class="appendlink btn btn-primary" id = "linkbutton" data-articlelink="{{article.url}}" data-article="{{article.title}}">Link</a>
                 <!-- <a href="/command/{{ card.id }}/delete" class="btn btn-primary">Delete</a> -->
                 </div>
             </div>

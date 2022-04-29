@@ -27,11 +27,23 @@
         padding: 5px 15px;
         border-radius: 10px;
         background-color:#cfebfd;
-        width:90%;
+        width:100%;
     }
+    h1{
+    
+    position: relative;
+     font-family: 'Raleway', sans-serif;
+    font-weight:bold;
+  
+    display: grid;
+    place-items: center;
+  }
+  
+  
+
 </style>
 
-<main id="intro" style="margin-top:150px;">
+<main id="intro" style="margin-top:100px;">
     <div class="container-fluid"> 
 <center>
 
@@ -40,9 +52,10 @@
     <br>
     <br>
     <br>
+    <h1 class='text-center' > POLITICAL INVOLVEMENT QUIZ </h1>
+    <hr style="width: 50%;">
+ 
 
-<h1>Political Involvement Quiz</h1>
-<br>
 
 <form method="POST", action="/quiz/">
     {% csrf_token %}

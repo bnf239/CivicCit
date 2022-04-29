@@ -3,10 +3,47 @@
 {% block title %} Dashboard {% endblock %} 
 
 
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+
+<style>
+    h1{
+    
+      position: relative;
+       font-family: 'Raleway', sans-serif;
+      font-weight:bold;
+    
+    
+      place-items: center;
+    }
+    td, th {
+  border: 1px solid #999;
+  padding: 20px;
+}
+th {
+  background: rgb(119, 170, 201);
+  color: white;
+  /* border-radius: 0; */
+  font-size: large;
+  /* position: sticky; */
+  /* top: 0; */
+  /* padding: 10px; */
+}
+tr{
+    background-color: #fff;
+    /* padding: 40px !important; */
+    height:90px;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    color: #888;
+    font-weight: bold;
+    text-transform: uppercase;
+                        }
+    </style>
+{% endblock stylesheets %}
 
 {% block content %}
-<main id="intro" style="margin-top:150px;" >
+<main id="intro" style="margin-top:70px;" >
     <div class="container-fluid"  > 
     <div class="pcoded-content">
         <div class="pcoded-inner-content">
@@ -16,9 +53,10 @@
                  <style>
                      h1 {text-align: center;}
                  </style>
-                    <div><h1>Progress Report</h1></div>
+                   <h1 class='text-center' > PROGRESS REPORT </h1>
+                   <hr style="width: 50%;">
                     <!-- <form action = "/progress_report/download_file" method = "GET"> -->
-                        <a href="{% url 'download_file' %}" class="btn btn-primary btn-lg"  >Download File </a>
+                        <!-- <a href="{% url 'download_file' %}" class="btn btn-primary btn-lg"  >Download File </a> -->
                     <!-- </form> -->
                     <div class="row">
                         <div class = "col-6">
@@ -66,7 +104,7 @@
                     
 
                 
-                    <style>
+                    <!-- <style>
                         table{
                             border: none;
                             outline: none;
@@ -82,31 +120,76 @@
                             font-weight: 300;
                             text-transform: uppercase;
                         }
-                    </style>
+                    </style> -->
 
                         <div class = 'col-6'>
-                            <table style="border: 1px solid;" class = "table">
-                                <tr style=" border: 1px solid;padding: 20px;">
-                                  <th scope = "col" style=" border: 1px solid;padding: 10px;">Category</th>
-                                 
-                                  <th scope = "col" style=" border: 1px solid;padding: 10px;">Grade</th>
-                                </tr>
-                                {% for data in quiz_info %}
-                                <tr style=" border: 1px solid;padding: 20px;">
+                            <!-- <table>
+                                <caption>Quizzes</caption>
+                                <thead>
+                                    <tr >
+                                        <th scope = "col" >Category</th>
+                                       
+                                        <th scope = "col" >Grade</th>
+                                      </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in quiz_info %}
+                                  <tr>
                                     {% if data.category == 'P' %}
-                                    <th scope = "col" style=" border: 1px solid;padding: 10px;">Political Involvement</th>
+                                    <td scope = "col" style=" border: 1px solid;" >Political Involvement</td>
                                     {% endif %}
                                     {% if data.category == 'S' %}
-                                    <th scope = "col" style=" border: 1px solid;padding: 10px;">Social Responsibility</th>
+                                    <td scope = "col" style=" border: 1px solid;">Social Responsibility</td>
                                     {% endif %}
                                     {% if data.category == 'C' %}
-                                    <th scope = "col" style=" border: 1px solid;padding: 10px;">Community Service</th>
+                                    <td scope = "col" style=" border: 1px solid;">Community Service</td>
                                     {% endif %}
                                     
-                                    <th scope = "col" style=" border: 1px solid;padding: 10px;">{{data.percent}}%</th>
+                                    <td scope = "col" style=" border: 1px solid;">{{data.percent}}%</td>
+                                  </tr>
+                                  {% endfor %}
+                                  
+                                </tbody>
+                           </table> -->
+                           
+                           <h4 class='text-center' style=" font-family: 'Raleway', sans-serif;
+                           font-weight:bold;" >QUIZZES</h4>
+                           {% if quiz_info|length != 0 %}
+                            <table style="border: 1px solid;" class = "table">
+                                <thead>
+                                    <tr >
+                                        <th style=" border: 1px solid;" scope = "col" >Category</th>
+                                       
+                                        <th style=" border: 1px solid;" scope = "col" >Grade</th>
+                                      </tr>
+                                </thead>
+                                
+                                <!-- <tr style=" border: 1px solid;">
+                                  <th style=" border: 1px solid;" scope = "col" >Category</th>
+                                 
+                                  <th style=" border: 1px solid;" scope = "col" >Grade</th>
+                                </tr> -->
+                                {% for data in quiz_info %}
+                                <tr >
+                                    {% if data.category == 'P' %}
+                                    <td scope = "col" style=" border: 1px solid;">Political Involvement</td>
+                                    {% endif %}
+                                    {% if data.category == 'S' %}
+                                    <td scope = "col" style=" border: 1px solid;">Social Responsibility</td>
+                                    {% endif %}
+                                    {% if data.category == 'C' %}
+                                    <td scope = "col" style=" border: 1px solid;">Community Service</td>
+                                    {% endif %}
+                                    
+                                    <td scope = "col" style=" border: 1px solid;">{{data.percent}}%</td>
                                 </tr>
                                 {% endfor %}
                               </table>
+
+                              {% else %}
+                             <h5 class='text-center' style=" margin-top: 120px;"> No quizzes found. </h5>
+
+                             {% endif %}
                             
 
 
@@ -116,10 +199,70 @@
 
                         </div>
                     </div>
+                    <h4 class='text-center' style=" font-family: 'Raleway', sans-serif;
+                           font-weight:bold;" >ARTICLES READ</h4>
+                    {% if article_list|length != 0 %}
+                    <table style="border: 1px solid;" class = "table">
+                        <tr style=" border: 1px solid;padding: 20px;">
+                          <th scope = "col" style=" border: 1px solid;padding: 10px;">Article Name</th>
+                         
+                          <th scope = "col" style=" border: 1px solid;padding: 10px;">Article Link</th>
+                        </tr>
+                        {% for article in article_list %}
+                        
+                        <tr>
+                            {% for key, value in article.items %}
+                            <td scope="row">{{ key }}</td>
+                            <td scope="row">{{ value }}</td>
+                            {% endfor %}
+                            
+                           
+                           
+                        </tr>
+                        {% endfor %}
+                      </table>
+                      {% else %}
+                      <h5 class='text-center' > No articles found. </h5>
+                      <h1 style="margin-top: 20px;"> </h1>
+                      
+
+                      {% endif %}
+                     
+                      <h4 class='text-center' style=" font-family: 'Raleway', sans-serif;
+                      font-weight:bold;" >EVENTS REGISTERED FOR</h4>
+                       {% if events|length != 0 %}
+                      <table style="border: 1px solid;" class = "table">
+                        <tr style=" border: 1px solid;padding: 20px;">
+                          <th scope = "col" style=" border: 1px solid;padding: 10px;">Event Name</th>
+                         
+                          <th scope = "col" style=" border: 1px solid;padding: 10px;"> Date</th>
+                          <th scope = "col" style=" border: 1px solid;padding: 10px;">Location</th>
+                          <th scope = "col" style=" border: 1px solid;padding: 10px;">Link</th>
+                        </tr>
+                        {% for event in events %}
+                        
+                        <tr>
+                            
+                            <td scope="row">{{ event.event_name }}</td>
+                            <td scope="row">{{ event.event_date }}</td>
+                            <td scope="row">{{ event.event_location }}</td>
+                            <td scope="row">{{ event.event_link }}</td>
+                            
+                            
+                           
+                           
+                        </tr>
+                        {% endfor %}
+                      </table>
+                      {% else %}
+                      <h5 class='text-center' > No events found. </h5>
+
+                      {% endif %}
 
  
                 </div>
             </div>
+            <a href="{% url 'download_file' %}" class="btn btn-primary btn-lg"  >Download File </a>
         </div>
     </div>
 </div>
