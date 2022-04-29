@@ -15,6 +15,30 @@
     
       place-items: center;
     }
+    td, th {
+  border: 1px solid #999;
+  padding: 20px;
+}
+th {
+  background: rgb(119, 170, 201);
+  color: white;
+  /* border-radius: 0; */
+  font-size: large;
+  /* position: sticky; */
+  /* top: 0; */
+  /* padding: 10px; */
+}
+tr{
+    background-color: #fff;
+    /* padding: 40px !important; */
+    height:90px;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    color: #888;
+    font-weight: 300;
+    text-transform: uppercase;
+                        }
     </style>
 {% endblock stylesheets %}
 
@@ -80,7 +104,7 @@
                     
 
                 
-                    <style>
+                    <!-- <style>
                         table{
                             border: none;
                             outline: none;
@@ -96,31 +120,71 @@
                             font-weight: 300;
                             text-transform: uppercase;
                         }
-                    </style>
+                    </style> -->
 
                         <div class = 'col-6'>
-                            <table style="border: 1px solid;" class = "table">
-                                <tr style=" border: 1px solid;padding: 20px;">
-                                  <th scope = "col" style=" border: 1px solid;padding: 10px;">Category</th>
-                                 
-                                  <th scope = "col" style=" border: 1px solid;padding: 10px;">Grade</th>
-                                </tr>
-                                {% for data in quiz_info %}
-                                <tr style=" border: 1px solid;padding: 20px;">
+                            <!-- <table>
+                                <caption>Quizzes</caption>
+                                <thead>
+                                    <tr >
+                                        <th scope = "col" >Category</th>
+                                       
+                                        <th scope = "col" >Grade</th>
+                                      </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in quiz_info %}
+                                  <tr>
                                     {% if data.category == 'P' %}
-                                    <th scope = "col" style=" border: 1px solid;padding: 10px;">Political Involvement</th>
+                                    <td scope = "col" style=" border: 1px solid;" >Political Involvement</td>
                                     {% endif %}
                                     {% if data.category == 'S' %}
-                                    <th scope = "col" style=" border: 1px solid;padding: 10px;">Social Responsibility</th>
+                                    <td scope = "col" style=" border: 1px solid;">Social Responsibility</td>
                                     {% endif %}
                                     {% if data.category == 'C' %}
-                                    <th scope = "col" style=" border: 1px solid;padding: 10px;">Community Service</th>
+                                    <td scope = "col" style=" border: 1px solid;">Community Service</td>
                                     {% endif %}
                                     
-                                    <th scope = "col" style=" border: 1px solid;padding: 10px;">{{data.percent}}%</th>
+                                    <td scope = "col" style=" border: 1px solid;">{{data.percent}}%</td>
+                                  </tr>
+                                  {% endfor %}
+                                  
+                                </tbody>
+                           </table> -->
+                           <h4 class='text-center' style=" font-family: 'Raleway', sans-serif;
+                           font-weight:bold;" >QUIZZES</h4>
+                            <table style="border: 1px solid;" class = "table">
+                                <thead>
+                                    <tr >
+                                        <th style=" border: 1px solid;" scope = "col" >Category</th>
+                                       
+                                        <th style=" border: 1px solid;" scope = "col" >Grade</th>
+                                      </tr>
+                                </thead>
+                                
+                                <!-- <tr style=" border: 1px solid;">
+                                  <th style=" border: 1px solid;" scope = "col" >Category</th>
+                                 
+                                  <th style=" border: 1px solid;" scope = "col" >Grade</th>
+                                </tr> -->
+                                {% for data in quiz_info %}
+                                <tr >
+                                    {% if data.category == 'P' %}
+                                    <td scope = "col" style=" border: 1px solid;">Political Involvement</td>
+                                    {% endif %}
+                                    {% if data.category == 'S' %}
+                                    <td scope = "col" style=" border: 1px solid;">Social Responsibility</td>
+                                    {% endif %}
+                                    {% if data.category == 'C' %}
+                                    <td scope = "col" style=" border: 1px solid;">Community Service</td>
+                                    {% endif %}
+                                    
+                                    <td scope = "col" style=" border: 1px solid;">{{data.percent}}%</td>
                                 </tr>
                                 {% endfor %}
                               </table>
+
+                             
                             
 
 
@@ -130,6 +194,52 @@
 
                         </div>
                     </div>
+                    <h4 class='text-center' style=" font-family: 'Raleway', sans-serif;
+                           font-weight:bold;" >EVENTS REGISTERED FOR</h4>
+                    <table style="border: 1px solid;" class = "table">
+                        <tr style=" border: 1px solid;padding: 20px;">
+                          <th scope = "col" style=" border: 1px solid;padding: 10px;">Article Name</th>
+                         
+                          <th scope = "col" style=" border: 1px solid;padding: 10px;">Article Link</th>
+                        </tr>
+                        {% for article in article_list %}
+                        
+                        <tr>
+                            {% for key, value in article.items %}
+                            <td scope="row">{{ key }}</td>
+                            <td scope="row">{{ value }}</td>
+                            {% endfor %}
+                            
+                           
+                           
+                        </tr>
+                        {% endfor %}
+                      </table>
+                      <h4 class='text-center' style=" font-family: 'Raleway', sans-serif;
+                      font-weight:bold;" >ARTICLES READ</h4>
+                      <table style="border: 1px solid;" class = "table">
+                        <tr style=" border: 1px solid;padding: 20px;">
+                          <th scope = "col" style=" border: 1px solid;padding: 10px;">Event Name</th>
+                         
+                          <th scope = "col" style=" border: 1px solid;padding: 10px;"> Date</th>
+                          <th scope = "col" style=" border: 1px solid;padding: 10px;">Location</th>
+                          <th scope = "col" style=" border: 1px solid;padding: 10px;">Link</th>
+                        </tr>
+                        {% for event in events %}
+                        
+                        <tr>
+                            
+                            <td scope="row">{{ event.event_name }}</td>
+                            <td scope="row">{{ event.event_date }}</td>
+                            <td scope="row">{{ event.event_location }}</td>
+                            <td scope="row">{{ event.event_link }}</td>
+                            
+                            
+                           
+                           
+                        </tr>
+                        {% endfor %}
+                      </table>
 
  
                 </div>
