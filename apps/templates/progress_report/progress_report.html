@@ -36,7 +36,7 @@ tr{
     font-family: "Open Sans", sans-serif;
     font-size: 14px;
     color: #888;
-    font-weight: 300;
+    font-weight: bold;
     text-transform: uppercase;
                         }
     </style>
@@ -151,8 +151,10 @@ tr{
                                   
                                 </tbody>
                            </table> -->
+                           
                            <h4 class='text-center' style=" font-family: 'Raleway', sans-serif;
                            font-weight:bold;" >QUIZZES</h4>
+                           {% if quiz_info|length != 0 %}
                             <table style="border: 1px solid;" class = "table">
                                 <thead>
                                     <tr >
@@ -184,7 +186,10 @@ tr{
                                 {% endfor %}
                               </table>
 
-                             
+                              {% else %}
+                             <h5 class='text-center' style=" margin-top: 120px;"> No quizzes found. </h5>
+
+                             {% endif %}
                             
 
 
@@ -196,6 +201,7 @@ tr{
                     </div>
                     <h4 class='text-center' style=" font-family: 'Raleway', sans-serif;
                            font-weight:bold;" >ARTICLES READ</h4>
+                    {% if article_list|length != 0 %}
                     <table style="border: 1px solid;" class = "table">
                         <tr style=" border: 1px solid;padding: 20px;">
                           <th scope = "col" style=" border: 1px solid;padding: 10px;">Article Name</th>
@@ -215,8 +221,16 @@ tr{
                         </tr>
                         {% endfor %}
                       </table>
+                      {% else %}
+                      <h5 class='text-center' > No articles found. </h5>
+                      <h1 style="margin-top: 20px;"> </h1>
+                      
+
+                      {% endif %}
+                     
                       <h4 class='text-center' style=" font-family: 'Raleway', sans-serif;
                       font-weight:bold;" >EVENTS REGISTERED FOR</h4>
+                       {% if events|length != 0 %}
                       <table style="border: 1px solid;" class = "table">
                         <tr style=" border: 1px solid;padding: 20px;">
                           <th scope = "col" style=" border: 1px solid;padding: 10px;">Event Name</th>
@@ -240,6 +254,10 @@ tr{
                         </tr>
                         {% endfor %}
                       </table>
+                      {% else %}
+                      <h5 class='text-center' > No events found. </h5>
+
+                      {% endif %}
 
  
                 </div>
