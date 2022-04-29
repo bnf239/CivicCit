@@ -41,7 +41,9 @@ h1{
     <div class="container"  > 
         <div class="jumbotron p-3 p-md-5  rounded ">
             <div class="col-md-6 px-0">
-              <h1 class="display-4 ">CivicCit</h1>
+              <!--h1 class="display-4 ">CivicCit</h1-->
+              {% load static %}
+              <img src="{% static 'images/LandingPageLogo.png' %}" height="315" />
               <p class="lead my-3"><b>CivicCit is a digital platform for young adults who wish to be more civically
                 involved in social issues that they are passionate about. </b></p>
                
@@ -68,13 +70,26 @@ h1{
 
                       
                               <h5 class="card-title">Why is this important?</h5>
-                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              <p class="card-text">Civic engagement increases students’ emotional intelligence and motivates students towards conscientious community action 
+
+                                Furthermore, those students who do participate in civic engagement gain intrapersonal effectiveness, the ability to collaborate across diverse perspectives and positively impact communities
+                                
+                                Civically engaged students learn skills such as critical thinking, writing, communication, mathematics and technology at more advanced levels 
+                                
+                                In an effort to create socially equitable communities, these students encounter opportunities were these skills are put to the test as they have to think of innovative ways to use their skills to address community needs. 
+                                </p>
                               <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                             
                     </div>
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                         <h5 class="card-title">Our 5 Features</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <p class="card-text">The system has five features which include: a civic events system, a civic quiz system, a 
+                            scheduling system, a progress report system, and a civic information hub system. 
+                            The civic information hub system will allow users to read information about a topic from credible sources.
+                             The progress reporting system will track a user’s civic participation and generate recommendations based on 
+                             their activity. The scheduling system will allow users to add events to their schedule without any overlaps. 
+                             The civic quiz system will allow users to be tested on their knowledge of various civic topics. 
+                             These quizzes are nothing more than a fun engaging activity. </p>
                     </div>
                     
                   </div>
