@@ -1,7 +1,10 @@
 from .models import QuizCategoryModel
 from django import forms
 
+#this is the quiz form for the political quiz with the political questions
 class PQuizForm(forms.Form):
+
+    #list of 10 questions with the question, each option, and the answer
     listQuestions = [ 
         {"question": "Why is it required for all American citizens to obey the law?", 
         "op1":"to ensure citizen\'s life, liberty and property are protected",
@@ -64,14 +67,18 @@ class PQuizForm(forms.Form):
         "op4":"the wording of the questions of the poll",
         "ans":"the wording of the questions of the poll"}]
     
+    #pull each option from the list of questions (op1, op2, op3, op4)
     CHOICES_1 = (
         (listQuestions[0]["op1"],listQuestions[0]["op1"]),
         (listQuestions[0]["op2"],listQuestions[0]["op2"]),
         (listQuestions[0]["op3"],listQuestions[0]["op3"]),
         (listQuestions[0]["op4"],listQuestions[0]["op4"]),
     )
+
+    #the answer is chosen from the dropdown form widget with each label being the corresponding question
     answers1 = forms.CharField(label=listQuestions[0]["question"], widget=forms.Select(choices = CHOICES_1), required=True)
     
+    #repeat the same for the rest of the questions in the list
     CHOICES_2 = (
         (listQuestions[1]["op1"],listQuestions[1]["op1"]),
         (listQuestions[1]["op2"],listQuestions[1]["op2"]),
@@ -144,6 +151,7 @@ class PQuizForm(forms.Form):
     )
     answers10 = forms.CharField(label=listQuestions[9]["question"], widget=forms.Select(choices = CHOICES_10), required=True)
 
+#the social quiz form is in the same format as the political quiz form but with different questions, options, and answers
 class SQuizForm(forms.Form):
     listQuestions = [ 
         {"question": "Which of the following is the best example of civic responsibility?", 
@@ -287,6 +295,7 @@ class SQuizForm(forms.Form):
     )
     answers10 = forms.CharField(label=listQuestions[9]["question"], widget=forms.Select(choices = CHOICES_10), required=True)
 
+#the social quiz form is in the same format as the political quiz form but with different questions, options, and answers
 class CQuizForm(forms.Form):
     listQuestions = [ 
         {"question":"What is community service?", 

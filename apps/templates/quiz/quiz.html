@@ -40,7 +40,7 @@ place-items: center;
     <hr style="width: 50%;">
 
 
-<!-- Political Involvement -->
+<!-- Displays the button to take you to the political involvement quiz -->
 <form method="POST", action="/political_involvement/">
     {% csrf_token %}
     <button class="btn btn-primary btn-lg" style="border-radius: 23px;"><i class="fa-solid fa-landmark-dome"></i>  Political Involvement  <i class="fa-solid fa-landmark-dome"></i>  </button>
@@ -48,7 +48,7 @@ place-items: center;
 
 <br>
 
-<!-- social responsibility -->
+<!-- Displays the button to take you to the social responsibility quiz -->
 <form method="POST", action="/social_responsibility/">
     {% csrf_token %}
     <button class="btn btn-info btn-lg" style="border-radius: 23px;"><i class="fa-solid fa-people-group"></i>  Social Responsibility  <i class="fa-solid fa-people-group"></i>  </button>
@@ -56,7 +56,7 @@ place-items: center;
 
 <br>
 
-<!--  advocacy & education -->
+<!-- Displays the button to take you to the community service quiz -->
 <form method="POST", action="/community_service/">
     {% csrf_token %}
     <button  class="btn btn-success btn-lg" style="border-radius: 23px;"><i class="fa-solid fa-handshake-simple"></i>  Community Service  <i class="fa-solid fa-handshake-simple"></i></button>
@@ -66,6 +66,7 @@ place-items: center;
 <br>
 <br>
 
+<!-- Takes the data (category name, number of q's right, number of q's, percentage) from the results table in the database (QuizCategoryModel) and displays it nicely for the user to view -->
 <form method="POST", action="/quizhome/">
     {% csrf_token %}
     <h1 class='text-center' > LATEST RESULTS </h1>

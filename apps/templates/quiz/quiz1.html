@@ -56,7 +56,7 @@
     <hr style="width: 50%;">
  
 
-
+<!-- Takes the data from the political involvement quiz form which was rendered to the page from views.py and displays each question & answer choices -->    
 <form method="POST", action="/quiz/">
     {% csrf_token %}
     <table style="text-align:left;height:50%;width:60%;">
@@ -171,6 +171,7 @@
     </tr>
     </table>
     <br>
+    <!-- Submit button for the quiz with a distinct name to distinguish which quiz was submitted -->
     <input type="Submit" name="Submit Political" value="Submit"/>
     <br>
     <br>

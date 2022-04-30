@@ -7,7 +7,6 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 import requests
 from bs4 import BeautifulSoup
-# from .forms import EventForm
 import re
 import ast
 import calendar
@@ -39,11 +38,15 @@ def quiz_view(request):
     a9 = ''
     a10 = ''
     results = QuizCategoryModel.objects.all().filter(user_id=request.user.id)
+    #if there are no lines in the results table, then create the default table results
     if not results.exists():
         results = createCategoryTable(request)
+    
+    #if the political involvement quiz was submitted,
     if "Submit Political" in request.POST:
         numCorrect = 0
         form = PQuizForm(request.POST)
+        #get the data from each drop-down 
         if form.is_valid():
             a1 = form.cleaned_data['answers1']
             a2 = form.cleaned_data['answers2']
@@ -56,6 +59,7 @@ def quiz_view(request):
             a9 = form.cleaned_data['answers9']
             a10 = form.cleaned_data['answers10']
         
+        #check if each response corresponds to the right answer
         if a1 == "to ensure citizen\'s life, liberty and property are protected":
             numCorrect = numCorrect + 1
         if a2 == "right":
@@ -77,6 +81,7 @@ def quiz_view(request):
         if a10 == "the wording of the questions of the poll":
             numCorrect = numCorrect + 1
 
+        #update the results for the right category in the table
         p = QuizCategoryModel.objects.filter(user_id=request.user.id).get(category='P')
         p.completed = True
         p.save()
@@ -85,6 +90,8 @@ def quiz_view(request):
         p.percent = (numCorrect / p.totalQuestions) * 100
         p.save()
         results = list(QuizCategoryModel.objects.all().filter(user_id=request.user.id).order_by('id'))
+
+    #if the social responsibility quiz was submitted, repeat the same as the political quiz but with different answers and results category
     if "Submit Social" in request.POST:
         numCorrect = 0
         form = SQuizForm(request.POST)
@@ -129,6 +136,8 @@ def quiz_view(request):
         s.percent = (numCorrect / s.totalQuestions) * 100
         s.save()
         results = list(QuizCategoryModel.objects.all().filter(user_id=request.user.id).order_by('id'))
+
+    #if the community service quiz was submitted, repeat the same as the political quiz but with different answers and results category
     if "Submit Community" in request.POST: 
         numCorrect = 0
         form = CQuizForm(request.POST)
@@ -173,26 +182,31 @@ def quiz_view(request):
         c.percent = (numCorrect / c.totalQuestions) * 100
         c.save()
         results = list(QuizCategoryModel.objects.all().filter(user_id=request.user.id).order_by('id'))
+    
+    #send the results to the quiz.html page to be displayed
     context = {"results" : results}
     return render(request, "quiz/quiz.html", context)
     
 def quiz1_view(request):
     context = {}
+    #send the political quiz form data to the quiz1.html page to be displayed
     context['form'] = PQuizForm()
     return render(request, "quiz/quiz1.html", context)
 
 def quiz2_view(request):
     context = {}
+    #send the social quiz form data to the quiz2.html page to be displayed
     context['form'] = SQuizForm()
     return render(request, "quiz/quiz2.html", context)
 
 def quiz3_view(request):
     context = {}
+    #send the community quiz form data to the quiz3.html page to be displayed
     context['form'] = CQuizForm()
     return render(request, "quiz/quiz3.html", context)
 
 
-
+#function to create the defaulted results table with each quiz category not being completed yet
 def createCategoryTable(request):
     print(request.user.id)
     political = QuizCategoryModel(user_id= request.user.id,category='P', totalQuestions=10)
