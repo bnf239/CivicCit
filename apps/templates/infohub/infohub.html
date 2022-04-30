@@ -5,9 +5,6 @@
 
 {% block stylesheets %}
 <style>
-
-
-   
     h1{
     
       position: relative;
@@ -18,121 +15,60 @@
       place-items: center;
     }
     
-    
-    
-    </style>
+</style>
 {% endblock stylesheets %}
 
 {% block content %}
-<main id="intro" style="margin-top:100px;   background: #f4f7fa; >
-    <div class="container"  > 
+<main id="intro" style="margin-top:100px;   background: #f4f7fa;">
+    <div class="container"> 
 
 
-    <link rel="stylesheet" href="/static/css/infohublanding.css">    
+        <link rel="stylesheet" href="/static/css/infohublanding.css">    
 
+        <br>
 
-    
-
-<!-- <h1> Information Hub </h1>
-
-
-
-<!-- Political Involvement -->
-<!-- <form method="POST", action="/infohubtest/"> -->
-    <!-- {% csrf_token %} -->
-    <!-- <button type="submit">Political Involvement</button> -->
-<!-- </form> -->
-
-<!-- social responsibility -->
-<!-- <form method="POST", action="/infohubtest2/"> -->
-    <!-- {% csrf_token %} -->
-    <!-- <button type="submit">Social Responsibility</button> -->
-<!-- </form> -->
-
-<!--  advocacy & education -->
-<!-- <form method="POST", action="/infohubtest3/"> -->
-    <!-- {% csrf_token %} -->
-    <!-- <button type="submit">Advocacy and Education</button> -->
-<!-- </form> -->
-
-
-
-<!-- <div class = "row">
-    <div class = "column">
-        <a href = "/infohubtest/">
-            <div class = "container">
-                <img src = "https://gracewaysports.com/wp-content/uploads/2015/02/Community-Involvement.jpg" class = "image" style="max-width: 100%;">
-                <div class = "overlay">
-                    <div class = "text"> Political Involvement </div>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class = "column">
-        <a href = "/infohubtest2/">
-            <div class = "container">
-                <img src = "https://d3jh33bzyw1wep.cloudfront.net/s3/W1siZiIsIjIwMTgvMDYvMjEvMDkvMDQvMjYvNTA0L0NTUi0wMDEgKDEpLmpwZyJdLFsicCIsInRodW1iIiwiODAweDY1MFx1MDAzYyJdXQ" class = "image" style="max-width: 100%;">
-                <div class = "overlay">
-                    <div class = "text"> Social Responsibility </div>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class = "column">
-        <a href = "/infohubtest3/">
-            <div class = "container">
-                <img src = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6677cad7-8b85-4e70-869d-b7e181b40fb5/d3dpoce-a491c655-b555-413c-97c6-d676f7f51ffa.png/v1/fill/w_900,h_1391,q_80,strp/african_advocacy_campaign_1_by_onlypinkflamingo_d3dpoce-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzY2NzdjYWQ3LThiODUtNGU3MC04NjlkLWI3ZTE4MWI0MGZiNVwvZDNkcG9jZS1hNDkxYzY1NS1iNTU1LTQxM2MtOTdjNi1kNjc2ZjdmNTFmZmEucG5nIiwiaGVpZ2h0IjoiPD0xMzkxIiwid2lkdGgiOiI8PTkwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS53YXRlcm1hcmsiXSwid21rIjp7InBhdGgiOiJcL3dtXC82Njc3Y2FkNy04Yjg1LTRlNzAtODY5ZC1iN2UxODFiNDBmYjVcL29ubHlwaW5rZmxhbWluZ28tNC5wbmciLCJvcGFjaXR5Ijo5NSwicHJvcG9ydGlvbnMiOjAuNDUsImdyYXZpdHkiOiJjZW50ZXIifX0.XRwFVZvHpoM_o4nOD-5Zg-xwsRymDmBUXxY0hOxxpLc" class = "image" style="max-width: 100%;">
-                <div class = "overlay">
-                    <div class = "text"> Advocacy and Education </div>
-                </div>
-            </div>
-        </a>
-    </div>
-</div>  -->
-
-
-<center>
-    <div class="container py-5">
-        <h1 class='text-center' > INFOHUB </h1>
-          <hr style="width: 50%;">
-        <div class = "py-5">
-            <!-- <div class ="row"> -->
-                <a href = "/infohubtest/">
-                    <div class = "col-lg-6 mb-3 mb-lg-0">
-                        <div class = "hover hover-3 text-white rounded"><img src = "https://gracewaysports.com/wp-content/uploads/2015/02/Community-Involvement.jpg" alt = "">
-                            <div class = "hover-overlay"></div>
-                            <div class = "hover-3-content px-5 py-4">
-                                <p class="hover-3-description small text-uppercase mb-0"><span class="font-weight-light">Political</span> Involvement</p>
+        <center>
+        <!-- Creating 3 cards for Political Involvement, Social Responsibility, and Advocacy and Education and links to each respective pages-->
+        <div class="container py-5">
+            <h1 class='text-center' > INFOHUB </h1>
+            <hr style="width: 50%;">
+            <div class = "py-5">
+                    <a href = "/infohubtest/">
+                        <div class = "col-lg-6 mb-3 mb-lg-0">
+                            <div class = "hover hover-3 text-white rounded"><img src = "https://gracewaysports.com/wp-content/uploads/2015/02/Community-Involvement.jpg" alt = "">
+                                <div class = "hover-overlay"></div>
+                                <div class = "hover-3-content px-5 py-4">
+                                    <p class="hover-3-description small text-uppercase mb-0"><span class="font-weight-light">Political</span> Involvement</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-                <br>
-                <a href = "/infohubtest2/">
-                    <div class = "col-lg-6 mb-3 mb-lg-0">
-                        <div class = "hover hover-3 text-white rounded"><img src = "https://d3jh33bzyw1wep.cloudfront.net/s3/W1siZiIsIjIwMTgvMDYvMjEvMDkvMDQvMjYvNTA0L0NTUi0wMDEgKDEpLmpwZyJdLFsicCIsInRodW1iIiwiODAweDY1MFx1MDAzYyJdXQ" alt = "">
-                            <div class = "hover-overlay"></div>
-                            <div class = "hover-3-content px-5 py-4">
-                                <p class="hover-3-description small text-uppercase mb-0"><span class="font-weight-light">Social</span> Responsibility</p>
+                    </a>
+                    <br>
+                    <a href = "/infohubtest2/">
+                        <div class = "col-lg-6 mb-3 mb-lg-0">
+                            <div class = "hover hover-3 text-white rounded"><img src = "https://d3jh33bzyw1wep.cloudfront.net/s3/W1siZiIsIjIwMTgvMDYvMjEvMDkvMDQvMjYvNTA0L0NTUi0wMDEgKDEpLmpwZyJdLFsicCIsInRodW1iIiwiODAweDY1MFx1MDAzYyJdXQ" alt = "">
+                                <div class = "hover-overlay"></div>
+                                <div class = "hover-3-content px-5 py-4">
+                                    <p class="hover-3-description small text-uppercase mb-0"><span class="font-weight-light">Social</span> Responsibility</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-                <br>
-                <a href = "/infohubtest3/">
-                    <div class = "col-lg-6 mb-3 mb-lg-0">
-                        <div class = "hover hover-3 text-white rounded"><img src = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6677cad7-8b85-4e70-869d-b7e181b40fb5/d3dpoce-a491c655-b555-413c-97c6-d676f7f51ffa.png/v1/fill/w_900,h_1391,q_80,strp/african_advocacy_campaign_1_by_onlypinkflamingo_d3dpoce-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzY2NzdjYWQ3LThiODUtNGU3MC04NjlkLWI3ZTE4MWI0MGZiNVwvZDNkcG9jZS1hNDkxYzY1NS1iNTU1LTQxM2MtOTdjNi1kNjc2ZjdmNTFmZmEucG5nIiwiaGVpZ2h0IjoiPD0xMzkxIiwid2lkdGgiOiI8PTkwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS53YXRlcm1hcmsiXSwid21rIjp7InBhdGgiOiJcL3dtXC82Njc3Y2FkNy04Yjg1LTRlNzAtODY5ZC1iN2UxODFiNDBmYjVcL29ubHlwaW5rZmxhbWluZ28tNC5wbmciLCJvcGFjaXR5Ijo5NSwicHJvcG9ydGlvbnMiOjAuNDUsImdyYXZpdHkiOiJjZW50ZXIifX0.XRwFVZvHpoM_o4nOD-5Zg-xwsRymDmBUXxY0hOxxpLc" alt = "">
-                            <div class = "hover-overlay"></div>
-                            <div class = "hover-3-content px-5 py-4">
-                                <p class="hover-3-description small text-uppercase mb-0"><span class="font-weight-light">Advocacy</span> and <span class="font-weight-light">Education</span></p>
+                    </a>
+                    <br>
+                    <a href = "/infohubtest3/">
+                        <div class = "col-lg-6 mb-3 mb-lg-0">
+                            <div class = "hover hover-3 text-white rounded"><img src = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6677cad7-8b85-4e70-869d-b7e181b40fb5/d3dpoce-a491c655-b555-413c-97c6-d676f7f51ffa.png/v1/fill/w_900,h_1391,q_80,strp/african_advocacy_campaign_1_by_onlypinkflamingo_d3dpoce-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzY2NzdjYWQ3LThiODUtNGU3MC04NjlkLWI3ZTE4MWI0MGZiNVwvZDNkcG9jZS1hNDkxYzY1NS1iNTU1LTQxM2MtOTdjNi1kNjc2ZjdmNTFmZmEucG5nIiwiaGVpZ2h0IjoiPD0xMzkxIiwid2lkdGgiOiI8PTkwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS53YXRlcm1hcmsiXSwid21rIjp7InBhdGgiOiJcL3dtXC82Njc3Y2FkNy04Yjg1LTRlNzAtODY5ZC1iN2UxODFiNDBmYjVcL29ubHlwaW5rZmxhbWluZ28tNC5wbmciLCJvcGFjaXR5Ijo5NSwicHJvcG9ydGlvbnMiOjAuNDUsImdyYXZpdHkiOiJjZW50ZXIifX0.XRwFVZvHpoM_o4nOD-5Zg-xwsRymDmBUXxY0hOxxpLc" alt = "">
+                                <div class = "hover-overlay"></div>
+                                <div class = "hover-3-content px-5 py-4">
+                                    <p class="hover-3-description small text-uppercase mb-0"><span class="font-weight-light">Advocacy</span> and <span class="font-weight-light">Education</span></p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            <!-- </div> -->
+                    </a>
+            </div>
         </div>
-    </div>
-</center>
+        </center>
+    </div>>
 {% endblock content %}
     
 </main>

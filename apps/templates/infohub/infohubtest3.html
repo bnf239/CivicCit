@@ -4,12 +4,9 @@
 
 
 {% block stylesheets %}
+
 <style>
-
-
-   
     h1{
-    
       position: relative;
        font-family: 'Raleway', sans-serif;
       font-weight:bold;
@@ -17,71 +14,57 @@
       display: grid;
       place-items: center;
     }
-    
-    
-    
-    </style>
+</style>
 
 {% endblock stylesheets %}
 
 {% block content %}
 
-<!-- social responsibility -->
-<main id="intro" style="margin-top:150px;" >
-    <div class="container-fluid"  > 
-<!-- <br> -->
 
-<center>
-    <h1 class='text-center' > ADVOCACY & EDUCATION </h1>
-    <hr style="width: 50%;">
-    
-    <div class = "row">
+<!-- Advocacy and Education -->
+
+<main id="intro" style="margin-top:150px;">
+    <div class="container-fluid"> 
+        <center>
+        <br>
+        <h1 class='text-center' > ADVOCACY & EDUCATION </h1>
+        <hr style="width: 50%;">
+        <!-- Creating rows of cards that grabs articles' information and is used to link to actual articles-->
+        <div class = "row">
+            {% for article in articles %}
+                <!-- Displays the title and the source of the article as well as the link to the article -->
+                <div class="card" style="width: 18rem; margin-left: auto; margin-right: auto">
+                    {% if article.urlToImage == None %}
+                    <img src="https://www.myeducationadvocate.com/wp-content/uploads/2018/11/myeducationadvocate-logo-e1541376173390.png" class="card-img-top" >
+                    {% else %}
+                    <img src="{{ article.urlToImage }}" class="card-img-top" >
+                    {% endif %}
         
-        {% for article in articles %}
-            <div class="card" style="width: 18rem; margin-left: auto; margin-right: auto">
-                <!-- {{article.image_url}} -->
-                {% if article.urlToImage == None %}
-                <img src="https://www.myeducationadvocate.com/wp-content/uploads/2018/11/myeducationadvocate-logo-e1541376173390.png" class="card-img-top" >
-                {% else %}
-                <img src="{{ article.urlToImage }}" class="card-img-top" >
-                {% endif %}
-    
-                <div class="card-body">
-                <div style="display: flex; flex-direction: row">
-                    <h5 class="card-title" style = "font-size:15px; text-align: left;">{{ article.title }}</h5>
-                    <br>
-                    
-                    <!-- <div style="
-                    width: 30px;
-                    height: 20px;
-                    margin-left: 10px;
-                    border-radius: 50%;
-                    "></div> -->
+                    <div class="card-body">
+                        <div style="display: flex; flex-direction: row">
+                            <h5 class="card-title" style = "font-size:15px; text-align: left;">{{ article.title }}</h5>
+                        </div>
+                        {% if article.source.name == None %}
+                        <h5 class="card-title" style = "font-size:15px; text-align: left;"> Source: N/A</h5>
+                        {% else %}
+                        <h5 class="card-title" style = "font-size:15px; text-align: left;"> Source: {{ article.source.name }}</h5>
+                        {% endif %}
+                        <a href="{{article.url}}" class="appendlink btn btn-primary" id = "linkbutton" data-articlelink="{{article.url}}" data-article="{{article.title}}">Link</a>
+                    </div>
                 </div>
-                {% if article.source.name == None %}
-                <h5 class="card-title" style = "font-size:15px; text-align: left;"> Source: N/A</h5>
-                {% else %}
-                <h5 class="card-title" style = "font-size:15px; text-align: left;"> Source: {{ article.source.name }}</h5>
-                {% endif %}
-                <!-- <p class="card-text">{{ card.description }}</p> -->
-                <a href="{{article.url}}" class="appendlink btn btn-primary" id = "linkbutton" data-articlelink="{{article.url}}" data-article="{{article.title}}">Link</a>
-                <!-- <a href="/command/{{ card.id }}/delete" class="btn btn-primary">Delete</a> -->
-                </div>
-            </div>
-            <!-- <h5> {{article.title}} </h5> -->
-    
-        {% endfor %}
+            {% endfor %}
+        </div>
+
+        </center>
     </div>
-    
+</main>
 
-
-</center>
-    </div></main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script> 
 
-    $(document).ready(function(e) {   
+// adds the article that the user clicked onto the database
+$(document).ready(function(e) {   
     $('.appendlink').on('click', function (e) {
         console.log("INSIDE APPEND LINK");
         var dict = {};
@@ -96,14 +79,10 @@
             data: {
                 'article': data
             },
-            success: function (data) {   
-            
-            }
+            success: function (data) {}
             });
-        
         });
     }); 
-
 </script>
 
 {% endblock content %}
