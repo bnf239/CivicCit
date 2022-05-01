@@ -166,7 +166,7 @@ def create_pdf(request):
     for event in events:
         txt_lst.append("   {}. Event Name: ".format(str(event_count)) + str(event.event_name))
         txt_lst.append("       Event Date: " + str(event.event_date))
-        txt_lst.append("       Event Name: " + str(event.event_location))
+        txt_lst.append("       Event Location: " + str(event.event_location))
         txt_lst.append(" ")
         event_count+=1
     # txt_lst.append(" ")
@@ -180,6 +180,7 @@ def create_pdf(request):
 
     
     for line in txt_lst:
+        
         txt_obj.textOut(line)
         txt_obj.moveCursor(0, 16)
     canvas.drawText(txt_obj)

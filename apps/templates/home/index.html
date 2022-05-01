@@ -31,6 +31,56 @@ h1{
   
   
   }
+            
+  ol {
+  counter-reset: li; 
+  list-style: none; 
+  padding: 0;
+  text-shadow: 0 1px 0 rgba(255,255,255,.5);
+}
+
+ol a {
+  position: relative;
+  display: block;
+  padding: .4em .4em .4em .8em;
+  margin: .5em 0 .5em 2.5em;
+  background: #D3D4DA;
+  color: #444;
+  text-decoration: none;
+  transition: all .3s ease-out;
+}
+
+ol a:hover {background: #DCDDE1;}       
+ol a:before {
+  content: counter(li);
+  counter-increment: li;
+  position: absolute;
+  left: -2.5em;
+  top: 50%;
+  margin-top: -1em;
+  background: #f9dd94;
+  height: 2em;
+  width: 2em;
+  line-height: 2em;
+  text-align: center;
+  font-weight: bold;
+}
+
+ol a:after {
+  position: absolute;
+  content: "";
+  border: .5em solid transparent;
+  left: -1em;
+  top: 50%;
+  margin-top: -.5em;
+  transition: all .3s ease-out;
+}
+
+ol a:hover:after {
+  left: -.5em;
+  border-left-color: #f9dd94;
+}
+
   
 </style>
 
@@ -39,16 +89,25 @@ h1{
 {% block content %}
 <main id="intro" style="margin-top:150px;" >
     <div class="container"  > 
-        <div class="jumbotron p-3 p-md-5  rounded ">
-            <div class="col-md-6 px-0">
-              <!--h1 class="display-4 ">CivicCit</h1-->
+        <div class="jumbotron p-3 p-md-5  rounded row justify-content-start">
+            <div class="col-6 " style="margin-top: 20px;">
+                <h1 class="display-4 "> Welcome to CivicCit</h1>
+                 <p class="lead my-3"><b>CivicCit is a digital platform for young adults who wish to be more civically
+                     involved in social issues that they are passionate about. </b></p>
+                    
+ 
+             </div>
+            <div class="col-6 text-center">
+              <!-- <h1 class="display-4 ">CivicCit</h1> -->
               {% load static %}
-              <img src="{% static 'images/LandingPageLogo.png' %}" height="315" />
-              <p class="lead my-3"><b>CivicCit is a digital platform for young adults who wish to be more civically
-                involved in social issues that they are passionate about. </b></p>
+              <!-- <img src="{% static 'images/LandingPageLogo.png' %}" height="315" /> -->
+              {% load static %}
+                <img  src="{% static 'images/LandingPageLogo.png' %}" height="315" />
+              
                
                
             </div>
+            
           </div>
         
           <div class="card text-center">
@@ -70,26 +129,27 @@ h1{
 
                       
                               <h5 class="card-title">Why is this important?</h5>
-                              <p class="card-text">Civic engagement increases students’ emotional intelligence and motivates students towards conscientious community action 
+                              <p class="card-text">At CivicCit we believe civic engagement increases emotional intelligence and motivates individuals towards conscientious community action 
 
-                                Furthermore, those students who do participate in civic engagement gain intrapersonal effectiveness, the ability to collaborate across diverse perspectives and positively impact communities
+                                We aim to have individuals work on their ability to collaborate across diverse perspectives and positively impact communities
                                 
-                                Civically engaged students learn skills such as critical thinking, writing, communication, mathematics and technology at more advanced levels 
-                                
-                                In an effort to create socially equitable communities, these students encounter opportunities were these skills are put to the test as they have to think of innovative ways to use their skills to address community needs. 
                                 </p>
                               <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                             
                     </div>
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                         <h5 class="card-title">Our 5 Features</h5>
-                        <p class="card-text">The system has five features which include: a civic events system, a civic quiz system, a 
-                            scheduling system, a progress report system, and a civic information hub system. 
-                            The civic information hub system will allow users to read information about a topic from credible sources.
-                             The progress reporting system will track a user’s civic participation and generate recommendations based on 
-                             their activity. The scheduling system will allow users to add events to their schedule without any overlaps. 
-                             The civic quiz system will allow users to be tested on their knowledge of various civic topics. 
-                             These quizzes are nothing more than a fun engaging activity. </p>
+                        <p class="card-text">Our application provides five features which include: a civic events system, a civic quiz system, a 
+                            scheduling system, a progress report system, and a civic information hub system. </p>
+                            <ol class="text-left">
+                           <li> <a >  The civic information hub system will allow users to read information about a topic from credible sources.
+                           </a></li> 
+                           <li><a >The progress reporting system will track a user’s civic participation and generate recommendations based on 
+                            their activity. </a> </li>
+                            <li><a> scheduling system will allow users to add events to their schedule without any overlaps. 
+                               </a> </li>
+                                <li><a>The civic quiz system will allow users to be tested on their knowledge of various civic topics. These quizzes are nothing more than a fun engaging activity.</a></li>
+                            </ol> 
                     </div>
                     
                   </div>
@@ -129,159 +189,7 @@ h1{
               </div>
             </div>
           </div> -->
-     <!-- <div class="pcoded-content">
-        <div class="pcoded-inner-content">
-            
-            <div class="main-body">
-                <div class="page-wrapper">
-                 
-                    <div><h1></h1></div>
-                    <div class="row">
-                         
- 
-        
-                        <div class="col-xl-8 col-md-6">
-                            <div class="card Recent-Users">
-                                <div class="card-header">
-                                    <h5>Recent Events Participated In</h5>
-                                </div>
-                                <div class="card-block px-0 py-3">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover">
-                                            <tbody>
-                                                <tr class="unread">
-                                                    <td><h5>March 15th</h5></td>
-                                                    <td>
-                                                        <h6 class="mb-1">Event 1</h6>
-                                                        <p class="m-0">Community</p>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="text-muted">Description of Event here</h6>
-                                                    </td>
-                                                    
-                                                </tr>
-
-                                                <tr class="unread">
-                                                    <td><h5>March 15th</h5></td>
-                                                    <td>
-                                                        <h6 class="mb-1">Event 1</h6>
-                                                        <p class="m-0">Community</p>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="text-muted">Description of Event here</h6>
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr class="unread">
-                                                    <td><h5>March 15th</h5></td>
-                                                    <td>
-                                                        <h6 class="mb-1">Event 1</h6>
-                                                        <p class="m-0">Community</p>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="text-muted">Description of Event here</h6>
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr class="unread">
-                                                    <td><h5>March 15th</h5></td>
-                                                    <td>
-                                                        <h6 class="mb-1">Event 1</h6>
-                                                        <p class="m-0">Community</p>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="text-muted">Description of Event here</h6>
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr class="unread">
-                                                    <td><h5>March 15th</h5></td>
-                                                    <td>
-                                                        <h6 class="mb-1">Event 1</h6>
-                                                        <p class="m-0">Community</p>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="text-muted">Description of Event here</h6>
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr class="unread">
-                                                    <td><h5>March 15th</h5></td>
-                                                    <td>
-                                                        <h6 class="mb-1">Event 1</h6>
-                                                        <p class="m-0">Community</p>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="text-muted">Description of Event here</h6>
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr class="unread">
-                                                    <td><h5>March 15th</h5></td>
-                                                    <td>
-                                                        <h6 class="mb-1">Event 1</h6>
-                                                        <p class="m-0">Community</p>
-                                                    </td>
-                                                    <td>
-                                                        <h6 class="text-muted">Description of Event here</h6>
-                                                    </td>
-                                                    
-                                                </tr>
-                                                </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                       
-
-                       
-                        <div class="col-xl-4 col-md-6">
-                            <div class="card card-event">
-                                <div class="card-block">
-                                    <div class="row align-items-center justify-content-center">
-                                        <div class="col">
-                                            <h5 class="m-0">Upcoming Event</h5>
-                                        </div>
-                                        
-                                    </div>
-                                    <h2 class="mt-3 f-w-300">Name of Event</h2>
-                                    <h6 class="text-muted mt-4 mb-0">March 15th 2022 </h6>
-                                    
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-block border-bottom">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-auto">
-                                            <i class="feather icon-calendar f-30 text-c-green"></i>
-                                           
-                                        </div>
-                                        <div class="col">
-                                            <h3 class="f-w-300">10</h3>
-                                            <span class="d-block text-uppercase">TOTAL EVENTS</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-block">
-                                    <div class="row d-flex align-items-center">
-                                        <div class="col-auto">
-                                            <i class="feather icon-book f-30 text-c-blue"></i>
-                                        </div>
-                                        <div class="col">
-                                            <h3 class="f-w-300">26</h3>
-                                            <span class="d-block text-uppercase">ARTICLES READ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
- 
-                </div>
-            </div>
-        </div>
-    </div>   -->
+    
     </div>
 </main>
 
