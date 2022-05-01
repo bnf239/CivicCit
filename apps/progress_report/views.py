@@ -38,7 +38,12 @@ from apps.quiz.models import  QuizCategoryModel
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # from requests_html import HTMLSession
 import json
-
+from reportlab.platypus import SimpleDocTemplate
+from io import BytesIO
+from reportlab.platypus import Paragraph, Spacer
+from reportlab.platypus import PageBreak, Table
+from reportlab.lib.units import mm, inch
+from reportlab.lib.styles import getSampleStyleSheet
 
 
 
@@ -121,86 +126,103 @@ def quiz_info(request):
     return quiz
 
 
+
 def create_pdf(request):
-    buffer = BytesIO()
-    canvas = Canvas(buffer, pagesize=A4)
-    WIDTH, HEIGHT = A4
-    MARIGIN = 1.5 * cm
-    canvas.translate(MARIGIN, HEIGHT-MARIGIN)
     
-
-    # header
-    # canvas.setFont("Verabd", size=14)
-    canvas.setFont("Helvetica", size=18)
-    canvas.drawString(160, 0, "Progress Report")
-    canvas.setFont("Helvetica", size=12)
-    canvas.drawString(430, -0.9*cm, "Username: "+str(request.user.username))
-    canvas.setStrokeGray(0)
-    canvas.line(0, -1*cm, WIDTH - 2*MARIGIN, -1*cm)
-
-    # footer
-    canvas.line(0, -26.6*cm, WIDTH - 2*MARIGIN, -26.6*cm)
+    sample_style_sheet = getSampleStyleSheet()
+    # if you want to see all the sample styles, this prints them
+    sample_style_sheet.list()
+    pdf_buffer = BytesIO()
+    my_doc = SimpleDocTemplate(pdf_buffer)
     num_articles = number_of_articles_read(request)
     num_events = number_of_events_registered_for(request)
     num_quizzes = number_of_quizzes(request)
-    articles = InfoHubUserInformation.objects.all().filter(user_id=request.user.id)
+    articles = list(InfoHubUserInformation.objects.all().filter(user_id=request.user.id))
+    quiz_inform = list(QuizCategoryModel.objects.all().filter(user_id=request.user.id))
     events = list(Event.objects.all().filter(event_status = True, user_id=request.user.id))
-    print("article")
+    flowables = []
+    flowables.append(Paragraph("Progress Report", sample_style_sheet['Heading1']))
+    flowables.append(Paragraph(
+        "Username: "+str(request.user.username),
+        sample_style_sheet['BodyText']
+    ))
+    flowables.append(Paragraph("Statistics", sample_style_sheet["Heading2"]))
+    
+    
+    flowables.append(Paragraph(
+        "Number of Quizzes Completed: "+ str(num_quizzes), 
+        sample_style_sheet['Normal']
+    ))
+    flowables.append(Paragraph(
+         "Total Events Registered For: "+ str(num_events),
+        sample_style_sheet['Normal']
+    ))
+    flowables.append(Paragraph(
+          "Articles Read: " + str(num_articles)  ,
+        sample_style_sheet['Normal']
+    ))
+   
+    flowables.append(Paragraph("Articles Read", sample_style_sheet["Heading2"]))
+    article_data= []
+    article_data.append(["Article Name","Article Link"])
+    rowsHarticle = [10] 
     for article in articles:
-        print(article.article_title)
-        print(article.url_links)
-    print("event")
-    
-    # paragraphs
-    txt_obj = canvas.beginText(14, -6.5* cm)
-    # txt_obj.setFont("Vera", 12)
-    txt_obj.setWordSpace(3)
-    txt_lst = ["Number of Quizzes Completed: "+ str(num_quizzes), 
-                "Total Events Registered For: "+ str(num_events),
-                "Articles Read: " + str(num_articles)  ,
-                " ",
-                "Events Registered For: ",
+        article_data.append([(Paragraph(article.article_title,sample_style_sheet["Normal"])),(Paragraph(article.url_links,sample_style_sheet["Normal"]))])
+        rowsHarticle.append(50)
+    t=Table(article_data,colWidths=200, rowHeights=rowsHarticle)
 
-                ]
-    event_count = 1
+    flowables.append(t)
+    flowables.append(Paragraph("Events Registered For", sample_style_sheet["Heading2"]))
+    event_data= []
+    event_data.append(["Event Name","Event Date","Event Location","Event URL"])
+    rowsH = [10] 
     for event in events:
-        txt_lst.append("   {}. Event Name: ".format(str(event_count)) + str(event.event_name))
-        txt_lst.append("       Event Date: " + str(event.event_date))
-        txt_lst.append("       Event Location: " + str(event.event_location))
-        txt_lst.append(" ")
-        event_count+=1
-    # txt_lst.append(" ")
-    # txt_lst.append("Articles Read/Viewed: ")
-    # article_count = 1
-    # for article in articles:
-    #     txt_lst.append("   {}. Article Name: ".format(str(article_count)) + str(article.article_title))
-    #     txt_lst.append("    URL: " + str(article.url_links))
-    #     txt_lst.append(" ")
-    #     article_count+=1
+        event_data.append([Paragraph(event.event_name,sample_style_sheet["Normal"]),Paragraph(str(event.event_date),sample_style_sheet["Normal"]),Paragraph(event.event_location,sample_style_sheet["Normal"]),Paragraph(event.event_link,sample_style_sheet["Normal"])])
+        rowsH.append(95)
+   
+    te=Table(event_data,colWidths=100, rowHeights=rowsH)
+    flowables.append(te)
+    flowables.append(Paragraph("Quizzes", sample_style_sheet["Heading2"]))
+    quiz_data = []
+    quiz_data.append(["Quiz Category","Quiz Grade"])
+    for quiz in quiz_inform:
+        cat = quiz.category
+        if (cat == "P"):
+            cat= "Political Involvement"
+        elif(cat=="S"):
+            cat = "Social Responsibility"
+        elif(cat=="C"):
+            cat = "Community Service"
+        quiz_data.append([Paragraph(cat, sample_style_sheet["Normal"]),Paragraph(str(quiz.percent),sample_style_sheet["Normal"])])
+    tq=Table(quiz_data)
 
+    flowables.append(tq)
+
+
+    my_doc.build(flowables)
     
-    for line in txt_lst:
-        
-        txt_obj.textOut(line)
-        txt_obj.moveCursor(0, 16)
-    canvas.drawText(txt_obj)
+    flowables.append(PageBreak())
+   
+    pagesize = (140 * mm, 216 * mm)  # width, height
+    my_doc = SimpleDocTemplate(
+        pdf_buffer,
+        pagesize=pagesize
+    )
+    pdf_value = pdf_buffer.getvalue()
+    pdf_buffer.close()
+    return pdf_value
 
-    
 
-
-    canvas.showPage()
-    canvas.save()
-    return buffer
 
 def download_file(request):
 
-    pdf = create_pdf(request)
-    pdf.seek(0)
 
-    response = HttpResponse(pdf, headers={
-    'Content-Type': 'application/pdf',
-    'Content-Disposition': 'attachment; filename="{}_progress_report.pdf"'.format(str(request.user.username)) })
-
+    pdf_value = create_pdf(request)
+    
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="{}_progress_report.pdf"'.format(str(request.user.username))
+    
+    response.write(pdf_value)
     return response
 
    
