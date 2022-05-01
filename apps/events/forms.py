@@ -6,7 +6,7 @@ class EventForm(forms.Form):
     city = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "placeholder": "City eg. Brooklyn",
+                "placeholder": "City eg. New York",
                 "class": "form-control"
             }
         ))

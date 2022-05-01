@@ -27,16 +27,11 @@ h1{
 
 {% block content %}
 
-<!-- <main id="intro"  style="
-       
-      height: 150px;
-    ">
-  <div class="mask" style="background-color: rgba(0, 0, 0, 0.7)"></div>
-</main> -->
+
 
 <main id="intro" style="margin-top:150px;" >
   <div class="container-fluid "  >
-     <!-- <div class="container"> -->
+    
      <div class="row "  >
         <div class="card-body text-center" >
            <h1 class='text-center' > EVENTS </h1>
@@ -44,9 +39,7 @@ h1{
           
            <h5 style="margin-top: 20px;">Enter your location and select a catergory to find events near you!</h5>
         </div>
-        <!-- <div class="text-center" >
-           <p>Enter your location and select a catergory to find events near you!</p>
-           </div> -->
+       
         <div class="col-sm-8 offset-sm-2 card-body text-center" >
            <form role="form" method="post" action="">
               {% csrf_token %}      
@@ -64,8 +57,7 @@ h1{
               <button class="btn btn-info" id="prev" type="submit">Previous</button>
               <input type="hidden" name="num" value="{{num}}">
               <button  class="btn btn-info" id="next" type="submit">Next</button>
-              <!-- <input type="hidden" name="num" value="{{num}}">
-                 <button id="next" type="submit">Next</button> -->
+             
               {% elif nextButton %}
               <input type="hidden" name="num" value="{{num}}">
               <button class="btn btn-info" id="next" type="submit">Next</button>
@@ -91,7 +83,7 @@ h1{
                        <h5> <b> Date & Time: </b> {{ event.date }} </h5>
                        <a href="{{ event.link }}" >More Info</a>
                       
-                       <a href="#" class="catgend btn btn-primary btn-sm"  data-event="{{event}}" style="float:right;">Add to Schedule</a>
+                       <a href="#" class="add_schedule btn btn-primary btn-sm"  data-event="{{event}}" style="float:right;">Add to Schedule</a>
                     </div>
                   </div>
                   
@@ -112,25 +104,11 @@ h1{
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script> 
   
-//   $.ajax({
-//     url: url, 
-//     success: function (data) {
-//         // Handle success here
-//         $('#editor-content-container').html(data);
-//         $('#editor-container').modal('show');
-//     },
-//     cache: false
-// }).fail(function (jqXHR, textStatus, error) {
-//     // Handle error here
-//     $('#editor-content-container').html(jqXHR.responseText);
-//     $('#editor-container').modal('show');
-// });
 
 $(document).ready(function(e) {   
-  $('.catgend').on('click', function (e) {
-    console.log("INSIDE CAT GEND");
+  $('.add_schedule').on('click', function (e) {
+    
     var data = $(this).data();
-    console.log(data);
     $.ajax({              
      
         url: "{% url 'schedule_events' %}",                    
@@ -141,12 +119,8 @@ $(document).ready(function(e) {
               alert("Event Already Added");
         },
         success: function (data) {
-          if(data == "error"){
-            alert("Event Already Added");
-               }
-               else{
-                alert("Event Successfully Added to Your Schedule");
-                }
+          
+            alert("Event Successfully Added to Your Schedule");
                
          
         },
@@ -167,35 +141,9 @@ $('#next').click(function(){
 
 $('#search').click(function(){
     $('#type').val('search');
-   // $("#output").css({'overflow-y': 'scroll', 'height': '920px',});
-    // console.log("In search")
+   
 });
 
-  
- 
-  
- 
-
-  
-  // $(document).ready(function(){
-  
-  // $(".btn").click(function(){
-  //     console.log("inside here")
-  //     $.ajax({
-  //         url:'',
-  //         type:'GET',
-  //         data:{
-  
-  //             button_text: $(this).text();
-  //         },
-  //         success: function(response){
-  //             $(".btn").text(response.seconds);
-  
-  //         }
-  //     });
-  // });
-  
-  // });
   </script>
  
 
