@@ -133,7 +133,7 @@ def create_pdf(request):
     # if you want to see all the sample styles, this prints them
     sample_style_sheet.list()
     pdf_buffer = BytesIO()
-    my_doc = SimpleDocTemplate(pdf_buffer)
+    my_doc = SimpleDocTemplate(pdf_buffer,title='{}_progress_report.pdf'.format(str(request.user.username)))
     num_articles = number_of_articles_read(request)
     num_events = number_of_events_registered_for(request)
     num_quizzes = number_of_quizzes(request)
