@@ -37,6 +37,7 @@ h1{
   list-style: none; 
   padding: 0;
   text-shadow: 0 1px 0 rgba(255,255,255,.5);
+  color: rgb(0, 0, 0);
 }
 
 ol a {
@@ -45,7 +46,7 @@ ol a {
   padding: .4em .4em .4em .8em;
   margin: .5em 0 .5em 2.5em;
   background: #D3D4DA;
-  color: #444;
+  color: rgb(5, 2, 2);
   text-decoration: none;
   transition: all .3s ease-out;
 }
@@ -64,6 +65,7 @@ ol a:before {
   line-height: 2em;
   text-align: center;
   font-weight: bold;
+  color: rgb(0, 0, 0);
 }
 
 ol a:after {
@@ -98,9 +100,9 @@ ol a:hover:after {
  
              </div>
             <div class="col-6 text-center">
-              <!-- <h1 class="display-4 ">CivicCit</h1> -->
+            
               {% load static %}
-              <!-- <img src="{% static 'images/LandingPageLogo.png' %}" height="315" /> -->
+              
               {% load static %}
                 <img  src="{% static 'images/LandingPageLogo.png' %}" height="315" />
               
@@ -134,7 +136,7 @@ ol a:hover:after {
                                 We aim to have individuals work on their ability to collaborate across diverse perspectives and positively impact communities
                                 
                                 </p>
-                              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                             
                             
                     </div>
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -142,13 +144,14 @@ ol a:hover:after {
                         <p class="card-text">Our application provides five features which include: a civic events system, a civic quiz system, a 
                             scheduling system, a progress report system, and a civic information hub system. </p>
                             <ol class="text-left">
+                              <li><a> The events system will allow users to search and add events based on civic oriented categories and their location. 
+                              </a> </li>
                            <li> <a >  The civic information hub system will allow users to read information about a topic from credible sources.
                            </a></li> 
-                           <li><a >The progress reporting system will track a user’s civic participation and generate recommendations based on 
-                            their activity. </a> </li>
-                            <li><a> scheduling system will allow users to add events to their schedule without any overlaps. 
+                           <li><a >The progress reporting system will track a user’s civic participation. </a> </li>
+                            <li><a> The scheduling system will allow users to view events that they added to their schedule. 
                                </a> </li>
-                                <li><a>The civic quiz system will allow users to be tested on their knowledge of various civic topics. These quizzes are nothing more than a fun engaging activity.</a></li>
+                                <li><a>The civic quiz system will allow users to test on their knowledge of various civic topics. These quizzes are nothing more than a fun engaging activity.</a></li>
                             </ol> 
                     </div>
                     
@@ -158,37 +161,6 @@ ol a:hover:after {
               
             </div>
           </div>
-          <!-- <div class="row mb-2">
-              
-            <div class="col-md-6">
-              <div class="card flex-md-row mb-4 box-shadow h-md-250">
-                <div class="card-body d-flex flex-column align-items-start">
-                  <strong class="d-inline-block mb-2 text-primary">Civic Engagement & Civic Learning</strong>
-                  <h3 class="mb-0">
-                    <a class="text-dark" >What is Civic Engagement?</a>
-                  </h3>
-                  <div class="mb-1 text-muted">Nov 12</div>
-                  <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#">Continue reading</a>
-                </div>
-                
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="card flex-md-row mb-4 box-shadow h-md-250">
-                <div class="card-body d-flex flex-column align-items-start">
-                  <strong class="d-inline-block mb-2 text-success">Our Systems</strong>
-                  <h3 class="mb-0">
-                    <a class="text-dark" href="#">Post title</a>
-                  </h3>
-                  <div class="mb-1 text-muted">Nov 11</div>
-                  <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#">Continue reading</a>
-                </div>
-                
-              </div>
-            </div>
-          </div> -->
     
     </div>
 </main>

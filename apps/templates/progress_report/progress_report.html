@@ -22,15 +22,12 @@
 th {
   background: rgb(119, 170, 201);
   color: white;
-  /* border-radius: 0; */
+  
   font-size: large;
-  /* position: sticky; */
-  /* top: 0; */
-  /* padding: 10px; */
+ 
 }
 tr{
     background-color: #fff;
-    /* padding: 40px !important; */
     height:90px;
     text-align: center;
     font-family: "Open Sans", sans-serif;
@@ -55,9 +52,7 @@ tr{
                  </style>
                    <h1 class='text-center' > PROGRESS REPORT </h1>
                    <hr style="width: 50%;">
-                    <!-- <form action = "/progress_report/download_file" method = "GET"> -->
-                        <!-- <a href="{% url 'download_file' %}" class="btn btn-primary btn-lg"  >Download File </a> -->
-                    <!-- </form> -->
+                   
                     <div class="row">
                         <div class = "col-6">
                             <div class="card">
@@ -103,54 +98,9 @@ tr{
                     </div>
                     
 
-                
-                    <!-- <style>
-                        table{
-                            border: none;
-                            outline: none;
-                        }
-                        tr{
-                            background-color: #fff;
-                            padding: 40px !important;
-                            height:97px;
-                            text-align: center;
-                            font-family: "Open Sans", sans-serif;
-                            font-size: 14px;
-                            color: #888;
-                            font-weight: 300;
-                            text-transform: uppercase;
-                        }
-                    </style> -->
 
                         <div class = 'col-6'>
-                            <!-- <table>
-                                <caption>Quizzes</caption>
-                                <thead>
-                                    <tr >
-                                        <th scope = "col" >Category</th>
-                                       
-                                        <th scope = "col" >Grade</th>
-                                      </tr>
-                                </thead>
-                                <tbody>
-                                    {% for data in quiz_info %}
-                                  <tr>
-                                    {% if data.category == 'P' %}
-                                    <td scope = "col" style=" border: 1px solid;" >Political Involvement</td>
-                                    {% endif %}
-                                    {% if data.category == 'S' %}
-                                    <td scope = "col" style=" border: 1px solid;">Social Responsibility</td>
-                                    {% endif %}
-                                    {% if data.category == 'C' %}
-                                    <td scope = "col" style=" border: 1px solid;">Community Service</td>
-                                    {% endif %}
-                                    
-                                    <td scope = "col" style=" border: 1px solid;">{{data.percent}}%</td>
-                                  </tr>
-                                  {% endfor %}
-                                  
-                                </tbody>
-                           </table> -->
+                           
                            
                            <h4 class='text-center' style=" font-family: 'Raleway', sans-serif;
                            font-weight:bold;" >QUIZZES</h4>
@@ -164,11 +114,7 @@ tr{
                                       </tr>
                                 </thead>
                                 
-                                <!-- <tr style=" border: 1px solid;">
-                                  <th style=" border: 1px solid;" scope = "col" >Category</th>
-                                 
-                                  <th style=" border: 1px solid;" scope = "col" >Grade</th>
-                                </tr> -->
+                              
                                 {% for data in quiz_info %}
                                 <tr >
                                     {% if data.category == 'P' %}

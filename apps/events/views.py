@@ -71,7 +71,7 @@ def getResults(category, city,state,pageNum):
                     resDict["location"] = results[i].find("div",{ "data-subcontent-key" : "location" }).text
                 except:
                     resDict["location"] = "NO DATA"
-               
+                
                 if (resDict["title"]!= "NO DATA" and resDict["link"] != "NO DATA" and  resDict["location"] != "NO DATA" and resDict["date"] != "NO DATA"):
                     events.append(resDict)
         else:

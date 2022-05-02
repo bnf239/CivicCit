@@ -76,7 +76,16 @@ h1{
               {% for event in events %}
               <li class="list-group-item">
                  <div class="row">
-                    <div class="col" style="height: 150px; width: 150px;"><img style='height: 100%; width: 100%; object-fit: contain' src={{event.image}} alt=""></div>
+
+                    <div class="col" style="height: 150px; width: 150px;">
+                     {% if event.image != "NO DATA" %}
+                     {% load static %}
+                     <img style='height: 100%; width: 100%; object-fit: contain' src={{event.image}} alt="">
+                     {% else %}
+                     {% load static %}
+                     <img style='height: 100%; width: 100%; object-fit: contain' src="{% static 'images/noimage.jpg' %}" alt="">
+                     {% endif %}
+                  </div>
                     <div class="col-8">
                        <h3 id="title"><b>{{ event.title }}</b></h3>
                        <h5> <b>Location: </b> {{ event.location }} </h5>
@@ -104,7 +113,7 @@ h1{
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script> 
   
-
+// onclick function to add event to schedule
 $(document).ready(function(e) {   
   $('.add_schedule').on('click', function (e) {
     
@@ -129,16 +138,16 @@ $(document).ready(function(e) {
     
 });
  }); 
- 
+//  make input type value previous
  $('#prev').click(function(){
     $('#type').val('prev');
     
 });
-
+// make input type value next
 $('#next').click(function(){
     $('#type').val('next');
 });
-
+// make input type value search
 $('#search').click(function(){
     $('#type').val('search');
    

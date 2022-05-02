@@ -46,7 +46,6 @@
   .cnt223 p{
   clear: both;
       color: #555555;
-      /* text-align: justify; */
       font-size: 20px;
       font-family: sans-serif;
   }
@@ -96,16 +95,16 @@ h1{
 
   <div class='popup'>
     <div class='cnt223'>
-    <h1>Event Successfully Remove</h1>
-    <p>
-   Please visit the registration link for further instructions:
+        <h1>Event Successfully Remove</h1>
+            <p>
+          Please visit the registration link for further instructions:
 
-    <br/>
-    <br/>
-    <a href="{{eventUrlRemoved}}">Link</a>
-    <a href='' class='close'>Close</a>
-    </p>
-    </div>
+            <br/>
+            <br/>
+            <a href="{{eventUrlRemoved}}">Link</a>
+            <a href='' class='close'>Close</a>
+            </p>
+        </div>
     </div>
     {% endif %}
 
@@ -114,35 +113,14 @@ h1{
   <div class="row">
     
     <div class="col-sm-8 offset-sm-2">
-      <h1> </h1>
-      <h1> </h1>
-      <h1> </h1>
-      <h1> </h1>
-      <h1> </h1>
-      <h1> </h1>
-      <h1> </h1>
-      <h1> </h1>
-      <h1> </h1>
-      <h1> </h1>
+    
       <h1 class='text-center' > SCHEDULE </h1>
           <hr style="width: 100%;">
 
      
 
-</div>
-<div>
-
-
-
-  
-</div>
-<h1> </h1>
-<h1> </h1>
-<h1> </h1>
-<h1> </h1>
-<h1> </h1>
-<h1> </h1>
-  
+       </div>
+     
 </div>
 <div class="row">  
   <div class="col-md-12">
@@ -264,7 +242,7 @@ h1{
           right: 'dayGridMonth,timeGridWeek,timeGridDay,list'
         },
         initialDate: today,
-        navLinks: true, // can click day/week names to navigate views
+        navLinks: true,
         selectable: true,
         selectMirror: true,
         select: function(arg) {
@@ -276,7 +254,7 @@ h1{
          
         timeZone: 'UTC',
         editable: true,
-        dayMaxEvents: true, // allow "more" link when too many events
+        dayMaxEvents: true, 
         events: {{ events|safe }},
          
       });
@@ -293,12 +271,12 @@ h1{
     
 $(document).ready(function(e) {   
     $('.appendlink').on('click', function (e) {
-        console.log("INSIDE APPEND LINK");
+        
         var dict = {};
          
         var data = $(this).data();
         
-        console.log(data.url);
+        
      
         $.ajax({              
         
@@ -313,28 +291,6 @@ $(document).ready(function(e) {
         
         });
     });
-
-// $(document).ready(function(e) {   
-// $('.deleteEvent').on('click', function (e) {
-//   console.log("INSIDE CAT GEND");
-//   var data = $(this).data();
-//   console.log(data);
-//   $.ajax({              
-   
-//       url: "{% url 'delete_event' %}",
-//       type:'POST',                    
-//       data: {
-//           'event': data.event,   
-//       },
-//       success: function (data) {   
-//         alert("Event Successfully Removed From Your Schedule");
-//       }
-//   });
-  
-// });
-
-
-// }); 
 
 
 
