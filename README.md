@@ -1,16 +1,20 @@
-Instructions
+Instructions to run locally
 ```bash
+
 $ # Get the code
 $ git clone https://github.com/bnf239/CivicCit.git
 $ cd CivicCit
 $
+$ # For windows users, download windows subsystem: https://docs.microsoft.com/en-us/windows/wsl/install 
 $ 
+$ # create virutal environment in the location of the cloned repository
 $ virtualenv env
 $ source env/bin/activate
 $
 $ # Install modules
 $ pip3 install -r requirements.txt
-$ # inside psql client run the following command
+$ # install postgres and psql client
+$ # inside psql client run the following command by replacing the location of your repository
 $ \i '{path to repo}/CivicCit/createdb.sql'
 $ # In terminal Create tables
 $ python manage.py makemigrations
